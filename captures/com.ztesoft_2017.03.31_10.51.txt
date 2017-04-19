@@ -1,0 +1,350 @@
+CURRENT STATS:
+System memory usage:
+  SOff/Norm: 3 samples:
+    Cached: 57MB min, 155MB avg, 252MB max
+    Free: 89MB min, 140MB avg, 230MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 150MB min, 158MB avg, 165MB max
+    Native: 113MB min, 115MB avg, 115MB max
+       Mod : 3 samples:
+    Cached: 72MB min, 162MB avg, 231MB max
+    Free: 99MB min, 104MB avg, 110MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 162MB min, 164MB avg, 165MB max
+    Native: 113MB min, 116MB avg, 118MB max
+       Low : 2 samples:
+    Cached: 269MB min, 272MB avg, 276MB max
+    Free: 102MB min, 118MB avg, 134MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 151MB min, 151MB avg, 152MB max
+    Native: 114MB min, 115MB avg, 116MB max
+       Crit: 1 samples:
+    Cached: 210MB min, 210MB avg, 210MB max
+    Free: 181MB min, 181MB avg, 181MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 151MB min, 151MB avg, 151MB max
+    Native: 115MB min, 115MB avg, 115MB max
+  SOn /Norm: 5 samples:
+    Cached: 18MB min, 127MB avg, 199MB max
+    Free: 99MB min, 109MB avg, 121MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 159MB min, 165MB avg, 170MB max
+    Native: 112MB min, 115MB avg, 117MB max
+       Mod : 2 samples:
+    Cached: 125MB min, 151MB avg, 177MB max
+    Free: 135MB min, 154MB avg, 173MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 169MB min, 169MB avg, 170MB max
+    Native: 116MB min, 116MB avg, 117MB max
+       Low : 1 samples:
+    Cached: -17448960.00 min, -17448960.00 avg, -17448960.00 max
+    Free: 163MB min, 163MB avg, 163MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 163MB min, 163MB avg, 163MB max
+    Native: 112MB min, 112MB avg, 112MB max
+
+Per-Package Stats:
+  * com.ztesoft / u0a520 / v1:
+      * com.ztesoft / u0a520 / v1:
+               TOTAL: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+                 Top: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+          (Last Act): 0.24%
+            (Cached): 5.3% (29MB-53MB-98MB/26MB-51MB-95MB over 5)
+
+Summary:
+  * com.ztesoft / u0a520 / v1:
+           TOTAL: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+             Top: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+      (Last Act): 0.24%
+        (Cached): 5.3% (29MB-53MB-98MB/26MB-51MB-95MB over 5)
+
+Run time Stats:
+  SOff/Norm: +24m6s79ms
+       Mod : +7m52s79ms
+       Low : +2m39s470ms
+       Crit: +1m30s445ms
+  SOn /Norm: +51m5s172ms
+       Mod : +10m59s720ms (running)
+       Low : +4m5s280ms
+       Crit: +2m14s570ms
+      TOTAL: +1h44m32s815ms
+
+Memory usage:
+  Kernel : 163MB (96 samples)
+  Native : 115MB (96 samples)
+  Persist: 596MB (1158 samples)
+  Top    : 210MB (1447 samples)
+  ImpFg  : 551MB (2955 samples)
+  ImpBg  : 100MB (393 samples)
+  Service: 311MB (4591 samples)
+  Receivr: 690KB (2074 samples)
+  LastAct: 2.2MB (91 samples)
+  CchAct : 8.1MB (54 samples)
+  CchEmty: 127MB (2091 samples)
+  Cached : 142MB (96 samples)
+  Free   : 119MB (96 samples)
+  TOTAL  : 2.4GB
+  ServRst: 1.5MB (1848 samples)
+
+          Start time: 2017-03-31 07:39:48
+  Total elapsed time: +3h11m13s107ms (partial) libart.so
+
+AGGREGATED OVER LAST 24 HOURS:
+System memory usage:
+  SOff/Norm: 9 samples:
+    Cached: 0.00 min, 168MB avg, 284MB max
+    Free: 89MB min, 123MB avg, 230MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 150MB min, 162MB avg, 181MB max
+    Native: 111MB min, 114MB avg, 118MB max
+       Mod : 6 samples:
+    Cached: 72MB min, 187MB avg, 251MB max
+    Free: 99MB min, 129MB avg, 204MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 162MB min, 171MB avg, 191MB max
+    Native: 113MB min, 118MB avg, 123MB max
+       Low : 13 samples:
+    Cached: 37MB min, 233MB avg, 375MB max
+    Free: 81MB min, 149MB avg, 337MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 151MB min, 166MB avg, 178MB max
+    Native: 113MB min, 117MB avg, 120MB max
+       Crit: 3 samples:
+    Cached: 71MB min, 158MB avg, 210MB max
+    Free: 106MB min, 181MB avg, 257MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 151MB min, 157MB avg, 162MB max
+    Native: 111MB min, 114MB avg, 117MB max
+  SOn /Norm: 26 samples:
+    Cached: 0.00 min, 156MB avg, 291MB max
+    Free: 84MB min, 116MB avg, 305MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 153MB min, 161MB avg, 175MB max
+    Native: 112MB min, 114MB avg, 117MB max
+       Mod : 15 samples:
+    Cached: 41MB min, 146MB avg, 256MB max
+    Free: 98MB min, 137MB avg, 341MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 152MB min, 162MB avg, 187MB max
+    Native: 111MB min, 114MB avg, 118MB max
+       Low : 32 samples:
+    Cached: 0.00 min, 118MB avg, 284MB max
+    Free: 54MB min, 135MB avg, 310MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 150MB min, 167MB avg, 194MB max
+    Native: 112MB min, 116MB avg, 121MB max
+       Crit: 9 samples:
+    Cached: 32MB min, 95MB avg, 143MB max
+    Free: 96MB min, 196MB avg, 344MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 149MB min, 164MB avg, 174MB max
+    Native: 114MB min, 117MB avg, 122MB max
+
+Per-Package Stats:
+  * com.ztesoft / u0a513 / v1:
+      * com.ztesoft / u0a513 / v1:
+               TOTAL: 2.8% (36MB-47MB-62MB/34MB-45MB-60MB over 23)
+                 Top: 2.7% (36MB-47MB-62MB/34MB-45MB-60MB over 23)
+             Service: 0.09%
+          (Last Act): 0.10% (35MB-35MB-35MB/32MB-32MB-32MB over 1)
+            (Cached): 0.01%
+      * com.android.tools.fd.runtime.InstantRunService:
+        Process: com.ztesoft
+            Running count 17 / time 2.1%
+            Started count 17 / time 2.1%
+          Executing count 17 / time 0.04%
+  * com.ztesoft / u0a517 / v1:
+      * com.ztesoft / u0a517 / v1:
+               TOTAL: 0.05% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+                 Top: 0.04% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+             Service: 0.01%
+      * com.android.tools.fd.runtime.InstantRunService:
+        Process: com.ztesoft
+            Running count 1 / time 0.05%
+            Started count 1 / time 0.05%
+          Executing count 1 / time 0.00%
+  * com.ztesoft / u0a518 / v1:
+      * com.ztesoft / u0a518 / v1:
+               TOTAL: 0.05% (156MB-156MB-156MB/154MB-154MB-154MB over 1)
+                 Top: 0.05% (156MB-156MB-156MB/154MB-154MB-154MB over 1)
+              Imp Fg: 0.01%
+            (Cached): 0.12% (100MB-100MB-100MB/97MB-97MB-97MB over 1)
+      * com.android.tools.fd.runtime.InstantRunService:
+        Process: com.ztesoft
+            Running count 1 / time 0.01%
+            Started count 1 / time 0.01%
+          Executing count 1 / time 0.00%
+  * com.ztesoft / u0a519 / v1:
+      * com.ztesoft / u0a519 / v1:
+               TOTAL: 0.12% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+                 Top: 0.12% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+          (Last Act): 0.01%
+            (Cached): 0.01% (44MB-44MB-44MB/42MB-42MB-42MB over 1)
+      * com.android.tools.fd.runtime.InstantRunService:
+        Process: com.ztesoft
+            Running count 1 / time 0.07%
+            Started count 1 / time 0.07%
+          Executing count 1 / time 0.00%
+  * com.ztesoft / u0a520 / v1:
+      * com.ztesoft / u0a520 / v1:
+               TOTAL: 1.0% (28MB-72MB-157MB/25MB-69MB-154MB over 10)
+                 Top: 0.95% (28MB-75MB-157MB/25MB-72MB-154MB over 9)
+             Service: 0.06% (44MB-44MB-44MB/42MB-42MB-42MB over 1)
+          (Last Act): 0.03%
+            (Cached): 1.4% (29MB-49MB-98MB/26MB-47MB-95MB over 8)
+      * com.android.tools.fd.runtime.InstantRunService:
+        Process: com.ztesoft
+            Running count 1 / time 0.09%
+            Started count 1 / time 0.09%
+          Executing count 1 / time 0.00%
+
+Summary:
+  * com.ztesoft / u0a513 / v1:
+           TOTAL: 2.8% (36MB-47MB-62MB/34MB-45MB-60MB over 23)
+             Top: 2.7% (36MB-47MB-62MB/34MB-45MB-60MB over 23)
+         Service: 0.09%
+      (Last Act): 0.10% (35MB-35MB-35MB/32MB-32MB-32MB over 1)
+        (Cached): 0.01%
+  * com.ztesoft / u0a520 / v1:
+           TOTAL: 1.0% (28MB-72MB-157MB/25MB-69MB-154MB over 10)
+             Top: 0.95% (28MB-75MB-157MB/25MB-72MB-154MB over 9)
+         Service: 0.06% (44MB-44MB-44MB/42MB-42MB-42MB over 1)
+      (Last Act): 0.03%
+        (Cached): 1.4% (29MB-49MB-98MB/26MB-47MB-95MB over 8)
+  * com.ztesoft / u0a519 / v1:
+           TOTAL: 0.12% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+             Top: 0.12% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+      (Last Act): 0.01%
+        (Cached): 0.01% (44MB-44MB-44MB/42MB-42MB-42MB over 1)
+  * com.ztesoft / u0a518 / v1:
+           TOTAL: 0.05% (156MB-156MB-156MB/154MB-154MB-154MB over 1)
+             Top: 0.05% (156MB-156MB-156MB/154MB-154MB-154MB over 1)
+          Imp Fg: 0.01%
+        (Cached): 0.12% (100MB-100MB-100MB/97MB-97MB-97MB over 1)
+  * com.ztesoft / u0a517 / v1:
+           TOTAL: 0.05% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+             Top: 0.04% (52MB-52MB-52MB/50MB-50MB-50MB over 1)
+         Service: 0.01%
+
+Run time Stats:
+  SOff/Norm: +2h26m5s778ms
+       Mod : +56m13s10ms
+       Low : +10m6s888ms
+       Crit: +1h4m28s540ms
+  SOn /Norm: +6h31m3s234ms
+       Mod : +50m25s455ms
+       Low : +1h16m10s381ms
+       Crit: +3h11m57s103ms
+      TOTAL: +16h26m30s389ms
+
+Memory usage:
+  Kernel : 162MB (113 samples)
+  Native : 115MB (113 samples)
+  Persist: 556MB (2697 samples)
+  Top    : 206MB (18113 samples)
+  ImpFg  : 544MB (17248 samples)
+  ImpBg  : 103MB (3349 samples)
+  Service: 338MB (31789 samples)
+  Receivr: 837KB (24656 samples)
+  LastAct: 4.0MB (1047 samples)
+  CchAct : 17MB (829 samples)
+  CchCAct: 600 (295 samples)
+  CchEmty: 109MB (14680 samples)
+  Cached : 145MB (113 samples)
+  Free   : 140MB (113 samples)
+  TOTAL  : 2.4GB
+  ServRst: 1.3MB (27758 samples)
+
+          Start time: 2017-03-30 09:41:33
+  Total elapsed time: +1d1h9m30s576ms (partial) libart.so
+
+AGGREGATED OVER LAST 3 HOURS:
+System memory usage:
+  SOff/Norm: 3 samples:
+    Cached: 57MB min, 155MB avg, 252MB max
+    Free: 89MB min, 140MB avg, 230MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 150MB min, 158MB avg, 165MB max
+    Native: 113MB min, 115MB avg, 115MB max
+       Mod : 3 samples:
+    Cached: 72MB min, 162MB avg, 231MB max
+    Free: 99MB min, 104MB avg, 110MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 162MB min, 164MB avg, 165MB max
+    Native: 113MB min, 116MB avg, 118MB max
+       Low : 2 samples:
+    Cached: 269MB min, 272MB avg, 276MB max
+    Free: 102MB min, 118MB avg, 134MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 151MB min, 151MB avg, 152MB max
+    Native: 114MB min, 115MB avg, 116MB max
+       Crit: 1 samples:
+    Cached: 210MB min, 210MB avg, 210MB max
+    Free: 181MB min, 181MB avg, 181MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 151MB min, 151MB avg, 151MB max
+    Native: 115MB min, 115MB avg, 115MB max
+  SOn /Norm: 5 samples:
+    Cached: 18MB min, 127MB avg, 199MB max
+    Free: 99MB min, 109MB avg, 121MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 159MB min, 165MB avg, 170MB max
+    Native: 112MB min, 115MB avg, 117MB max
+       Mod : 2 samples:
+    Cached: 125MB min, 151MB avg, 177MB max
+    Free: 135MB min, 154MB avg, 173MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 169MB min, 169MB avg, 170MB max
+    Native: 116MB min, 116MB avg, 117MB max
+       Low : 1 samples:
+    Cached: 0.00 min, 0.00 avg, 0.00 max
+    Free: 163MB min, 163MB avg, 163MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 163MB min, 163MB avg, 163MB max
+    Native: 112MB min, 112MB avg, 112MB max
+
+Per-Package Stats:
+  * com.ztesoft / u0a520 / v1:
+      * com.ztesoft / u0a520 / v1:
+               TOTAL: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+                 Top: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+          (Last Act): 0.24%
+            (Cached): 5.3% (29MB-53MB-98MB/26MB-51MB-95MB over 5)
+
+Summary:
+  * com.ztesoft / u0a520 / v1:
+           TOTAL: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+             Top: 8.6% (28MB-77MB-157MB/25MB-75MB-154MB over 8)
+      (Last Act): 0.24%
+        (Cached): 5.3% (29MB-53MB-98MB/26MB-51MB-95MB over 5)
+
+Run time Stats:
+  SOff/Norm: +24m6s79ms
+       Mod : +7m52s79ms
+       Low : +2m39s470ms
+       Crit: +1m30s445ms
+  SOn /Norm: +51m5s172ms
+       Mod : +11m0s79ms
+       Low : +4m5s280ms
+       Crit: +2m14s570ms
+      TOTAL: +1h44m33s174ms
+
+Memory usage:
+  Kernel : 163MB (96 samples)
+  Native : 115MB (96 samples)
+  Persist: 596MB (1158 samples)
+  Top    : 210MB (1447 samples)
+  ImpFg  : 551MB (2955 samples)
+  ImpBg  : 100MB (393 samples)
+  Service: 311MB (4591 samples)
+  Receivr: 690KB (2074 samples)
+  LastAct: 2.2MB (91 samples)
+  CchAct : 8.1MB (54 samples)
+  CchEmty: 127MB (2091 samples)
+  Cached : 142MB (96 samples)
+  Free   : 119MB (96 samples)
+  TOTAL  : 2.4GB
+  ServRst: 1.5MB (1848 samples)
+
+          Start time: 2017-03-31 07:39:48
+  Total elapsed time: +3h11m13s448ms (partial) libart.so

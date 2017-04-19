@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Frame4.0</string>
+
+    <!-- loading和欢迎页面 -->
+    <string name="check_version">正在检测版本信息</string>
+    <string name="logining">正在登录</string>
+    <string name="constructing">当前系统内存紧张，正在重启应用</string>
+
+    <!-- normal -->
+    <string name="loading">正在加载数据，请稍候</string>
+    <string name="wait_moment">功能正在开发中，请等待</string>
+
+    <!-- 短信验证功能 -->
+    <string name="login_sms_get">获取短信验证码</string>
+    <string name="login_sms_wait">%1$s秒后重新获取</string>
+
+    <!-- 内网测试服务器地址 -->
+    <!-- <string name="servicePath">http://192.168.11.222:8081/</string> -->
+    <!-- 外网对应的内网地址 -->
+    <!-- <string name="servicePath">http://192.168.11.222:8082/</string> -->
+
+
+    <!-- 外网测试服务器地址 -->
+    <string name="servicePath">http://218.94.89.53:6061/</string>
+    <string name="serviceUrl">webservice/bdx/ianglem/</string>
+    <string name="clientjsonerror">请求参数错误</string>
+    <string name="quit">是否退出应用？</string>
+    <string name="text_length_limit">最多输入%1$s个字符</string>
+    <string name="upError">升级失败！请从设置中打开应用列表，从全部下面找到下载管理程序并启用，重新尝试！</string>
+
+    <!-- calendar -->
+    <string name="day_name_format">E</string>
+    <string name="invalid_date">选择日期必须在 %1$s和%2$s之间。</string>
+    <string name="month_name_format">yyyy年MM月</string>
+    <string name="date_name">时间选择</string>
+
+    <!-- 侧边栏 -->
+    <string name="module_name">模块功能</string>
+    <string name="daily_name">经分快报</string>
+    <string name="setting">设置</string>
+    <string name="message">消息提醒</string>
+    <string name="empty_cache">清空缓存</string>
+    <string name="lock_code">设置手势码</string>
+    <string name="other">其它</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="welcome_page">欢迎页</string>
+    <string name="check_update">检查版本</string>
+    <string name="about_app">关于我们</string>
+    <string name="visit_order">访问排名</string>
+    <string name="my_download">我的下载</string>
+    <string name="exit_login">退出当前账号</string>
+
+    <!-- 手势码 -->
+    <string name="sign">请设置新手势码</string>
+    <string name="sign_error">手势码输入错误，请重新输入</string>
+    <string name="sign_ok">手势码设置成功</string>
+    <string name="sign_error_five">您5次错误的绘制了解锁图案，请在30秒后重试。</string>
+    <string name="sign_login">请验证手势码</string>
+    <string name="sign_old">请验证旧手势码</string>
+    <string name="sign_set">请设置手势码</string>
+
+    <!-- 下拉刷新和上拉加载更多的文本 -->
+    <string name="pull_to_refresh_header_hint_normal">下拉可以刷新</string>
+    <string name="pull_to_refresh_header_hint_normal2">上拉可以刷新</string>
+    <string name="pull_to_refresh_header_hint_ready">松开后刷新</string>
+    <string name="pull_to_refresh_header_hint_loading">正在加载中</string>
+    <string name="pull_to_refresh_header_last_time">最后更新时间 : </string>
+    <string name="pull_to_refresh_footer_hint_ready">松开载入更多</string>
+    <string name="pull_to_refresh_no_more_data">已经到底啦</string>
+</resources>

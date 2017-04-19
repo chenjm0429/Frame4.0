@@ -1,0 +1,71 @@
+TASK com.ztesoft id=14679
+  ACTIVITY com.ztesoft/.ui.main.MainActivity 5024444 pid=31823
+    Local FragmentActivity 8f69449 State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@a04d564
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@a04d564
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.PhoneWindow$DecorView{fc73f5e V.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{dd8cf3f V.E..... ... 0,0-1080,1920}
+          android.view.ViewStub{e2fa00c G.E..... ... 0,0-0,0 #10203ba android:id/action_mode_bar_stub}
+          android.widget.FrameLayout{252fd55 V.E..... ... 0,0-1080,1920}
+            android.support.v7.widget.FitWindowsLinearLayout{b43f36a V.E..... ... 0,0-1080,1920 #7f0e0068 app:id/action_bar_root}
+              android.support.v7.widget.ViewStubCompat{e15205b G.E..... ... 0,0-0,0 #7f0e0069 app:id/action_mode_bar_stub}
+              android.support.v7.widget.ContentFrameLayout{3cb0f8 V.E..... ... 0,0-1080,1920 #1020002 android:id/content}
+                android.support.v4.widget.DrawerLayout{f9319d1 VFED.... F.. 0,0-1080,1920 #7f0e008a app:id/drawer_layout}
+                  android.widget.LinearLayout{cfb6737 V.E..... ... 0,55-1080,1920}
+                    android.widget.RelativeLayout{1de820d V.E..... ... 0,0-1080,138}
+                      android.support.v7.widget.AppCompatTextView{a6b85c2 V.ED.... ... 482,30-598,108 #7f0e0053 app:id/title}
+                      android.support.v7.widget.AppCompatImageView{8953fd3 V.ED..C. ... 33,36-101,102 #7f0e007e app:id/left_image}
+                      android.support.v7.widget.AppCompatImageView{130a710 I.ED..C. ... 979,36-1047,102 #7f0e007f app:id/right_image}
+                    android.widget.FrameLayout{afe3209 V.E..... ... 0,138-1080,1713 #7f0e00a9 app:id/container_layout}
+                      android.widget.LinearLayout{d703c0e V.E..... ... 0,0-1080,1575}
+                        android.support.v7.widget.AppCompatButton{bea062f VFED..C. ... 0,721-1080,853 #7f0e00a8 app:id/button}
+                    android.view.View{7e1243c V.ED.... ... 0,1713-1080,1714}
+                    android.widget.LinearLayout{64ee5c5 V.E..... ... 0,1714-1080,1865 #7f0e00aa app:id/menu_layout}
+                      com.ztesoft.ui.widget.MenuItemView{4f80b1a V.E...C. ... 0,6-540,151}
+                        android.widget.RelativeLayout{eba4828 V.E..... ... 0,0-540,145}
+                          android.support.v7.widget.AppCompatImageView{e3d1941 V.ED.... ... 236,11-304,81 #7f0e00ab app:id/menu_icon}
+                          android.support.v7.widget.AppCompatTextView{6fbbee6 V.ED.... ... 230,91-310,145 #7f0e00ac app:id/menu_name}
+                      android.widget.ImageView{93e8c27 V.ED.... ... 540,6-541,151}
+                      com.ztesoft.ui.widget.MenuItemView{b7fbed4 V.E...C. ... 541,6-1080,151}
+                        android.widget.RelativeLayout{d81087d V.E..... ... 0,0-539,145}
+                          android.support.v7.widget.AppCompatImageView{e34e372 V.ED.... ... 235,11-303,81 #7f0e00ab app:id/menu_icon}
+                          android.support.v7.widget.AppCompatTextView{5fdc3c3 V.ED.... ... 229,91-309,145 #7f0e00ac app:id/menu_name}
+                  android.support.design.widget.NavigationView{a83f440 I.ED.... ... -770,0-0,1920 #7f0e008b app:id/nav_view}
+                    android.support.design.internal.NavigationMenuView{eed91f VFED.V.. ... 0,0-770,1920 #7f0e009b app:id/design_navigation_view}
+                      android.widget.LinearLayout{b796eca V.E..... ... 0,0-770,1299 #7f0e009a app:id/navigation_header_container}
+                        android.widget.LinearLayout{5240b58 V.E..... ... 0,0-770,1277}
+                          android.widget.LinearLayout{9ddd4b1 V.E..... ... 0,44-770,471 #7f0e00b7 app:id/head_layout}
+                            com.ztesoft.ui.widget.RoundImageView{c27ad96 V.ED.... ... 288,44-481,237 #7f0e00b8 app:id/head}
+                            android.support.v7.widget.AppCompatTextView{37a8504 V.ED.... ... 333,237-437,307 #7f0e00b9 app:id/user}
+                            android.support.v7.widget.AppCompatTextView{4ca0aed V.ED.... ... 145,321-624,383 #7f0e00ba app:id/card_id}
+                          android.widget.ScrollView{9a90d22 VFED.... ... 0,471-770,1277}
+                            android.widget.LinearLayout{ac968e9 V.E..... ... 0,0-770,806}
+                              android.view.View{2eed96e V.ED.... ... 0,28-770,29}
+                              android.view.View{f06480f G.ED.... ... 0,0-0,0}
+                              android.widget.RelativeLayout{a3b709c V.E..... ... 0,29-770,173 #7f0e00bb app:id/info_layout}
+                                android.support.v7.widget.AppCompatTextView{c46aaa5 V.ED.... ... 41,28-365,116}
+                                android.support.v7.widget.AppCompatImageView{2b31e7a V.ED.... ... 674,44-729,99}
+                              android.view.View{5e9562b V.ED.... ... 0,173-770,174}
+                              android.widget.RelativeLayout{cdcfa88 V.E..... ... 0,174-770,318 #7f0e00bc app:id/set_layout}
+                                android.support.v7.widget.AppCompatTextView{b9c4c21 V.ED.... ... 41,28-365,116 #7f0e00bd app:id/lock_text}
+                                android.support.v7.widget.AppCompatImageView{344a846 V.ED.... ... 674,44-729,99}
+                              android.view.View{ba52a07 V.ED.... ... 0,318-770,319}
+                              android.view.View{8b3734 V.ED.... ... 0,347-770,348}
+                              android.view.View{c50895d V.ED.... ... 0,348-770,349}
+                              android.widget.RelativeLayout{31302d2 V.E..... ... 0,349-770,493 #7f0e00be app:id/version_layout}
+                                android.support.v7.widget.AppCompatTextView{a605fa3 V.ED.... ... 41,28-365,116}
+                                android.widget.LinearLayout{33e92a0 V.E..... ... 646,43-729,101}
+                                  android.support.v7.widget.AppCompatTextView{a115e59 V.ED.... ... 0,0-0,58 #7f0e00bf app:id/current_version}
+                                  android.support.v7.widget.AppCompatImageView{5fa7a1e V.ED.... ... 28,1-83,56}
+                              android.view.View{e0f52ff V.ED.... ... 0,493-770,494}
+                              android.widget.RelativeLayout{80a38cc V.E...C. ... 0,494-770,638 #7f0e00c0 app:id/about_layout}
+                                android.support.v7.widget.AppCompatTextView{3708715 V.ED.... ... 41,28-365,116}
+                                android.support.v7.widget.AppCompatImageView{f501a2a V.ED.... ... 674,44-729,99}
+                              android.view.View{390201b V.ED.... ... 0,638-770,639}
+                              android.support.v7.widget.AppCompatTextView{e0815b8 V.ED..C. ... 69,680-701,806 #7f0e00c1 app:id/exit}
+        android.view.View{45f7f91 V.ED.... ... 0,0-1080,55 #102002f android:id/statusBarBackground}

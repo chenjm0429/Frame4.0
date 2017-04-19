@@ -1,0 +1,4 @@
+include ':app'
+include ':AndroidLevel1'
+project(':AndroidLevel1').projectDir = new File('../AndroidLevel1')
+include 'AndroidLevel1:level1'

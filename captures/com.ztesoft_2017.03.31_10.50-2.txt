@@ -1,0 +1,49 @@
+Applications Memory Usage (kB):
+Uptime: 326702856 Realtime: 530147499
+
+** MEMINFO in pid 31823 [com.ztesoft] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap     7979     7876        0        0    14336    12085     2250
+  Dalvik Heap    51018    50924        0        0    64298    62114     2184
+ Dalvik Other     1789     1788        0        0                           
+        Stack      212      212        0        0                           
+       Ashmem        2        0        0        0                           
+      Gfx dev    11280    11280        0        0                           
+    Other dev        4        0        4        0                           
+     .so mmap     1105      144      560        0                           
+    .apk mmap      350        0      296        0                           
+    .ttf mmap      247        0      172        0                           
+    .dex mmap     8926     8924        0        0                           
+    .oat mmap     1821        0      756        0                           
+    .art mmap     1565     1328       24        0                           
+   Other mmap       13        8        0        0                           
+      Unknown      156      156        0        0                           
+        TOTAL    86467    82640     1812        0    78634    74199     4434
+ 
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:    52276
+         Native Heap:     7876
+                Code:    10852
+               Stack:      212
+            Graphics:    11280
+       Private Other:     1956
+              System:     2015
+ 
+               TOTAL:    86467      TOTAL SWAP (KB):        0
+ 
+ Objects
+               Views:      286         ViewRootImpl:        1
+         AppContexts:       10           Activities:        9
+              Assets:        5        AssetManagers:        2
+       Local Binders:       15        Proxy Binders:       26
+       Parcel memory:        6         Parcel count:       24
+    Death Recipients:        1      OpenSSL Sockets:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+ 
