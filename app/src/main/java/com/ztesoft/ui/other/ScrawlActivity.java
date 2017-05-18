@@ -24,13 +24,12 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.PopupWindow;
 
-import com.steema.teechart.styles.Line;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.BitmapOperateUtil;
 import com.ztesoft.ui.base.BaseActivity;
-import com.ztesoft.ui.widget.scrawl.ScrawlView;
+import com.ztesoft.level1.scrawl.ScrawlView;
 import com.ztesoft.utils.Utils;
 
 import org.json.JSONException;

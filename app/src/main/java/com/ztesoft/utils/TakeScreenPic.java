@@ -17,7 +17,9 @@ import android.view.View;
 import com.ztesoft.MainApplication;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.fusion.GlobalField;
 import com.ztesoft.level1.Level1Util;
+import com.ztesoft.level1.util.PromptUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,10 +48,10 @@ public class TakeScreenPic {
      */
     public Bitmap paintBitmap(Bitmap bmp, Context context) throws IOException {
 
-        String mstrTitle = "用户ID:" + ((MainApplication) ((Activity) context).getApplication())
-                .getGlobalField().getStaffId();
-        String mstrTitle1 = "用户名:" + ((MainApplication) ((Activity) context).getApplication())
-                .getGlobalField().getStaffName();
+        GlobalField gf = ((MainApplication) ((Activity) context).getApplication()).getGlobalField();
+
+        String mstrTitle = "用户ID:" + gf.getStaffId();
+        String mstrTitle1 = "用户名:" + gf.getStaffName();
         int height = bmp.getHeight();
         int width = bmp.getWidth();
 
@@ -69,8 +71,8 @@ public class TakeScreenPic {
         matrix.setRotate(325);
         canvasTemp.setMatrix(matrix);
 
-        Bitmap iconBg = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.ic_launcher).copy(Config.ARGB_8888, true);
+        Bitmap iconBg = BitmapFactory.decodeResource(context.getResources(), R.mipmap
+                .ic_launcher).copy(Config.ARGB_8888, true);
 
         boolean flag = true;
         for (int i = 0; i < height; i += 200) {
@@ -153,8 +155,8 @@ public class TakeScreenPic {
 
         FileOutputStream fos;
         try {
-            if (Environment.getExternalStorageState().equals(
-                    Environment.MEDIA_MOUNTED)) {// SD卡存在且可读写
+            //SD卡存在且可读写
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 fos = new FileOutputStream(filePath + File.separator + fileName);
             } else {
                 fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);

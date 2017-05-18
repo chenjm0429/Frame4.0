@@ -40,7 +40,7 @@ TASK com.ztesoft id=14679
                       android.widget.LinearLayout{b796eca V.E..... ... 0,0-770,1299 #7f0e009a app:id/navigation_header_container}
                         android.widget.LinearLayout{5240b58 V.E..... ... 0,0-770,1277}
                           android.widget.LinearLayout{9ddd4b1 V.E..... ... 0,44-770,471 #7f0e00b7 app:id/head_layout}
-                            com.ztesoft.ui.widget.RoundImageView{c27ad96 V.ED.... ... 288,44-481,237 #7f0e00b8 app:id/head}
+                            com.ztesoft.level1.image.RoundImageView{c27ad96 V.ED.... ... 288,44-481,237 #7f0e00b8 app:id/head}
                             android.support.v7.widget.AppCompatTextView{37a8504 V.ED.... ... 333,237-437,307 #7f0e00b9 app:id/user}
                             android.support.v7.widget.AppCompatTextView{4ca0aed V.ED.... ... 145,321-624,383 #7f0e00ba app:id/card_id}
                           android.widget.ScrollView{9a90d22 VFED.... ... 0,471-770,1277}

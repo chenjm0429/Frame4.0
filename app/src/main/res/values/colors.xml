@@ -6,6 +6,6 @@
     
     <color name="body_bg">#FFFFFF</color>
     <color name="body_text">#474747</color>
-
-    <color name="blue">#049BE4</color>
+    <color name="legacy_primary">#e91e63</color>
+    <color name="legacy_primary_dark">#c2185b</color>
 </resources>

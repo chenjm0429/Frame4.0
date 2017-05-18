@@ -10,6 +10,8 @@ import android.os.Environment;
 
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 
 import java.io.File;
@@ -35,7 +37,7 @@ public class DownCompleteReceiver extends BroadcastReceiver {
         long completeDownloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
         long downloadId = Long.MIN_VALUE;
         try {
-            String value = new SharedPreferencesUtil(context, FusionCode.SHARE_PREFERENCES_NAME)
+            String value = new SharedPreferencesUtil(context, Level1Bean.SHARE_PREFERENCES_NAME)
                     .getString("downloadId", "");
             downloadId = Long.parseLong(value);
         } catch (Exception e) {

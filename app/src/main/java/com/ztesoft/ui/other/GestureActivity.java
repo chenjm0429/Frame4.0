@@ -8,14 +8,15 @@ import android.widget.TextView;
 
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
 import com.ztesoft.ui.load.LoginActivity;
 import com.ztesoft.ui.load.LoginBaseActivity;
 import com.ztesoft.ui.main.MainActivity;
-import com.ztesoft.ui.widget.gesture.GesturePatternView;
-import com.ztesoft.utils.PromptUtils;
+import com.ztesoft.level1.gesture.GesturePatternView;
+import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +105,7 @@ public class GestureActivity extends LoginBaseActivity {
             mTipText.setText("手势码");
         }
 
-        spu = new SharedPreferencesUtil(this, FusionCode.SHARE_PREFERENCES_NAME);
+        spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
 
         gpv = (GesturePatternView) this.findViewById(R.id.mLocusPassWordView);
         gpv.setOnCompleteListener(new GesturePatternView.OnCompleteListener() {

@@ -9,8 +9,8 @@ import android.widget.FrameLayout;
 
 import com.ztesoft.MainApplication;
 import com.ztesoft.R;
-import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.fusion.GlobalField;
+import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
 import com.ztesoft.ui.main.MainActivity;
@@ -68,7 +68,7 @@ public class LoginBaseActivity extends BaseActivity {
         if (TextUtils.isEmpty(phone))
             phone = "";
 
-        spu = new SharedPreferencesUtil(this, FusionCode.SHARE_PREFERENCES_NAME);
+        spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
     }
 
     /**

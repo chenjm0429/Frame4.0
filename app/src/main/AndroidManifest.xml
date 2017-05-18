@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
 
@@ -24,6 +23,9 @@
 
     <permission-group android:name="android.permission-group.MICROPHONE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <permission-group android:name="android.permission-group.PHONE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     
     <application
         android:name="com.ztesoft.MainApplication"

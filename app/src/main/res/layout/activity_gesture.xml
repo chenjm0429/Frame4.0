@@ -30,7 +30,7 @@
             android:src="@mipmap/ic_launcher"/>
     </LinearLayout>
 
-    <com.ztesoft.ui.widget.gesture.GesturePatternView
+    <com.ztesoft.level1.gesture.GesturePatternView
         android:id="@+id/mLocusPassWordView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

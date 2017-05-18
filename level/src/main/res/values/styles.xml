@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <item name="android:textColorSecondary">@color/chart_area_line_color_jgf</item>
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+	
+     <!-- 背景透明的dialog -->
+    <style name="no_bg_dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+    
+    <!-- 弹出框背景半透明效果 -->
+    <style name="prompt_style" parent="@android:style/Theme.Panel">
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!-- 应用加载弹框风格 -->
+    <style name="prompt_loading_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- 从上向下弹出对话框，从下向上收起对话框 -->
+    <style name="PopupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/pop_show_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_hidden_anim</item>
+    </style>
+
+    <!-- 一般ListView的样式 -->
+    <style name="normal_listview_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:cacheColorHint">@color/transparent</item>
+        <item name="android:divider">#C4C4C4</item>
+        <item name="android:dividerHeight">0.5dp</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:listSelector">@color/transparent</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:fastScrollEnabled">false</item>
+    </style>
+
+</resources>

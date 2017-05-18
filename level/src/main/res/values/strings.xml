@@ -1,0 +1,148 @@
+<resources>
+
+    <string name="app_name">AndroidLevel1</string>
+    <string name="title">level1</string>
+
+    <string name="error_network">网络连接失败</string>
+    <string name="error_serivce">服务端没有响应（可能未启动或者网络不通）</string>
+    <string name="error_json">服务端返回JSON格式错误</string>
+    <string name="error_noknow">未知错误</string>
+    <string name="error_safe">信息被篡改"</string>
+
+    <string name="error_phoneNull">手机号码不得为空</string>
+    <string name="error_pwdNull">验证码不正确</string>
+    <string name="error_phoneNum">您输入的号码无效,请确认号码输入无误.</string>
+    <string name="error_imsi_notfound">未检测到SIM卡</string>
+    <string name="error_user_notDeliver">OA未传递user的值</string>
+    <string name="error_modle_setting">登陆模式设置错误，请重新设置。</string>
+    <string name="error_indate">已过期，请联系管理人员</string>
+    <string name="error_version">版本信息获取失败</string>
+    <string name="error_security">加解密错误</string>
+    <string name="error_SD_notFound">SD不存在或不可用</string>
+    <string name="error_save_file">文件保存失败</string>
+
+    <string name="error_userNull">用户名或密码不得为空</string>
+    <string name="error_newpwdNull">新密码不得为空</string>
+    <string name="error_mismatching">两次密码输入不一致，请确认</string>
+    <string name="error_string_atmost">最多只能选择%1$d个</string>
+    <string name="error_tableMuliHead">锁定列和多表头冲突，请锁定一级表头分割的列</string>
+
+    <string name="quit">是否退出应用？</string>
+    <string name="prompt">提示</string>
+    <string name="upgrade_prompt">有新版本了，去更新吧！\n更新内容：</string>
+    <string name="upgrade_true">更新</string>
+    <string name="upgrade_false">暂不更新</string>
+
+    <string name="login_user">请输入用户名</string>
+    <string name="login_pwd">请输入密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_newpwd">新密码</string>
+    <string name="login_newpwd_second">重新输入新密码</string>
+    <string name="login_save_pwd">是否保存密码</string>
+    <string name="login_modify_pwd">修改密码</string>
+    <string name="login_reset_pwd">重置密码</string>
+
+    <string name="login_phonenum">请输入手机号码</string>
+    <string name="login_phonepwd">请输入验证码</string>
+    <string name="login_phone">获取验证码</string>
+
+    <string name="csvExport">是否发送导出的CSV文件？</string>
+    <string name="system_isDelete">是否删除%1$s？</string>
+
+    <string name="system_save">保存</string>
+    <string name="system_confirm">确定</string>
+    <string name="system_cancel">取消</string>
+    <string name="system_close">关闭</string>
+    <string name="system_delete">删除</string>
+    <string name="system_return">返回</string>
+    <string name="system_reset">重置</string>
+    <string name="system_version">当前版本:</string>
+    <string name="system_retry">重试</string>
+    <string name="system_show">展开</string>
+    <string name="system_hide">收起</string>
+    <string name="system_help">帮助</string>
+    <string name="system_setting">设置</string>
+    <string name="system_loading">正在加载，请稍候</string>
+    <string name="system_answer">回复</string>
+    <string name="system_setting_net">设置网络</string>
+    <string name="audit_update">正在审核，请稍候</string>
+
+    <string name="system_text_selectdate">日期选择</string>
+    <string name="system_text_selectarea">地市选择</string>
+    <string name="system_text_selectkpi">指标选择</string>
+    <string name="system_text_selectcondition">条件选择</string>
+
+    <string name="download_done">下载完成</string>
+    <string name="download_false">下载失败</string>
+    <string name="download_downing">正在下载</string>
+    <string name="download_rate">已下载%1$d%</string>
+
+    <string name="send_mail">请选择邮件发送软件</string>
+    <string name="mail_subject">手机经分系统截屏邮件</string>
+    <string name="mail_content">附件为最新截屏，请查收！</string>
+    <string name="mail_csvtitle">手机经分系统导出报表邮件</string>
+    <string name="mail_csvcontent">附件为报表csv文件，请查收！</string>
+    <string name="mail_send_true">文件已投送至发件箱</string>
+    <string name="mail_send_failed">邮件发送失败</string>
+
+    <string name="oper_success">操作成功</string>
+    <string name="oper_failuer">操作失败</string>
+
+    <string name="kjcz">快捷操作</string>
+    <string name="rqxz">日期选择</string>
+    <string name="dsxz">地市选择</string>
+    <string name="qdxz">渠道选择</string>
+    <string name="jxxz">机型选择</string>
+    <string name="gotopro">返回全省</string>
+    <string name="ph">详情</string>
+
+    <string name="gesture_show">手势密码</string>
+    <string name="gesture_modify">修改手势密码</string>
+    <string name="gesture_new">设置手势密码</string>
+    <string name="gesture_new_again">再次绘制解锁图案</string>
+    <string name="gesture_error_num">至少连接%1$d个点，请重新输入</string>
+    <string name="gesture_error_second">与上一次绘制不一致，请重新绘制</string>
+    <string name="gesture_retry">密码错了，还可以输入%1$d次</string>
+    <string name="gesture_error">你已连续5次输错手势，手势解锁已关闭</string>
+    <string name="gesture_null">请先设置手势码</string>
+
+    <string name="p2refresh_head_load_more">加载更多</string>
+    <string name="p2refresh_end_load_more">更    多</string>
+    <string name="p2refresh_end_click_load_more">点击加载</string>
+    <string name="p2refresh_release_refresh">松开刷新</string>
+    <string name="p2refresh_pull_to_refresh">下拉刷新</string>
+    <string name="p2refresh_doing_head_refresh">正在刷新&#8230;</string>
+    <string name="p2refresh_doing_end_refresh">加载中&#8230;</string>
+    <string name="p2refresh_refresh_lasttime">最近更新&#160;&#058;&#160;</string>
+
+    <!-- 下拉刷新和上拉加载更多的文本 -->
+    <string name="pull_to_refresh_header_hint_normal">下拉可以刷新</string>
+    <string name="pull_to_refresh_header_hint_normal2">上拉可以刷新</string>
+    <string name="pull_to_refresh_header_hint_ready">松开后刷新</string>
+    <string name="pull_to_refresh_header_hint_loading">正在加载中</string>
+    <string name="pull_to_refresh_header_last_time">最后更新时间 : </string>
+    <string name="pull_to_refresh_footer_hint_ready">松开载入更多</string>
+    <string name="pull_to_refresh_no_more_data">已经到底啦</string>
+
+    <string name="calendar_initdate_error">日历组件初始日期配置错误。</string>
+
+    <string name="comment_status">您正在进行评论</string>
+    <string name="comment_tobody">您正在和%1$s私聊</string>
+    <string name="comment_wait_audit">待审核评论列表</string>
+    <string name="comment_nowait_audit">暂时没有需审核的评论</string>
+    <string name="comment_success">发布评论成功！</string>
+    <string name="comment_to_audit">发布评论成功，待管理员审核！</string>
+    <string name="comment_status_audited">已审核</string>
+    <string name="comment_nomore">无更多记录</string>
+    <string name="comment_tolong">评论内容过长</string>
+    <string name="comment_news_list">新消息列表</string>
+    <string name="comment_answer">您正在回复%1$s</string>
+    <string name="comment_publish">发布</string>
+    <string name="comment_desc">评论内容:</string>
+    <string name="comment_hint">请输入你想发表的评论内容...</string>
+    <string name="comment_reciver">接 收 人:</string>
+    <string name="comment_yh_hint">用户名搜索</string>
+    <string name="comment_forbidden">本模块不允许评论！</string>
+
+    <string name="text_length_limit">最多输入%1$s个字符</string>
+</resources>

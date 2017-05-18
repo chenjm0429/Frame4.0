@@ -10,7 +10,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.ztesoft.R;
-import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 
 import java.util.Timer;
@@ -79,7 +79,7 @@ public class DownLoadManagerUtil {
         try {
 
             downloadId = downloadManager.enqueue(request);
-            new SharedPreferencesUtil(context, FusionCode.SHARE_PREFERENCES_NAME).putString
+            new SharedPreferencesUtil(context, Level1Bean.SHARE_PREFERENCES_NAME).putString
                     ("downloadId", String.valueOf(downloadId));
 
         } catch (Exception e) {

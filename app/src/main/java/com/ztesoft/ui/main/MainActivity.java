@@ -22,7 +22,8 @@ import android.widget.TextView;
 
 import com.ztesoft.MainApplication;
 import com.ztesoft.R;
-import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
 import com.ztesoft.ui.base.BaseFragment;
@@ -31,7 +32,6 @@ import com.ztesoft.ui.main.entity.MenuEntity;
 import com.ztesoft.ui.other.AboutActivity;
 import com.ztesoft.ui.widget.MenuItemView;
 import com.ztesoft.utils.MainPageUtil;
-import com.ztesoft.utils.PromptUtils;
 import com.ztesoft.utils.Utils;
 
 import org.json.JSONException;
@@ -285,7 +285,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     dialog.dismiss();
                 }
 
-                SharedPreferencesUtil spu = new SharedPreferencesUtil(MainActivity.this, FusionCode
+                SharedPreferencesUtil spu = new SharedPreferencesUtil(MainActivity.this, Level1Bean
                         .SHARE_PREFERENCES_NAME);
 
                 spu.putBoolean("isSavePwd", false);

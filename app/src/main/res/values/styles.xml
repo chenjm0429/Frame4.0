@@ -22,16 +22,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <!-- 应用加载弹框风格 -->
-    <style name="prompt_loading_style" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimEnabled">false</item>
-    </style>
-
     <!-- 头部布局风格 -->
     <style name="app_title_layout_style">
         <item name="android:layout_width">match_parent</item>
@@ -76,28 +66,4 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">10dp</item>
     </style>
-
-    <!-- 从上向下弹出对话框，从下向上收起对话框 -->
-    <style name="PopupWindowAnimation">
-        <item name="android:windowEnterAnimation">@anim/pop_show_anim</item>
-        <item name="android:windowExitAnimation">@anim/pop_hidden_anim</item>
-    </style>
-
-    <!-- 一般ListView的样式 -->
-    <style name="normal_listview_style">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginTop">0dp</item>
-        <item name="android:layout_marginBottom">0dp</item>
-        <item name="android:layout_marginLeft">0dp</item>
-        <item name="android:layout_marginRight">0dp</item>
-        <item name="android:cacheColorHint">@color/transparent</item>
-        <item name="android:divider">#C4C4C4</item>
-        <item name="android:dividerHeight">0.5dp</item>
-        <item name="android:fadingEdge">none</item>
-        <item name="android:listSelector">@color/transparent</item>
-        <item name="android:scrollbars">none</item>
-        <item name="android:fastScrollEnabled">false</item>
-    </style>
-
 </resources>

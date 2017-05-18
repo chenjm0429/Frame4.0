@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.ui.home.HomeFragment;
 import com.ztesoft.ui.other.OtherFragment;
 

@@ -41,7 +41,7 @@ import com.ztesoft.level1.util.SDCardUtil;
 import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.ui.other.ScrawlActivity;
 import com.ztesoft.utils.ErrorLogUtil;
-import com.ztesoft.utils.PromptUtils;
+import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -178,7 +178,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         FrameLayout containerLayout = (FrameLayout) this.findViewById(R.id.container);
         // 增加水印
-        containerLayout.setForeground(getWatermark());
+//        containerLayout.setForeground(getWatermark());
 
         mTitleTv = (TextView) this.findViewById(R.id.title);
         mTitleLayout = (RelativeLayout) this.findViewById(R.id.titleLayout);

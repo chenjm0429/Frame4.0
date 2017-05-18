@@ -21,11 +21,6 @@ public class FusionCode {
      */
     public final static String encrykey = "dfg*&#33";
 
-    /**
-     * SharePreferences文件名称，使用时可修改
-     */
-    public final static String SHARE_PREFERENCES_NAME = "com.ztesoft.govmrkt.preferences.config";
-
     public final static String WELCOME_VERSION = "1";
 
     /**

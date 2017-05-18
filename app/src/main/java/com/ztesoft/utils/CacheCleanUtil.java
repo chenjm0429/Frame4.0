@@ -56,7 +56,7 @@ public class CacheCleanUtil {
         SharedPreferencesUtil mPrefs = new SharedPreferencesUtil(context, "Demo");
         mPrefs.clear();
 
-        new SharedPreferencesUtil(context, FusionCode.SHARE_PREFERENCES_NAME).clear();
+        new SharedPreferencesUtil(context, Level1Bean.SHARE_PREFERENCES_NAME).clear();
 
         // 软应用数据
         CacheField.clearCache();

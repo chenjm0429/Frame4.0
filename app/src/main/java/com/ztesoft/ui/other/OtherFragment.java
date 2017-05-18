@@ -1,11 +1,7 @@
 package com.ztesoft.ui.other;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.ztesoft.R;
 import com.ztesoft.ui.base.BaseFragment;
@@ -25,22 +21,14 @@ import org.json.JSONObject;
  */
 public class OtherFragment extends BaseFragment {
 
-    private Context mContext;
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    protected int getContentViewId() {
+        return R.layout.layout_other;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle
-            savedInstanceState) {
+    protected void initData(Bundle arguments) {
 
-        mContext = getActivity();
-
-        return inflater.inflate(R.layout.layout_other, container, false);
     }
 
     @Override

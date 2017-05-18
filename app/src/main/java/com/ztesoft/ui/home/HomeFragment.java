@@ -1,20 +1,20 @@
 package com.ztesoft.ui.home;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.ztesoft.R;
-import com.ztesoft.ui.base.BaseActivity;
+import com.ztesoft.level1.ui.AutoScrollTextView;
+import com.ztesoft.level1.ui.ButtonGroupUI;
 import com.ztesoft.ui.base.BaseFragment;
 import com.ztesoft.ui.main.MainActivity;
-import com.ztesoft.utils.PromptUtils;
+import com.ztesoft.level1.util.PromptUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -29,25 +29,18 @@ import org.json.JSONObject;
  */
 public class HomeFragment extends BaseFragment {
 
-    private Context mContext;
     private Button mButton;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private LinearLayout layout1, layout2;
 
+    @Override
+    protected int getContentViewId() {
+        return R.layout.layout_home;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle
-            savedInstanceState) {
+    protected void initData(Bundle arguments) {
 
-        View view = inflater.inflate(R.layout.layout_home, container, false);
-
-        mContext = getActivity();
-
-        return view;
     }
 
     @Override
@@ -63,15 +56,69 @@ public class HomeFragment extends BaseFragment {
                 if (getActivity() instanceof MainActivity) {
                     ((MainActivity) getActivity()).menuSelected(1);
                 }
-                
-                
             }
         });
+
+        layout1 = (LinearLayout) getView().findViewById(R.id.layout_tt);
+        layout2 = (LinearLayout) getView().findViewById(R.id.layout_zz);
+
+        AutoScrollTextView ast = new AutoScrollTextView(mActivity, new AutoScrollTextView
+                .OnScrollChangeListener() {
+
+
+            @Override
+            public void onScrollChange(int numTag) {
+
+            }
+        });
+        ast.setVertical(true);
+        layout1.addView(ast, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams
+                .MATCH_PARENT);
+
+        String[] names = {"测试看看效果啊1", "测试看看效果啊2", "测试看看效果啊3", "测试看看效果啊4", "测试看看效果啊5"};
+
+        ast.create(names, 2);
+
+
+        ButtonGroupUI bgi = new ButtonGroupUI(mActivity);
+//        bgi.setBackgroundResource(R.color.layout_select_color);
+        bgi.setButtonNum(3);
+        bgi.setVertical(true);
+        bgi.create(getData());
+
+        bgi.setOnSelectListener(new ButtonGroupUI.OnSelectListener() {
+            @Override
+            public void onSelected(int position, String currentCode, String currentName) {
+                PromptUtils.instance.displayToastString(mActivity, false, position + ", " + 
+                        currentCode + ", " + currentName);
+            }
+        });
+
+        layout2.addView(bgi, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
     }
 
     @Override
     public void updateUI(JSONObject resultJsonObject) {
-        
+
+    }
+
+    private JSONArray getData() {
+        JSONArray array = new JSONArray();
+
+        try {
+            for (int i = 0; i < 7; i++) {
+                JSONObject obj = new JSONObject();
+
+                obj.put("code", "" + i);
+                obj.put("name", "测试" + i);
+
+                array.put(obj);
+            }
+        } catch (JSONException e) {
+
+        }
+
+        return array;
     }
 }

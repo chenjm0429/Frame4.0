@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
 import com.ztesoft.ui.other.GestureActivity;
@@ -47,7 +47,8 @@ public class LoadActivity extends BaseActivity {
 
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO};
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.READ_PHONE_STATE};
 
     private PermissionsChecker mPermissionsChecker; // 权限检测器
 
@@ -66,7 +67,7 @@ public class LoadActivity extends BaseActivity {
 
         mPermissionsChecker = new PermissionsChecker(this);
 
-        spu = new SharedPreferencesUtil(this, FusionCode.SHARE_PREFERENCES_NAME);
+        spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
     }
 
     @Override
@@ -138,7 +139,9 @@ public class LoadActivity extends BaseActivity {
     private void showWelcomeView() {
         mWelcomeView = new ImageView(this);
         mWelcomeView.setScaleType(ImageView.ScaleType.FIT_XY);
-        mWelcomeView.setImageResource(R.drawable.load_welcome_bg);
+
+        String url = "drawable://" + R.drawable.load_welcome_bg;
+        changeLoadBg(url);
 
         frameLayout.addView(mWelcomeView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
@@ -161,7 +164,8 @@ public class LoadActivity extends BaseActivity {
         @Override
         public void handleInfo(String loadBgPath) {
 
-            changeLoadBg(loadBgPath);
+            String url = getString(R.string.servicePath) + loadBgPath;
+            changeLoadBg(url);
 
         }
 
@@ -196,14 +200,13 @@ public class LoadActivity extends BaseActivity {
     /**
      * 切换load背景
      */
-    private void changeLoadBg(String loadBgPath) {
-        String url = getString(R.string.servicePath) + loadBgPath;
+    private void changeLoadBg(String url) {
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)// 设置下载的图片是否缓存在内存中
                 .cacheOnDisk(true)// 设置下载的图片是否缓存在SD卡中
                 // .considerExifParams(true) //是否考虑JPEG图像EXIF参数（旋转，翻转）
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)// 设置图片以如何的编码方式显示
+                .imageScaleType(ImageScaleType.NONE)// 设置图片以如何的编码方式显示
                 .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型//
                 // .delayBeforeLoading(int delayInMillis)//int
                 // delayInMillis为你设置的下载前的延迟时间
@@ -211,7 +214,7 @@ public class LoadActivity extends BaseActivity {
                 // .preProcessor(BitmapProcessor preProcessor)
                 .resetViewBeforeLoading(true)// 设置图片在下载前是否重置，复位
                 // .displayer(new RoundedBitmapDisplayer(45))// 是否设置为圆角，弧度为多少
-                .displayer(new FadeInBitmapDisplayer(100))// 是否图片加载好后渐入的动画时间
+//                .displayer(new FadeInBitmapDisplayer(100))// 是否图片加载好后渐入的动画时间
                 .build();// 构建完成
         ImageLoader.getInstance().displayImage(url, mWelcomeView, options);
     }

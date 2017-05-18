@@ -25,7 +25,6 @@
     <string name="serviceUrl">webservice/bdx/ianglem/</string>
     <string name="clientjsonerror">请求参数错误</string>
     <string name="quit">是否退出应用？</string>
-    <string name="text_length_limit">最多输入%1$s个字符</string>
     <string name="upError">升级失败！请从设置中打开应用列表，从全部下面找到下载管理程序并启用，重新尝试！</string>
 
     <!-- calendar -->
@@ -58,13 +57,4 @@
     <string name="sign_login">请验证手势码</string>
     <string name="sign_old">请验证旧手势码</string>
     <string name="sign_set">请设置手势码</string>
-
-    <!-- 下拉刷新和上拉加载更多的文本 -->
-    <string name="pull_to_refresh_header_hint_normal">下拉可以刷新</string>
-    <string name="pull_to_refresh_header_hint_normal2">上拉可以刷新</string>
-    <string name="pull_to_refresh_header_hint_ready">松开后刷新</string>
-    <string name="pull_to_refresh_header_hint_loading">正在加载中</string>
-    <string name="pull_to_refresh_header_last_time">最后更新时间 : </string>
-    <string name="pull_to_refresh_footer_hint_ready">松开载入更多</string>
-    <string name="pull_to_refresh_no_more_data">已经到底啦</string>
 </resources>

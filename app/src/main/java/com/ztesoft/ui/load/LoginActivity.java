@@ -14,7 +14,7 @@ import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.ui.main.MainActivity;
 import com.ztesoft.ui.main.entity.MenuEntity;
-import com.ztesoft.utils.PromptUtils;
+import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

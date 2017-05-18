@@ -9,7 +9,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.ztesoft.R;
-import com.ztesoft.fusion.FusionCode;
+import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 
 import java.io.File;
@@ -97,7 +98,7 @@ public class Utils {
     public static int getStatusBarHeight(Context context) {
 
         int statusBarHeight = 0;
-        boolean isFullScreen = new SharedPreferencesUtil(context, FusionCode
+        boolean isFullScreen = new SharedPreferencesUtil(context, Level1Bean
                 .SHARE_PREFERENCES_NAME).getBoolean("isFullScreen", false);
         if (!isFullScreen) { // 没有全屏
             try {
@@ -325,10 +326,10 @@ public class Utils {
 
         final String ext = extension.toLowerCase(Locale.ENGLISH);
         if (ext.endsWith("mpeg") || ext.endsWith("mp4") || ext.endsWith("mov") || ext.endsWith
-                ("m4v") || ext.endsWith("3gp") || ext.endsWith("3gpp") || ext.endsWith("3g2") || 
+                ("m4v") || ext.endsWith("3gp") || ext.endsWith("3gpp") || ext.endsWith("3g2") ||
                 ext.endsWith("3gpp2") || ext.endsWith("avi") || ext.endsWith("divx") || ext
                 .endsWith("wmv") || ext.endsWith("asf") || ext.endsWith("flv") || ext.endsWith
-                ("mkv") || ext.endsWith("mpg") || ext.endsWith("rmvb") || ext.endsWith("rm") || 
+                ("mkv") || ext.endsWith("mpg") || ext.endsWith("rmvb") || ext.endsWith("rm") ||
                 ext.endsWith("vob") || ext.endsWith("f4v")) {
             return true;
         }

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -13,8 +14,6 @@ import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.fusion.GlobalField;
 import com.ztesoft.level1.util.SDCardUtil;
 import com.ztesoft.utils.MyActivityManager;
-
-import java.io.File;
 
 public class MainApplication extends Application {
 
@@ -39,9 +38,11 @@ public class MainApplication extends Application {
                 .defaultDisplayImageOptions(defaultOptions)
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
-                .diskCache(new UnlimitedDiskCache(StorageUtils.getOwnCacheDirectory(this, FusionCode.IMAGES_LOCALPATH)))
+                .diskCache(new UnlimitedDiskCache(StorageUtils.getOwnCacheDirectory(this, 
+                        FusionCode.IMAGES_LOCALPATH)))
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .memoryCache(new WeakMemoryCache())
                 .build();
         ImageLoader.getInstance().init(config);
 

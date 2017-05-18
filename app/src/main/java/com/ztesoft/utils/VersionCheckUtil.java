@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.SDCardUtil;
 import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.ui.load.LoginBaseActivity;
