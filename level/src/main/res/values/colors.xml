@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="font_white_color">#FFFFFF</color>
+    <color name="font_black_color">#000000</color>
+    <color name="font_silver_color">#808080</color>
+    <color name="font_special_color">#EBA308</color>
+    
+    <color name="button_font_color">#FFFFFF</color>
+    
+    <color name="frame_select_color">#f4ce5b</color>
+    <color name="layout_bgcolor">#161616</color>
+    <color name="grid_bgcolor">#2E323B</color>
+    <color name="layout_bgcolor_light">#1B1B1B</color>
+    <color name="layout_bgcolor_white">#FFFFFF</color>
+    <color name="layout_select_color">#F4631C</color>
+    <color name="layout_select_color_fzt">#282B32</color>
+    <color name="layout_split_color">#343434</color>
+    <color name="layout_top_bgcolor">#444444</color>
+    <color name="layout_chart_bgcolor">#222222</color>
+    
+    <color name="chart_area_line_color">#FFFFFF</color>
+    <color name="chart_area_color">#002355</color>
+    <color name="chart_area_select_color">#7F7F7F</color>
+    
+    <color name="font_diy_color">#C1D2F0</color>
+    <color name="font_txt_color">#3D3E40</color>
+    <color name="layout_diy_bgcolor">#3E4854</color>
+    
+    <color name="chart_area_line_color_jgf">#E8A338</color>
+    <color name="chart_area_color_jgf">#655132</color>
+    
+    <color name="tablehead_font_color">#FFFFFF</color>
+    <color name="tablehead_bg_color">#0e0e0e</color>
+    <color name="tablebody_font_color">#FFFFFF</color>
+    
+    <color name="activity_title_color">#FFFFFF</color>
+    
+     <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
+
+    <color name="blue">#049BE4</color>
+</resources>

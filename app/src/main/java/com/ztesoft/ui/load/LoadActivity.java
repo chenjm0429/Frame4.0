@@ -47,7 +47,8 @@ public class LoadActivity extends BaseActivity {
 
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO};
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, 
+            Manifest.permission.READ_PHONE_STATE};
 
     private PermissionsChecker mPermissionsChecker; // 权限检测器
 

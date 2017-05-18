@@ -3,7 +3,6 @@
               xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingTop="@dimen/activity_vertical_margin"
               android:background="#F4F4F4"
               android:orientation="vertical">
 
@@ -18,9 +17,9 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:paddingTop="25dp">
 
-        <com.ztesoft.ui.widget.RoundImageView
+        <com.ztesoft.level1.image.RoundImageView
             android:id="@+id/head"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -35,6 +34,7 @@
             android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical"
             android:text="张三"
             android:textColor="@android:color/black"
@@ -44,7 +44,7 @@
             android:id="@+id/card_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/side_phone_icon"
             android:drawablePadding="3dp"
             android:gravity="center_vertical"

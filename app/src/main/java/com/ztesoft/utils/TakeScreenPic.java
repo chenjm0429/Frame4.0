@@ -70,7 +70,7 @@ public class TakeScreenPic {
         canvasTemp.setMatrix(matrix);
 
         Bitmap iconBg = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.ic_launcher).copy(Config.ARGB_8888, true);
+                R.mipmap.ic_launcher).copy(Config.ARGB_8888, true);
 
         boolean flag = true;
         for (int i = 0; i < height; i += 200) {
