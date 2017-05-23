@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ztesoft.level1.R;
+import com.ztesoft.level1.dialog.MyAlertDialog;
 import com.ztesoft.level1.gridview.GridAdapter;
 import com.ztesoft.level1.gridview.MyGridView;
 
@@ -31,7 +32,7 @@ public class Fenxiang {
     private String yixin_app_id;
     private Activity act;
 
-    private com.ztesoft.level1.ui.MyAlertDialog mad;
+    private MyAlertDialog mad;
     private ArrayList<JSONObject> lstImageItem = null;
 
     public final static int Fenxiang_message = 1;
@@ -156,7 +157,7 @@ public class Fenxiang {
         });
         mm.create();
 
-        mad = new com.ztesoft.level1.ui.MyAlertDialog(act);
+        mad = new MyAlertDialog(act);
         mad.setTitle("分享");
         mad.setView(mm);
         if (cancel) {

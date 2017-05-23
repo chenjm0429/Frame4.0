@@ -1,4 +1,4 @@
-package com.ztesoft.level1.ui;
+package com.ztesoft.level1.flow;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ztesoft.level1.R;
+import com.ztesoft.level1.flow.FlowLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -1,16 +1,5 @@
 package com.ztesoft.level1.radiobutton;
 
-import java.lang.reflect.Method;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.ztesoft.level1.Level1Util;
-import com.ztesoft.level1.R;
-import com.ztesoft.level1.radiobutton.util.ArrayWheelAdapter;
-import com.ztesoft.level1.radiobutton.util.OnWheelChangedListener;
-import com.ztesoft.level1.radiobutton.util.WheelView;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -21,6 +10,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+
+import com.ztesoft.level1.Level1Util;
+import com.ztesoft.level1.R;
+import com.ztesoft.level1.dialog.MyAlertDialog;
+import com.ztesoft.level1.radiobutton.util.ArrayWheelAdapter;
+import com.ztesoft.level1.radiobutton.util.OnWheelChangedListener;
+import com.ztesoft.level1.radiobutton.util.WheelView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Method;
 
 /**
  * 多级滚轮列表菜单
@@ -33,7 +34,7 @@ public class MultiSelectUI extends TextView {
     final String TAG = "MultiSelectUI";
 
     private Context context;
-    private com.ztesoft.level1.ui.MyAlertDialog ad;// 弹出窗
+    private MyAlertDialog ad;// 弹出窗
     private JSONArray jsArr;
     private String diloagTitle;// 弹出窗标题
     private String methodName = null;// 回调函数
@@ -160,7 +161,7 @@ public class MultiSelectUI extends TextView {
         adLayout.addView(wheelLayout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
         if (null == ad)
-            ad = new com.ztesoft.level1.ui.MyAlertDialog(context, R.style.prompt_style);
+            ad = new MyAlertDialog(context, R.style.prompt_style);
         // 增加弹出框背景半透明效果
         ad.setTitle(diloagTitle);
         ad.setView(adLayout);
@@ -443,11 +444,11 @@ public class MultiSelectUI extends TextView {
         return buttonType;
     }
 
-    public com.ztesoft.level1.ui.MyAlertDialog getAd() {
+    public MyAlertDialog getAd() {
         return ad;
     }
 
-    public void setAd(com.ztesoft.level1.ui.MyAlertDialog ad) {
+    public void setAd(MyAlertDialog ad) {
         this.ad = ad;
     }
 

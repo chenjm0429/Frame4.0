@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.R;
-import com.ztesoft.level1.ui.MyAlertDialog;
+import com.ztesoft.level1.dialog.MyAlertDialog;
 
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package com.ztesoft.level1.ui;
+package com.ztesoft.level1.calendar;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.ztesoft.level1.R;
-import com.ztesoft.level1.calendar.CalendarView;
 
 /**
  * 文件名称 : CalendarSelectUI

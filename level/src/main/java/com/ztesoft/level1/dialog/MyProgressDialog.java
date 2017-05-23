@@ -1,4 +1,4 @@
-package com.ztesoft.level1.ui;
+package com.ztesoft.level1.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

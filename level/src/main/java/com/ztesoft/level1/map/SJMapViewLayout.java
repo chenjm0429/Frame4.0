@@ -1,14 +1,5 @@
 package com.ztesoft.level1.map;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -25,6 +16,15 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.ztesoft.level1.Level1Util;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /***
  * 四级地图画法
@@ -254,15 +254,15 @@ public class SJMapViewLayout extends View {
             newb = Bitmap.createBitmap((int) (width * zoomScale[cureScaleOrder]), (int) (height *
                     zoomScale[cureScaleOrder]), Config.ARGB_8888);
             Canvas canvas = new Canvas(newb);
-            AreaPointBean[] tempRegion = null;
+            AreaPointBean[] tempRegion;
             int len = otherList.size();
-            int colorIndex = 0;
+            int colorIndex;
             if (len == 0) {
                 colorIndex = 3;
             } else {
                 colorIndex = 3 - len;
             }
-            String cityAtrr[] = null;
+            String cityAtrr[];
             //画轮廓线
             for (int i = 0; i < childRegion.length; i++) {
                 if (childRegion[i] == null) continue;
@@ -272,13 +272,12 @@ public class SJMapViewLayout extends View {
                 }
                 if (cityAtrr != null && regionColor.containsKey(cityAtrr[cityAtrr.length - 1])) {
                     drawPath(canvas, childRegion[i].getCityRegion(), boderStock[colorIndex],
-                            boderColor[colorIndex], ((JSONObject) regionColor.get
-                                    (cityAtrr[cityAtrr.length - 1])).optString("color",
-                                    defaultColor));
+                            boderColor[colorIndex], regionColor.get(cityAtrr[cityAtrr.length -
+                                    1]).optString("color", defaultColor));
                 } else if (regionColor.containsKey(childRegion[i].getCityName())) {
                     drawPath(canvas, childRegion[i].getCityRegion(), boderStock[colorIndex],
-                            boderColor[colorIndex], ((JSONObject) regionColor.get(childRegion[i]
-                                    .getCityName())).optString("color", defaultColor));
+                            boderColor[colorIndex], regionColor.get(childRegion[i].getCityName())
+                                    .optString("color", defaultColor));
                 } else {
                     drawPath(canvas, childRegion[i].getCityRegion(), boderStock[colorIndex],
                             boderColor[colorIndex], defaultColor);
@@ -330,7 +329,7 @@ public class SJMapViewLayout extends View {
     private AreaPointBean initOneMap(String areaPoints) {
         String poits[] = areaPoints.split(":");
         String areaPoits[] = poits[3].split(",");
-        String pathTemp[] = null;
+        String pathTemp[];
         pathTemp = areaPoits;
         Path path = new Path();
         int x = Integer.parseInt(pathTemp[0]);
@@ -360,7 +359,7 @@ public class SJMapViewLayout extends View {
     //数组
     private AreaPointBean[] initTwoMap(JSONArray areaPoints) {
         AreaPointBean regions[] = new AreaPointBean[areaPoints.length()];
-        JSONObject mapObj = null;
+        JSONObject mapObj;
         try {
             for (int i = 0; i < areaPoints.length(); i++) {
                 mapObj = areaPoints.getJSONObject(i);

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ztesoft.level1.R;
-import com.ztesoft.level1.ui.PromptDialogBuilder;
+import com.ztesoft.level1.dialog.PromptDialogBuilder;
 
 /**
  * 文件名称 : PromptUtils

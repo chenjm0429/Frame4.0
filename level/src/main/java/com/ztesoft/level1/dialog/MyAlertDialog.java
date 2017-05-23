@@ -1,6 +1,4 @@
-package com.ztesoft.level1.ui;
-
-import com.ztesoft.level1.Level1Util;
+package com.ztesoft.level1.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +12,8 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.ztesoft.level1.Level1Util;
 
 public class MyAlertDialog extends Dialog {
 
