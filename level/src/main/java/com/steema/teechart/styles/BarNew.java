@@ -2,7 +2,6 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 // Source File Name:   Bar.java
-
 package com.steema.teechart.styles;
 
 import com.steema.teechart.IBaseChart;
@@ -18,7 +17,6 @@ import com.steema.teechart.misc.Utils;
 // Referenced classes of package com.steema.teechart.styles:
 //            CustomBar, BarStyle, MultiBars, Margins, 
 //            ValueList, SeriesMarks, MarksCallout, SeriesMarksPosition
-
 public class BarNew extends CustomBarNew {
 
     public BarNew() {
@@ -74,7 +72,7 @@ public class BarNew extends CustomBarNew {
         if (i < getCount()) {
             int k = calcXPos(i);
             int l;
-            if (barSizePercent == 100 && customBarSize == 0 && iMultiBar != MultiBars.SELFSTACK 
+            if (barSizePercent == 100 && customBarSize == 0 && iMultiBar != MultiBars.SELFSTACK
                     && iMultiBar != MultiBars.SIDE) {
                 if (getHorizAxis().getInverted()) {
                     if (i > 0)
@@ -251,6 +249,7 @@ public class BarNew extends CustomBarNew {
                         firstVisible = -1;
                         break;
                     } while (true);
+
                 if (firstVisible >= 0) {
                     double d1 = calcMinMaxValue(rectangle.getRight(), rectangle.getBottom(),
                             rectangle.x, rectangle.y);
@@ -258,11 +257,13 @@ public class BarNew extends CustomBarNew {
                         lastVisible = i;
                     } else {
                         for (lastVisible = firstVisible; lastVisible < i && notMandatory
-                                .value[lastVisible] < d1; lastVisible++)
-                            ;
+                                .value[lastVisible] < d1; lastVisible++){
+                            
+                        }
                         for (; !drawBetweenPoints && lastVisible > 0 && notMandatory
-                                .value[lastVisible] > d1; lastVisible--)
-                            ;
+                                .value[lastVisible] > d1; lastVisible--){
+                            
+                        }
                     }
                 }
             } else {
@@ -286,7 +287,7 @@ public class BarNew extends CustomBarNew {
     }
 
     public int calcXPos(int i) {
-        int j = 0;
+        int j;
         if (iMultiBar == MultiBars.SIDEALL)
             j = getHorizAxis().calcXPosValue(iPreviousCount + i) - iBarSize / 2;
         else if (iMultiBar == MultiBars.SELFSTACK) {
@@ -303,7 +304,7 @@ public class BarNew extends CustomBarNew {
     }
 
     public int calcYPos(int i) {
-        int j = 0;
+        int j;
         if ((iMultiBar == MultiBars.NONE) | (iMultiBar == MultiBars.SIDE) | (iMultiBar ==
                 MultiBars.SIDEALL)) {
             j = super.calcYPos(i);

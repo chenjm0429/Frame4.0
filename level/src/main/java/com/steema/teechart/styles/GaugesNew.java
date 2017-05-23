@@ -4,9 +4,6 @@
 // Source File Name:   Gauges.java
 
 package com.steema.teechart.styles;
-/***
- * 仪表盘
- */
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -27,10 +24,9 @@ import com.steema.teechart.misc.MathUtils;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-// Referenced classes of package com.steema.teechart.styles:
-//            Circular, SeriesPointer, HandStyle, PointerStyle, 
-//            ValueList
-
+/***
+ * 仪表盘
+ */
 public class GaugesNew extends Circular {
     /**
      *
@@ -266,7 +262,6 @@ public class GaugesNew extends Circular {
             ((Canvas) igraphics3d.getGraphics()).drawArc(new RectF(ref.getLeft() - xADD, ref
                     .getTop(), ref.getRight() + xADD, ref.getBottom() + yADD), (float) (180 -
                     getRotationAngle()), (float) (-getTotalAngle()), true, blackPain);
-
         }
 
 

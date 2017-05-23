@@ -62,9 +62,9 @@ import com.steema.teechart.styles.ValuesLists;
 import com.ztesoft.level1.util.BitmapOperateUtil;
 
 public class SimpleChart extends View implements IChart, android.view.View.OnTouchListener {
-    public static interface Scrollable {
 
-        public abstract ScrollResult isScrollable(Axis axis, ScrollResult scrollresult);
+    public interface Scrollable {
+        ScrollResult isScrollable(Axis axis, ScrollResult scrollresult);
     }
 
     private Chart chart;
@@ -74,7 +74,7 @@ public class SimpleChart extends View implements IChart, android.view.View.OnTou
     protected Scrollable scrollable;
     private static final transient LegendResolver defaultLegendResolver = new LegendAdapter();
     protected transient LegendResolver legendResolver;
-    private static final transient AxisLabelResolver defaultAxisLabelResolver = new 
+    private static final transient AxisLabelResolver defaultAxisLabelResolver = new
             AxisLabelAdapter();
     protected transient AxisLabelResolver axisLabelResolver;
     private Handler timer;
@@ -1041,14 +1041,15 @@ public class SimpleChart extends View implements IChart, android.view.View.OnTou
                     }
                     return true;
                 } else {
-                    if (Math.abs(mLastMotionX - x) > TOUCH_SLOP || Math.abs(mLastMotionY - y) >
-                            TOUCH_SLOP) {
+                    if (Math.abs(mLastMotionX - x) > TOUCH_SLOP
+                            || Math.abs(mLastMotionY - y) > TOUCH_SLOP) {
                         //移动超过阈值，则表示移动了  
                         removeCallbacks(mLongPressRunnable);
                         isCancle = true;
                     }
-                    if (Level1Bean.scrollToLeft && Level1Bean.scrollToRight && Math.abs
-                            (mLastMotionY - y) > TOUCH_SLOP) {
+                    if (Level1Bean.scrollToLeft
+                            && Level1Bean.scrollToRight
+                            && Math.abs(mLastMotionY - y) > TOUCH_SLOP) {
                         getParent().requestDisallowInterceptTouchEvent(false);
                     }
                 }
@@ -1291,8 +1292,7 @@ public class SimpleChart extends View implements IChart, android.view.View.OnTou
         this.pointColor = pointColor;
     }
 
-    public void setDispatchEventWhenScrollToSide(
-            boolean dispatchEventWhenScrollToSide) {
+    public void setDispatchEventWhenScrollToSide(boolean dispatchEventWhenScrollToSide) {
         this.dispatchEventWhenScrollToSide = dispatchEventWhenScrollToSide;
     }
 }

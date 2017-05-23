@@ -2,20 +2,18 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 // Source File Name:   AxisLabels.java
-
 package com.steema.teechart.axis;
-
-import java.text.DecimalFormat;
 
 import com.steema.teechart.DateTime;
 import com.steema.teechart.MultiLine;
 import com.steema.teechart.TextShape;
 import com.steema.teechart.languages.Language;
 
+import java.text.DecimalFormat;
+
 // Referenced classes of package com.steema.teechart.axis:
 //            AxisLabelsItems, Axis, AxisLabelStyle, AxisLabelAlign, 
 //            AxisLabelResolver
-
 public class AxisLabels extends TextShape {
 
     public AxisLabels(Axis axis1) {

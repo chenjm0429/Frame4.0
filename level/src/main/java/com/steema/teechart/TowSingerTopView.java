@@ -1,7 +1,5 @@
 package com.steema.teechart;
 
-import java.text.DecimalFormat;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,14 +9,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ztesoft.level1.Level1Bean;
 import com.steema.teechart.drawing.Color;
 import com.steema.teechart.styles.Series;
 import com.steema.teechart.styles.SeriesCollection;
 import com.steema.teechart.styles.StringList;
 import com.steema.teechart.styles.ValueList;
 import com.steema.teechart.styles.ValuesLists;
+import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.BitmapOperateUtil;
+
+import java.text.DecimalFormat;
 
 /***
  * 图形上面的层----------双指
@@ -69,7 +69,8 @@ public class TowSingerTopView {
             }
         }
         double btwWidth = 5;
-        if (tickPos.length > 1) btwWidth = (tickPos[1] - tickPos[0]) / 2;
+        if (tickPos.length > 1)
+            btwWidth = (tickPos[1] - tickPos[0]) / 2;
         StringBuffer descStr = new StringBuffer();
         StringBuffer dataStr = new StringBuffer();
         StringBuffer pointStr = new StringBuffer();
@@ -129,7 +130,7 @@ public class TowSingerTopView {
                 int centerX = Math.abs((x2 - x1) / 2);
                 centerX = Math.min(Math.abs(x1), Math.abs(x2)) + centerX;
                 int xwidth = topBitMap.getWidth();
-                int start = 0;
+                int start;
                 if (centerX - xwidth / 2 < chart.getChartRect().getLeft()) {
                     start = chart.getChartRect().getLeft();
                 } else if (centerX + xwidth / 2 > chart.getChartRect().getRight()) {
@@ -155,14 +156,14 @@ public class TowSingerTopView {
         Double data1 = Double.parseDouble(data[0]);
         String topStr = sAtrr[0] + "  " + sAtrr[1];
         DecimalFormat df1 = new DecimalFormat("0.00");
-        String botomStr = "";
+        String botomStr;
         if (data2 >= data1) {
             botomStr = "+" + df.format(data2 - data1);
         } else {
             botomStr = " " + df.format(data2 - data1);
         }
 
-        double x = 0;
+        double x;
         if (data1 != 0) {
             if (data1 > 0 && data2 > 0) {
                 x = (data2 - data1) / data1 * 100;
@@ -188,14 +189,14 @@ public class TowSingerTopView {
         txt.setGravity(Gravity.CENTER_HORIZONTAL);
         txt.setTextColor(Color.BLACK.getRGB());
         txt.setText(topStr);
-        tView.addView(txt, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams
+        tView.addView(txt, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams
                 .WRAP_CONTENT);
         txt = new TextView(context);
         txt.setGravity(Gravity.CENTER_HORIZONTAL);
         txt.setTextSize(makrLineTextSize);
         txt.setTextColor(Color.WHITE.getRGB());
         txt.setText(botomStr);
-        tView.addView(txt, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams
+        tView.addView(txt, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams
                 .WRAP_CONTENT);
 
         return tView;

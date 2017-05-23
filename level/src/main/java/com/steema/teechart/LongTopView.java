@@ -1,7 +1,5 @@
 package com.steema.teechart;
 
-import java.text.DecimalFormat;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ztesoft.level1.Level1Util;
 import com.steema.teechart.SimpleChart.LongCallBackEvent;
 import com.steema.teechart.drawing.Color;
 import com.steema.teechart.styles.Area;
@@ -26,7 +23,10 @@ import com.steema.teechart.styles.SeriesCollection;
 import com.steema.teechart.styles.StringList;
 import com.steema.teechart.styles.ValueList;
 import com.steema.teechart.styles.ValuesLists;
+import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.util.BitmapOperateUtil;
+
+import java.text.DecimalFormat;
 
 /***
  * 图形上面的层----------长按显示图形具体信息
@@ -124,30 +124,30 @@ public class LongTopView {
             if (topView != null) {
                 Bitmap topBitMap = BitmapOperateUtil.getBitmapFromSimpleView(topView);
                 canvas.drawBitmap(topBitMap, tickPos[canvasIndex], chart.getChartRect().getTop(),
-						new Paint());
+                        new Paint());
             } else {
                 Bitmap topBitMap = BitmapOperateUtil.getBitmapFromSimpleView(drawTopTextView
-						(series, canvasIndex));
+                        (series, canvasIndex));
                 if ("V".equals(markLineType)) {
                     int startx = tickPos[canvasIndex] - topBitMap.getWidth() / 2;
                     if (startx < chart.getChartRect().getLeft()) {
                         startx = chart.getChartRect().getLeft();
                     } else if (tickPos[canvasIndex] + topBitMap.getWidth() / 2 > chart
-							.getChartRect().getRight()) {
+                            .getChartRect().getRight()) {
                         startx = chart.getChartRect().getRight() - topBitMap.getWidth();
                     }
                     canvas.drawBitmap(topBitMap, startx, chart.getChartRect().getTop(), new Paint
-							());
+                            ());
                 } else if ("H".equals(markLineType)) {
                     int centerx = chart.getChartRect().getLeft() + (chart.getChartRect().getRight
-							() - chart.getChartRect().getLeft()) / 2;
+                            () - chart.getChartRect().getLeft()) / 2;
                     int startx = centerx - topBitMap.getWidth() / 2;
                     canvas.drawBitmap(topBitMap, startx, chart.getChartRect().getTop(), new Paint
-							());
+                            ());
                 }
             }
             //------------------------------------回调函数-------------------------------	
-			
+
             if (cur != curIndex) {
                 curIndex = canvasIndex;
                 if (longCallBackEvent != null) {
@@ -168,7 +168,7 @@ public class LongTopView {
         int p = Level1Util.dip2px(context, 5);
         tView.setPadding(p, p, p, p);
         tView.setBackgroundDrawable(Level1Util.MAIN_RADIO_BORD(context, Color.fromCode
-				(markLineBackgroundColor).getRGB(), Color.fromCode(markLineColor).getRGB(), 1));
+                (markLineBackgroundColor).getRGB(), Color.fromCode(markLineColor).getRGB(), 1));
         String texts[] = new String[series.size() + 1];
         int colors[] = new int[series.size() + 1];
         String showStr = "";
@@ -212,7 +212,8 @@ public class LongTopView {
                 if (texts[i] == null) {
                     continue;
                 }
-                tView.addView(txt, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                tView.addView(txt, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout
+                        .LayoutParams.WRAP_CONTENT);
             }
         } else {
             TextView txt = new TextView(context);
@@ -223,10 +224,12 @@ public class LongTopView {
                 if (texts[i] == null) {
                     continue;
                 }
-                style.setSpan(new ForegroundColorSpan(colors[i]), start, start + texts[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                style.setSpan(new ForegroundColorSpan(colors[i]), start, start + texts[i].length
+                        (), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 start = start + texts[i].length();
             }
-            txt.setMaxWidth((chart.getChartRect().getRight() - chart.getChartRect().getLeft()) - 10);
+            txt.setMaxWidth((chart.getChartRect().getRight() - chart.getChartRect().getLeft()) -
+                    10);
             txt.setText(style);
             tView.addView(txt);
         }

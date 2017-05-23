@@ -47,7 +47,6 @@ public class MainApplication extends Application {
         ImageLoader.getInstance().init(config);
 
         //如果app根目录不存在，则创建app根目录
-        boolean ss = SDCardUtil.getInstance().isFileExist(FusionCode.FILE_LOCALPATH);
         if (!SDCardUtil.getInstance().isFileExist(FusionCode.FILE_LOCALPATH)) {
             SDCardUtil.getInstance().createSDDir(FusionCode.FILE_LOCALPATH);
         }

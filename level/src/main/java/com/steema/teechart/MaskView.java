@@ -1,7 +1,5 @@
 package com.steema.teechart;
 
-import java.lang.reflect.Method;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +16,8 @@ import com.steema.teechart.styles.Series;
 import com.steema.teechart.styles.SeriesCollection;
 import com.steema.teechart.styles.StringList;
 import com.ztesoft.level1.R;
+
+import java.lang.reflect.Method;
 
 /***
  * 遮罩滑动
@@ -101,7 +101,7 @@ public class MaskView extends View {
             bg_right = BitmapFactory.decodeResource(getResources(), R.drawable.range_right);
             hdWidth = bg_right.getWidth();
             canvas.save();
-            int leftOff = 0;
+            int leftOff;
             if (tickPos.length > showNum) {
                 leftOff = tickPos[tickPos.length - showNum];
                 firstView = series.getSeries(0).getLastVisible() - showNum;
@@ -190,6 +190,7 @@ public class MaskView extends View {
             leftRegion.setPath(path, new Region((int) r.left, (int) r.top, (int) r.right, (int) r
                     .bottom));
         }
+
         if (moveMask != -1) {
             canvas.save();
             Rect midleRec = middleRegion.getBounds();
@@ -236,8 +237,7 @@ public class MaskView extends View {
                 }
             }
             canvas.clipRect(midleRec.left + leftMove, chart.getChartRect().getTop() + 2, midleRec
-                    .right + rightMove, chart.getChartRect().getBottom() - 2, Region.Op
-                    .DIFFERENCE);
+                    .right + rightMove, chart.getChartRect().getBottom() - 2, Region.Op.DIFFERENCE);
             Rect rectx = new Rect(chart.getChartRect().getLeft(), chart.getChartRect().getTop(),
                     chart.getChartRect().getRight(), chart.getChartRect().getBottom());
             Paint pt = new Paint();

@@ -22,8 +22,8 @@ import java.util.ArrayList;
 //            Series
 
 public class PieNew extends Circular {
-    protected class CompareSlice
-            implements Comparator {
+
+    protected class CompareSlice implements Comparator {
 
         public final int compare(int i, int j) {
             double d = (6.2831853071795862D * (double) angleSize) / 360D;
@@ -57,7 +57,7 @@ public class PieNew extends Circular {
             setSlice(i, getSlice(j));
             setSlice(j, k);
         }
-        
+
         public ExplodedSliceList(int i) {
         }
     }
@@ -384,15 +384,18 @@ public class PieNew extends Circular {
 
     protected void addSampleValues(int i) {
         String as[] = {
-                Language.getString("PieSample1"), Language.getString("PieSample2"), Language
-                .getString("PieSample3"), Language.getString("PieSample4"), Language.getString
-                ("PieSample5"), Language.getString("PieSample6"), Language.getString
-                ("PieSample7"), Language.getString("PieSample8")
-        };
+                Language.getString("PieSample1"),
+                Language.getString("PieSample2"),
+                Language.getString("PieSample3"),
+                Language.getString("PieSample4"),
+                Language.getString("PieSample5"),
+                Language.getString("PieSample6"),
+                Language.getString("PieSample7"),
+                Language.getString("PieSample8")};
+
         SeriesRandom seriesrandom = randomBounds(i);
         for (int j = 0; j < i; j++)
             add(1 + Utils.round(1000D * seriesrandom.Random()), as[j % 8]);
-
     }
 
     private int SliceEndZ(int i) {
@@ -402,6 +405,7 @@ public class PieNew extends Circular {
                     .getSlice(i)) * 0.01D);
         else
             j = getEndZ();
+
         return j;
     }
 
@@ -436,7 +440,6 @@ public class PieNew extends Circular {
             }
             angles[j].MidAngle = (angles[j].StartAngle + angles[j].EndAngle) * 0.5D;
         }
-
     }
 
     protected Point calcExplodedRadius(int i) {
@@ -559,6 +562,7 @@ public class PieNew extends Circular {
             }
             i++;
         } while (true);
+
         return null;
     }
 
@@ -586,7 +590,7 @@ public class PieNew extends Circular {
         IGraphics3D igraphics3d = chart.getGraphics3D();
         if (shadow != null && shadow.getVisible() && !shadow.getColor().isEmpty() && (shadow
                 .getWidth() != 0 || shadow.getHeight() != 0))
-            shadow.draw(igraphics3d, rCircleRect.x, rCircleRect.y, rCircleRect.getRight(), 
+            shadow.draw(igraphics3d, rCircleRect.x, rCircleRect.y, rCircleRect.getRight(),
                     rCircleRect.getBottom(), getEndZ() - 10);
         Rectangle rectangle = chart.getChartRect();
         if (getOtherSlice().getLegend() != null && getOtherSlice().getLegend().getVisible()) {
@@ -645,12 +649,12 @@ public class PieNew extends Circular {
             if (seriesmarksposition.arrowTo.x > iCircleXCenter)
                 seriesmarksposition.leftTop.x = seriesmarksposition.arrowTo.x;
             else
-                seriesmarksposition.leftTop.x = seriesmarksposition.arrowTo.x - 
+                seriesmarksposition.leftTop.x = seriesmarksposition.arrowTo.x -
                         seriesmarksposition.width;
             if (seriesmarksposition.arrowTo.y > iCircleYCenter)
                 seriesmarksposition.leftTop.y = seriesmarksposition.arrowTo.y;
             else
-                seriesmarksposition.leftTop.y = seriesmarksposition.arrowTo.y - 
+                seriesmarksposition.leftTop.y = seriesmarksposition.arrowTo.y -
                         seriesmarksposition.height;
             if (getMarksPie().getVertCenter()) {
                 double d1 = seriesmarksposition.height / 2;
@@ -666,22 +670,22 @@ public class PieNew extends Circular {
             } else {
                 seriesmarksposition.hasMid = true;
                 if (seriesmarksposition.arrowTo.x > iCircleXCenter) {
-                    if (seriesmarksposition.arrowTo.x - getMarksPie().getLegSize() < 
+                    if (seriesmarksposition.arrowTo.x - getMarksPie().getLegSize() <
                             seriesmarksposition.arrowFrom.x) {
                         seriesmarksposition.midPoint.x = seriesmarksposition.arrowFrom.x;
-                        seriesmarksposition.arrowTo.x = seriesmarksposition.arrowTo.x + 
+                        seriesmarksposition.arrowTo.x = seriesmarksposition.arrowTo.x +
                                 getMarksPie().getLegSize();
                         seriesmarksposition.leftTop.x = seriesmarksposition.arrowTo.x;
                     } else {
-                        seriesmarksposition.midPoint.x = seriesmarksposition.arrowTo.x - 
+                        seriesmarksposition.midPoint.x = seriesmarksposition.arrowTo.x -
                                 getMarksPie().getLegSize();
                     }
-                } else if (seriesmarksposition.arrowTo.x + getMarksPie().getLegSize() > 
+                } else if (seriesmarksposition.arrowTo.x + getMarksPie().getLegSize() >
                         seriesmarksposition.arrowFrom.x) {
                     seriesmarksposition.midPoint.x = seriesmarksposition.arrowFrom.x;
                     seriesmarksposition.arrowTo.x = seriesmarksposition.arrowFrom.x - getMarksPie
                             ().getLegSize();
-                    seriesmarksposition.leftTop.x = seriesmarksposition.arrowTo.x - 
+                    seriesmarksposition.leftTop.x = seriesmarksposition.arrowTo.x -
                             seriesmarksposition.width;
                 } else {
                     seriesmarksposition.midPoint.x = seriesmarksposition.arrowTo.x + getMarksPie
@@ -709,13 +713,13 @@ public class PieNew extends Circular {
         Point point = calcExplodedOffset(i);
         IGraphics3D igraphics3d = chart.getGraphics3D();
         if (chart.getAspect().getView3D() || iDonutPercent == 0)
-            igraphics3d.pie(iCircleXCenter + point.x, iCircleYCenter - point.y, 0, 0, iXRadius, 
-                    iYRadius, getStartZ(), SliceEndZ(i), angles[i].StartAngle + rotDegree, 
-                    angles[i].EndAngle + rotDegree, dark3D, false, iDonutPercent, bevelPercent, 
+            igraphics3d.pie(iCircleXCenter + point.x, iCircleYCenter - point.y, 0, 0, iXRadius,
+                    iYRadius, getStartZ(), SliceEndZ(i), angles[i].StartAngle + rotDegree,
+                    angles[i].EndAngle + rotDegree, dark3D, false, iDonutPercent, bevelPercent,
                     edgeStyle, false);
         else
-            igraphics3d.donut(iCircleXCenter + point.x, iCircleYCenter - point.y, iXRadius, 
-                    iYRadius, angles[i].StartAngle + rotDegree, angles[i].EndAngle + rotDegree, 
+            igraphics3d.donut(iCircleXCenter + point.x, iCircleYCenter - point.y, iXRadius,
+                    iYRadius, angles[i].StartAngle + rotDegree, angles[i].EndAngle + rotDegree,
                     iDonutPercent);
     }
 
@@ -724,9 +728,9 @@ public class PieNew extends Circular {
         IGraphics3D igraphics3d = chart.getGraphics3D();
         if (angleSize < 360)
             isExploded = true;
-        igraphics3d.pie(iCircleXCenter, iCircleYCenter, point.x, point.y, iXRadius, iYRadius, 
-                startZ, SliceEndZ(i), angles[i].StartAngle + rotDegree, angles[i].EndAngle + 
-                        rotDegree, dark3D, isExploded, iDonutPercent, bevelPercent, edgeStyle, 
+        igraphics3d.pie(iCircleXCenter, iCircleYCenter, point.x, point.y, iXRadius, iYRadius,
+                startZ, SliceEndZ(i), angles[i].StartAngle + rotDegree, angles[i].EndAngle +
+                        rotDegree, dark3D, isExploded, iDonutPercent, bevelPercent, edgeStyle,
                 flag);
         if (isDrill) {
             if (usePatterns || chart.getGraphics3D().getMonochrome())
@@ -737,19 +741,18 @@ public class PieNew extends Circular {
             chart.setBrushCanvas(color, bBrush, calcCircleBackColor());
             preparePiePen(chart.getGraphics3D(), i);
 
-            igraphics3d.pie(iCircleXCenter, iCircleYCenter, point.x, point.y, iXRadius / 2, 
-                    iYRadius / 2, startZ, SliceEndZ(i), angles[i].StartAngle + rotDegree - 1, 
-                    angles[i].EndAngle + rotDegree + 1, dark3D, isExploded, iDonutPercent, 
+            igraphics3d.pie(iCircleXCenter, iCircleYCenter, point.x, point.y, iXRadius / 2,
+                    iYRadius / 2, startZ, SliceEndZ(i), angles[i].StartAngle + rotDegree - 1,
+                    angles[i].EndAngle + rotDegree + 1, dark3D, isExploded, iDonutPercent,
                     bevelPercent, edgeStyle, false);
 
             color = Color.fromCode(ColorDefault.pieCenterColor[1]);
             chart.setBrushCanvas(color, bBrush, calcCircleBackColor());
             preparePiePen(chart.getGraphics3D(), i);
-            igraphics3d.pie(iCircleXCenter, iCircleYCenter, point.x, point.y, iXRadius / 8, 
-                    iYRadius / 8, startZ, SliceEndZ(i), angles[i].StartAngle + rotDegree - 2, 
-                    angles[i].EndAngle + rotDegree + 2, dark3D, isExploded, iDonutPercent, 
+            igraphics3d.pie(iCircleXCenter, iCircleYCenter, point.x, point.y, iXRadius / 8,
+                    iYRadius / 8, startZ, SliceEndZ(i), angles[i].StartAngle + rotDegree - 2,
+                    angles[i].EndAngle + rotDegree + 2, dark3D, isExploded, iDonutPercent,
                     bevelPercent, edgeStyle, false);
-
         }
     }
 
@@ -802,7 +805,7 @@ public class PieNew extends Circular {
         }
     }
 
-    protected void prepareLegendCanvas(IGraphics3D igraphics3d, int i, Color color, ChartBrush 
+    protected void prepareLegendCanvas(IGraphics3D igraphics3d, int i, Color color, ChartBrush
             chartbrush) {
         super.prepareLegendCanvas(igraphics3d, i, color, chartbrush);
         preparePiePen(igraphics3d, i);
@@ -840,7 +843,7 @@ public class PieNew extends Circular {
         double d = pointToAngle(i, j);
         for (int k = 0; k < getCount(); k++) {
             Point point1 = calcExplodedOffset(k);
-            if (Math.abs(i - getCircleXCenter()) <= getXRadius() + point1.x && Math.abs(j - 
+            if (Math.abs(i - getCircleXCenter()) <= getXRadius() + point1.x && Math.abs(j -
                     getCircleYCenter()) <= getYRadius() + point1.y && angles[k].contains(d))
                 return k;
         }

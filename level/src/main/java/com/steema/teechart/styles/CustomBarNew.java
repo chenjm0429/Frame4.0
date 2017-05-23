@@ -2,7 +2,6 @@
 
 package com.steema.teechart.styles;
 
-
 import com.steema.teechart.IBaseChart;
 import com.steema.teechart.Rectangle;
 import com.steema.teechart.axis.Axis;
@@ -19,14 +18,13 @@ import com.steema.teechart.misc.Utils;
 // Referenced classes of package com.steema.teechart.styles:
 //            Series, ISeries, BarStyle, MultiBars, 
 //            SeriesMarks, MarksCallout, ValueList, Margins
-
 public class CustomBarNew extends Series {
-    public static interface BarStyleResolver {
 
-        public abstract BarStyle getStyle(ISeries iseries, int i, BarStyle barstyle);
+    public interface BarStyleResolver {
+        BarStyle getStyle(ISeries iseries, int i, BarStyle barstyle);
     }
 
-    public static enum MarksLocation {
+    public enum MarksLocation {
         Start, Center, End;
     }
 
@@ -318,9 +316,13 @@ public class CustomBarNew extends Series {
                 Series series = chart.getSeries(j);
                 if (!flag && series == this)
                     break;
-                if (!series.getActive() || !sameClass(series) || series.getCount() <= i || (
-                        (CustomBarNew) series).stackGroup != stackGroup)
+
+                if (!series.getActive()
+                        || !sameClass(series)
+                        || series.getCount() <= i
+                        || ((CustomBarNew) series).stackGroup != stackGroup)
                     continue;
+
                 double d2 = series.getOriginValue(i);
                 if (d1 < 0.0D) {
                     if (d2 < 0.0D)
@@ -357,8 +359,8 @@ public class CustomBarNew extends Series {
                 igraphics3d.getPen().setColor(igraphics3d.getBrush().getColor());
                 igraphics3d.getPen().setVisible(true);
                 igraphics3d.line(i, j, k, l);
-            } else if (Math.abs(k - i) < igraphics3d.getPen().getWidth() || Math.abs(l - j) <
-                    igraphics3d.getPen().getWidth()) {
+            } else if (Math.abs(k - i) < igraphics3d.getPen().getWidth()
+                    || Math.abs(l - j) < igraphics3d.getPen().getWidth()) {
                 igraphics3d.getPen().setColor(igraphics3d.getBrush().getColor());
                 igraphics3d.getPen().setVisible(true);
                 igraphics3d.getBrush().setVisible(false);
@@ -398,8 +400,6 @@ public class CustomBarNew extends Series {
             if (iBarSize % 2 == 1)
                 iBarSize++;
 
-//            Log.i("****************", iBarSize+"&&&&&&&&&&&&&&&&&"+maxWidth+"********"+axis
-// .iAxisSize+"^^^^^^^^"+iMaxBarPoints);
             if (iBarSize > maxWidth) {
                 iBarSize = maxWidth;
             }
@@ -456,16 +456,20 @@ public class CustomBarNew extends Series {
         if (!flag1) {
             for (; lastVisible < getCount() - 1 && isPointInChartRect(lastVisible + 1);
                  lastVisible++) {
-
             }
 
             for (; lastVisible > -1 && lastVisible < getCount() - 1 && notMandatory
-                    .value[lastVisible] == notMandatory.value[lastVisible + 1]; lastVisible++)
-                ;
-            for (; firstVisible > 0 && isPointInChartRect(firstVisible - 1); firstVisible--) ;
+                    .value[lastVisible] == notMandatory.value[lastVisible + 1]; lastVisible++){
+                
+            }
+            
+            for (; firstVisible > 0 && isPointInChartRect(firstVisible - 1); firstVisible--) {
+                
+            }
             for (; firstVisible > 0 && notMandatory.value[firstVisible] == notMandatory
-                    .value[firstVisible - 1]; firstVisible--)
-                ;
+                    .value[firstVisible - 1]; firstVisible--){
+                
+            }
         }
         if (getMultiBar() == MultiBars.SIDEALL && flag && chart != null) {
             for (int i = 0; i < chart.getSeriesCount(); i++)
@@ -500,7 +504,7 @@ public class CustomBarNew extends Series {
     }
 
     protected double maxMandatoryValue(double d) {
-        double d1 = 0.0D;
+        double d1;
         if (iMultiBar == MultiBars.STACKED100) {
             d1 = 100D;
         } else {
@@ -534,7 +538,6 @@ public class CustomBarNew extends Series {
                 for (int k = 0; k < i; k++)
                     if (mandatory.value[k] < 0.0D)
                         d += mandatory.value[k];
-
             }
             return d;
         } else {
@@ -543,7 +546,7 @@ public class CustomBarNew extends Series {
     }
 
     protected double minMandatoryValue(double d) {
-        double d1 = 0.0D;
+        double d1;
         if (iMultiBar == MultiBars.STACKED100) {
             d1 = 0.0D;
         } else {
@@ -643,9 +646,7 @@ public class CustomBarNew extends Series {
                 iMaxBarPoints = (int) (chart.getAxes().getBottom().getMaximum() - chart.getAxes()
                         .getBottom().getMinimum());
             }
-
         }
-
     }
 
     protected void drawTickLine(int i, BarStyle barstyle) {
@@ -780,17 +781,19 @@ public class CustomBarNew extends Series {
                     fillSampleValues(2);
                     try {
                         try {
-                            Series series = (Series) getClass().newInstance();
+                            Series series = getClass().newInstance();
                             getChart().addSeries(series);
                             series.setTitle("");
                             series.fillSampleValues(2);
                             series.getMarks().setVisible(false);
-                            ((CustomBarNew) (CustomBarNew) series).barSizePercent = barSizePercent;
+                            ((CustomBarNew) series).barSizePercent = barSizePercent;
                             getMarks().setVisible(false);
                             series.setSubGallery(i);
                         } catch (InstantiationException instantiationexception) {
+                            instantiationexception.printStackTrace();
                         }
                     } catch (IllegalAccessException illegalaccessexception) {
+                        illegalaccessexception.printStackTrace();
                     }
                 }
                 if (!subGalleryStack())

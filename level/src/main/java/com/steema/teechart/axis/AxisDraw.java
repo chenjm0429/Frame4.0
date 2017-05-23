@@ -2,7 +2,6 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 // Source File Name:   AxisDraw.java
-
 package com.steema.teechart.axis;
 
 import com.steema.teechart.*;
@@ -15,8 +14,8 @@ import com.steema.teechart.styles.*;
 //            AxisLabels, AxisLabelResolver, AxisLabelStyle, AxisLabelsItems, 
 //            GridPen, Axes, CustomAxes, TicksPen, 
 //            AxisLinePen
-
 public class AxisDraw {
+
     final class GetAxisSeriesLabelResults {
 
         boolean result;
@@ -52,16 +51,18 @@ public class AxisDraw {
 
         private int getLimit(boolean flag) {
             if (axis.getUsePartnerAxis() && axis.getPartnerAxis() != null)
-                if (flag && !axis.getPartnerAxis().getInverted() || !flag && axis.getPartnerAxis
-                        ().getInverted())
+                if (flag && !axis.getPartnerAxis().getInverted()
+                        || !flag && axis.getPartnerAxis().getInverted())
                     return axis.getPartnerAxis().calcPosValue(axis.getPartnerAxis().getMaximum());
                 else
                     return axis.getPartnerAxis().calcPosValue(axis.getPartnerAxis().getMinimum());
+
             if (axis.horizontal)
                 if (flag)
                     return r.getTop();
                 else
                     return r.getBottom();
+
             if (flag)
                 return r.getRight() - 1;
             else
@@ -128,6 +129,7 @@ public class AxisDraw {
             g.setPen(axis.getGrid());
             if (g.getPen().getColor().isEmpty())
                 g.getPen().setColor(Color.WHITE_SMOKE);
+
             for (int j = 0; j < tmpNumTicks; j++) {
                 if (0 != j % axis.getGrid().getDrawEvery())
                     continue;
@@ -138,7 +140,6 @@ public class AxisDraw {
                     drawGridLine(tmpTicks[j]);
                 }
             }
-
         }
 
         private void internalDrawTick(int i, int j, int k) {
@@ -218,7 +219,6 @@ public class AxisDraw {
                         aProc(tmpTicks[0] - (int) ((double) i * d), flag);
                         aProc(tmpTicks[tmpNumTicks - 1] + (int) ((double) i * d), flag);
                     }
-
                 }
                 label0:
                 for (int j = 1; j <= tmpNumTicks - 1; j++) {
@@ -445,17 +445,18 @@ public class AxisDraw {
         double d = 0.0D;
         tmpValue = axis.iMaximum / iIncrement;
         if (Math.abs(axis.iRange / iIncrement) < 10000D) {
-            if (axis.iAxisDateTime && axis.getLabels().getExactDateTime() && tmpWhichDatetime !=
-                    26 && tmpWhichDatetime > 15)
+            if (axis.iAxisDateTime && axis.getLabels().getExactDateTime()
+                    && tmpWhichDatetime != 26 && tmpWhichDatetime > 15)
                 tmpValue = roundDate(new DateTime(axis.iMaximum), tmpWhichDatetime).toDouble();
-            else if (Double.compare(axis.iMinimum, axis.iMaximum) == 0 || !axis.getLabels()
-                    .getRoundFirstLabel())
+            else if (Double.compare(axis.iMinimum, axis.iMaximum) == 0
+                    || !axis.getLabels().getRoundFirstLabel())
                 tmpValue = axis.iMaximum;
             else
                 tmpValue = iIncrement * (double) (int) tmpValue;
             for (; tmpValue > axis.iMaximum; tmpValue = axis.incDecDateTime(false, tmpValue,
-                    iIncrement, tmpWhichDatetime))
-                ;
+                    iIncrement, tmpWhichDatetime)) {
+            }
+            
             if (axis.iRangezero)
                 internalDrawLabel(false);
             else if (Math.abs(axis.iMaximum - axis.iMinimum) < axis.iMinAxisIncrement || Double
@@ -710,8 +711,8 @@ public class AxisDraw {
                         .getIncrement() != 0.0D) {
                     tmpWhichDatetime = Axis.findDateTimeStep(axis.getIncrement());
                     if (tmpWhichDatetime != 26)
-                        for (; iIncrement > DateTimeStep.STEP[tmpWhichDatetime] &&
-                                tmpWhichDatetime != 25; tmpWhichDatetime++) {
+                        for (; iIncrement > DateTimeStep.STEP[tmpWhichDatetime]
+                                && tmpWhichDatetime != 25; tmpWhichDatetime++) {
                         }
                 } else {
                     tmpWhichDatetime = 26;
