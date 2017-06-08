@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.R;
@@ -165,10 +165,10 @@ public class ButtonGroupUI extends LinearLayout {
      * @param buttonOrder 按钮位置编号，针对所有按钮的位置
      * @return
      */
-    private Button drawButton(JSONObject obj, final int buttonOrder) {
+    private TextView drawButton(JSONObject obj, final int buttonOrder) {
         if (obj == null)
             obj = new JSONObject();
-        Button button = new Button(context);
+        TextView button = new TextView(context);
         button.setGravity(Gravity.CENTER);
         button.setTextColor(buttonTextInitColor);
         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, buttonFontSize);
@@ -194,7 +194,8 @@ public class ButtonGroupUI extends LinearLayout {
             public void onClick(View view) {
                 setChoose(view);
 
-                mOnSelectListener.onSelected(buttonOrder, getCurCodes(), getCurNames());
+                if (null != mOnSelectListener)
+                    mOnSelectListener.onSelected(buttonOrder, getCurCodes(), getCurNames());
             }
         });
         return button;
@@ -252,7 +253,7 @@ public class ButtonGroupUI extends LinearLayout {
         for (int j = 0; j < ll.getChildCount(); j++) {//将该层全部置为未选中
             LinearLayout row = (LinearLayout) ll.getChildAt(j);
             for (int k = 0; k < row.getChildCount(); k++) {
-                Button b = (Button) row.getChildAt(k);
+                TextView b = (TextView) row.getChildAt(k);
 
                 if (!isVertical) {
                     if (k == 0) {
@@ -284,7 +285,7 @@ public class ButtonGroupUI extends LinearLayout {
         JSONObject obj = array.optJSONObject(tt);
         if (obj == null)
             obj = new JSONObject();
-        Button b = (Button) row.getChildAt(buttonOrder);
+        TextView b = (TextView) row.getChildAt(buttonOrder);
 
         //将该层指定按钮置为选中
         if (!isVertical) {

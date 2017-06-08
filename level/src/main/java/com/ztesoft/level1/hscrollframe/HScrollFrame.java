@@ -1,8 +1,8 @@
 package com.ztesoft.level1.hscrollframe;
 
-import com.ztesoft.level1.Level1Bean;
-
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -10,6 +10,21 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
+import com.ztesoft.level1.Level1Bean;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+/**
+ * 文件名称 : HScrollFrame
+ * <p>
+ * 作者信息 : chenjianming
+ * <p>
+ * 文件描述 : 多视图左右滑动框架
+ * <p>
+ * 创建时间 : 2017/5/24 14:00
+ * <p>
+ */
 public class HScrollFrame extends ViewGroup {
 
     /**
@@ -39,6 +54,12 @@ public class HScrollFrame extends ViewGroup {
     private float mLastMotionY;
 
     private OnScreenChangeListener onScreenChangeListener;
+
+    /**
+     * 自动切换时长
+     */
+    private long intervalTime = 3000;
+    private Timer mTimer;
 
     /**
      * 左右滑动页面框架
@@ -302,4 +323,51 @@ public class HScrollFrame extends ViewGroup {
     public int getCurPageNum() {
         return mCurScreen;
     }
+
+    public void setIntervalTime(long intervalTime) {
+        this.intervalTime = intervalTime;
+    }
+
+    /**
+     * 启动自动切换
+     */
+    public void start() {
+        mTimer = new Timer();
+
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Message msg = mHandler.obtainMessage();
+                msg.what = 1;
+                mHandler.sendMessage(msg);
+            }
+        }, intervalTime, intervalTime);
+    }
+
+    /**
+     * 暂停自动切换
+     */
+    public void stop() {
+        if (null != mTimer) {
+            mTimer.cancel();
+        }
+    }
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (msg.what == 1) {
+                int count = HScrollFrame.this.getChildCount();
+
+                if (mCurScreen < count - 1) {
+                    mCurScreen++;
+                } else {
+                    mCurScreen = 0;
+                }
+                snapToScreen(mCurScreen);
+            }
+        }
+    };
 }
