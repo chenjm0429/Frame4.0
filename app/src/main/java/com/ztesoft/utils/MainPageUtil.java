@@ -1,10 +1,10 @@
 package com.ztesoft.utils;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.text.TextUtils;
 
 import com.ztesoft.level1.util.PromptUtils;
+import com.ztesoft.ui.base.BaseFragment;
 import com.ztesoft.ui.home.HomeFragment;
 import com.ztesoft.ui.other.OtherFragment;
 
@@ -20,7 +20,7 @@ import com.ztesoft.ui.other.OtherFragment;
  */
 public class MainPageUtil {
 
-    public static Fragment getActuralFragment(Context context, String rptCode) {
+    public static BaseFragment getActuralFragment(Context context, String rptCode) {
         if (TextUtils.isEmpty(rptCode)) {
             PromptUtils.instance.displayToastString(context, true, "打开界面失败，请重试！");
 
@@ -28,7 +28,7 @@ public class MainPageUtil {
         }
 
         // 目标Fragment
-        Fragment fragment = null;
+        BaseFragment fragment = null;
         if (rptCode.equals("1")) {
             fragment = new HomeFragment();
         } else if (rptCode.equals("2")) {

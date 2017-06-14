@@ -49,8 +49,7 @@ import java.util.ArrayList;
  * 创建时间 : 2017/3/23 15:08
  * <p>
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener, BaseFragment
-        .FragmentCallBack {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     //侧边栏
     private DrawerLayout mDrawerLayout;
@@ -136,11 +135,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
-    @Override
-    public void setTitleText(String title) {
-        mTitleText.setText(title);
-    }
-
     /**
      * 初始化menu界面
      */
@@ -205,7 +199,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
 
-        Fragment fragment = entity.getFragment();
+        BaseFragment fragment = entity.getFragment();
 
         if (null == fragment) {
             String rptCode = entity.getMenuId();
@@ -224,6 +218,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         transaction.show(fragment);
 
         transaction.commitAllowingStateLoss();
+
+        fragment.setFragmentCallBack(new BaseFragment.FragmentCallBack() {
+            @Override
+            public void setTitleText(String title) {
+                mTitleText.setText(title);
+            }
+        });
     }
 
     /**

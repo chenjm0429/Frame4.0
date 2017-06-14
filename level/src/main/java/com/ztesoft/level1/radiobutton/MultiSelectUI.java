@@ -13,31 +13,34 @@ import android.widget.TextView;
 
 import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.R;
-import com.ztesoft.level1.dialog.MyAlertDialog;
 import com.ztesoft.level1.radiobutton.util.ArrayWheelAdapter;
+import com.ztesoft.level1.radiobutton.util.MultiSelectDialog;
 import com.ztesoft.level1.radiobutton.util.OnWheelChangedListener;
 import com.ztesoft.level1.radiobutton.util.WheelView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
-
 /**
- * 多级滚轮列表菜单
+ * 文件名称 : MultiSelectUI
+ * <p>
+ * 作者信息 : chenjianming
+ * <p>
+ * 文件描述 : 多级滚轮列表菜单
  * json格式 [{code:"",name:"",array:[{code:"",name:"",array[....]}]}....]
- *
- * @author wangsq
- * @author wanghx2  update by 2013/4/28
+ * <p>
+ * 创建时间 : 2017/4/21 10:57
+ * <p>
  */
 public class MultiSelectUI extends TextView {
-    final String TAG = "MultiSelectUI";
 
     private Context context;
-    private MyAlertDialog ad;// 弹出窗
+
+    private MultiSelectDialog mDialog;
+
     private JSONArray jsArr;
     private String diloagTitle;// 弹出窗标题
-    private String methodName = null;// 回调函数
+    private OnSelectListener mOnSelectListener;  //选择监听器
 
     private String[] selectValue;// 初始化值
     private int[] selectOrder;// 选择序列
@@ -46,9 +49,9 @@ public class MultiSelectUI extends TextView {
     private WheelView[] wheelViews;// 滚轮组
     private String[][] wheelNamesAdapt;//滚轮组数据
     private int[] wheelWidth;//滚动组宽度
-    private int value_text_color = 0xF0000000;// 选中文本的颜色
-    private int items_text_color = 0xFF000000;// 未选中文本的颜色
-    private int wheelTextSize = 18;//滚动组文本字体大小
+    private int value_text_color = Color.parseColor("#3385ff");// 选中文本的颜色
+    private int items_text_color = Color.parseColor("#a4aeb8");// 未选中文本的颜色
+    private int wheelTextSize = 16;//滚动组文本字体大小
     private Drawable centerDrawable;//选中阴影色
 
     //是否显示选择项的两级目录
@@ -73,36 +76,32 @@ public class MultiSelectUI extends TextView {
      *
      * @param context    上下文
      * @param title      弹出框标题
-     * @param methodName 回调函数
      */
-    public MultiSelectUI(Context context, String title, String methodName) {
+    public MultiSelectUI(Context context, String title) {
         super(context);
         this.context = context;
         this.diloagTitle = title;
-        this.methodName = methodName;
     }
 
     /***
+     * 多级滚轮列表菜单
      * @param context    上下文
      * @param title      弹出框标题
-     * @param methodName 回调函数
      * @param code       取值编码变量
      * @param name       取值名称变量
      * @param arrName    取值json数组变量
      */
-    public MultiSelectUI(Context context, String title, String methodName, String code, String
-            name, String arrName) {
+    public MultiSelectUI(Context context, String title, String code, String name, String arrName) {
         super(context);
         this.context = context;
         this.diloagTitle = title;
-        this.methodName = methodName;
         this.code = code;
         this.name = name;
         this.arrayName = arrName;
     }
 
     public void reCreate(JSONArray jsArr, String[] initSelect) {
-        ad = null;
+        mDialog = null;
         create(jsArr, initSelect);
     }
 
@@ -129,7 +128,6 @@ public class MultiSelectUI extends TextView {
 //		this.setMinimumWidth((int)v.getPaint().measureText("四个汉字"));
 //		this.setMinimumHeight(Level1Util.dip2px(context, 30));
         dateFunc();
-
     }
 
     /**
@@ -160,12 +158,12 @@ public class MultiSelectUI extends TextView {
 
         adLayout.addView(wheelLayout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
-        if (null == ad)
-            ad = new MyAlertDialog(context, R.style.prompt_style);
+        if (null == mDialog)
+            mDialog = new MultiSelectDialog(context, R.style.prompt_style);
         // 增加弹出框背景半透明效果
-        ad.setTitle(diloagTitle);
-        ad.setView(adLayout);
-        ad.setPositiveButton(R.string.system_confirm, new OnClickListener() {
+        mDialog.setTitle(diloagTitle);
+        mDialog.setView(adLayout);
+        mDialog.setPositiveButton(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 根据order得到name,value
@@ -173,44 +171,15 @@ public class MultiSelectUI extends TextView {
                     selectOrder[i] = wheelViews[i].getCurrentItem();
                 }
                 setSelectOrder(selectOrder);
-                ad.hide();
+                mDialog.dismiss();
             }
         });
-        ad.setNegativeButton(R.string.system_cancel, new OnClickListener() {
+        mDialog.setNegativeButton(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ad.hide();
+                mDialog.dismiss();
             }
         });
-    }
-
-    /**
-     * 调用回调函数
-     */
-    private void backFunc() {
-        if (methodName != null && methodName.trim().length() > 0) {
-            try {
-                Class<?> yourClass = Class.forName(context.getClass().getName());
-                // 假设你要动态加载的类为YourClass
-                Method method;
-                if (null == backObj) {
-                    method = yourClass.getMethod(methodName);// 这里假设你的类为YourClass，而要调用的方法是methodName
-                } else {
-                    method = yourClass.getMethod(methodName, MultiSelectUI.class, Object.class);
-                    // 这里假设你的类为YourClass，而要调用的方法是methodName
-                }
-
-                method.setAccessible(true);//提高反射速度
-                if (null == backObj) {
-                    method.invoke(context);// 调用方法
-                } else {
-                    method.invoke(context, MultiSelectUI.this, backObj);// 调用方法
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     // 弹出日期选择框
@@ -241,7 +210,7 @@ public class MultiSelectUI extends TextView {
                 tempWheel.setCurrentItem(selectOrder[i]);
                 tempWheel.addChangingListener(wheelListener);
             }
-            ad.show();
+            mDialog.show();
         }
     }
 
@@ -388,12 +357,9 @@ public class MultiSelectUI extends TextView {
     public void setSelectValue(String[] selectValue) {
         checkSelectValue(jsArr, 0, selectValue);
         setTextCotent();
-        backFunc();
-    }
 
-    public void setSelectVal(String[] selectValue) {
-        checkSelectValue(jsArr, 0, selectValue);
-        setTextCotent();
+        if (null != mOnSelectListener)
+            mOnSelectListener.onSelected(selectOrder, selectValue, selectName);
     }
 
     /**
@@ -413,7 +379,9 @@ public class MultiSelectUI extends TextView {
     public void setSelectOrder(int[] selectOrder) {
         checkSelectOrder(jsArr, 0, selectOrder);
         setTextCotent();
-        backFunc();
+
+        if (null != mOnSelectListener)
+            mOnSelectListener.onSelected(selectOrder, selectValue, selectName);
     }
 
     /**
@@ -433,7 +401,8 @@ public class MultiSelectUI extends TextView {
     public void setSelectName(String[] selectName) {
         checkSelectName(jsArr, 0, selectName);
         setTextCotent();
-        backFunc();
+
+        mOnSelectListener.onSelected(selectOrder, selectValue, selectName);
     }
 
     public void setButtonType(String buttonType) {
@@ -444,12 +413,8 @@ public class MultiSelectUI extends TextView {
         return buttonType;
     }
 
-    public MyAlertDialog getAd() {
-        return ad;
-    }
-
-    public void setAd(MyAlertDialog ad) {
-        this.ad = ad;
+    public MultiSelectDialog getDialog() {
+        return mDialog;
     }
 
     /**
@@ -501,7 +466,7 @@ public class MultiSelectUI extends TextView {
     }
 
     public void setCenterDrawable(int centerDrawable) {
-        this.centerDrawable = context.getResources().getDrawable(R.drawable.wheel_val);
+        this.centerDrawable = context.getResources().getDrawable(R.drawable.wheel_select_bg);
     }
 
     public int[] getWheelWidth() {
@@ -548,5 +513,23 @@ public class MultiSelectUI extends TextView {
 
     public void setBackObj(Object obj) {
         this.backObj = obj;
+    }
+
+    public void setOnSelectListener(OnSelectListener onSelectListener) {
+        this.mOnSelectListener = onSelectListener;
+    }
+
+    /**
+     * 选择监听器
+     */
+    public interface OnSelectListener {
+        /**
+         * 选择结果触发方法
+         *
+         * @param selectOrders 选择位置
+         * @param selectValues 选择值
+         * @param selectNames  选择名称
+         */
+        void onSelected(int[] selectOrders, String[] selectValues, String[] selectNames);
     }
 }

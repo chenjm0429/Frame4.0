@@ -1,6 +1,5 @@
 package com.ztesoft.ui.base;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ztesoft.ui.main.MainActivity;
 
 import org.json.JSONObject;
 
@@ -26,7 +27,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 依附的Activity
      */
-    protected Activity mActivity;
+    protected MainActivity mActivity;
 
     protected View mRootView;
 
@@ -57,8 +58,7 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(context);
 
         if (context != null) {
-            mActivity = getActivity();
-            mFragmentCallBack = (FragmentCallBack) context;
+            mActivity = (MainActivity) getActivity();
         }
     }
 
@@ -77,6 +77,10 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initData(Bundle arguments);
 
     public abstract void updateUI(JSONObject jsonObj);
+
+    public void setFragmentCallBack(FragmentCallBack fragmentCallBack) {
+        this.mFragmentCallBack = fragmentCallBack;
+    }
 
     /**
      * MainActivity实现该接口

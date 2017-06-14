@@ -110,7 +110,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 界面切换动画枚举
      */
-    protected enum ANIM_TYPE {
+    public enum ANIM_TYPE {
         NONE, LEFT, RIGHT
     }
 

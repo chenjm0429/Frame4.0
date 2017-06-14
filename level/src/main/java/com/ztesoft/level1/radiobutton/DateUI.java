@@ -223,7 +223,8 @@ public class DateUI extends TextView {
                 DateUI.this.setText(getShowName());
                 mDialog.dismiss();
 
-                mOnSelectListener.OnSelected(getTrueName());
+                if (null != mOnSelectListener)
+                    mOnSelectListener.OnSelected(getTrueName());
             }
         });
         mDialog.setNegativeButton(new OnClickListener() {
@@ -404,7 +405,8 @@ public class DateUI extends TextView {
         }
         this.setText(getShowName());
         if (isDoBackFunc) {
-            mOnSelectListener.OnSelected(getTrueName());
+            if (null != mOnSelectListener)
+                mOnSelectListener.OnSelected(getTrueName());
         }
     }
 
@@ -512,7 +514,7 @@ public class DateUI extends TextView {
      * @return
      */
     public void setCenterDrawable(int centerDrawable) {
-        this.centerDrawable = context.getResources().getDrawable(R.drawable.wheel_val);
+        this.centerDrawable = context.getResources().getDrawable(R.drawable.wheel_select_bg);
     }
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {

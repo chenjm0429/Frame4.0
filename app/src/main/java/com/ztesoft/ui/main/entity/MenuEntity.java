@@ -1,6 +1,6 @@
 package com.ztesoft.ui.main.entity;
 
-import android.app.Fragment;
+import com.ztesoft.ui.base.BaseFragment;
 
 import java.io.Serializable;
 
@@ -29,7 +29,7 @@ public class MenuEntity implements Serializable {
     // 菜单选中图标资源文件
     private int menuIconSelected;
 
-    private Fragment fragment;
+    private BaseFragment fragment;
 
     public MenuEntity() {
 
@@ -51,7 +51,7 @@ public class MenuEntity implements Serializable {
         return menuIconSelected;
     }
 
-    public Fragment getFragment() {
+    public BaseFragment getFragment() {
         return fragment;
     }
 
@@ -71,7 +71,7 @@ public class MenuEntity implements Serializable {
         this.menuIconSelected = menuIconSelected;
     }
 
-    public void setFragment(Fragment fragment) {
+    public void setFragment(BaseFragment fragment) {
         this.fragment = fragment;
     }
 }

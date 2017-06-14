@@ -440,7 +440,7 @@ public class WheelView extends View {
         }
 
         if (centerDrawable == null) {
-            centerDrawable = getContext().getResources().getDrawable(R.drawable.wheel_val);
+            centerDrawable = getContext().getResources().getDrawable(R.drawable.wheel_select_bg);
         }
 
         if (topShadow == null) {
