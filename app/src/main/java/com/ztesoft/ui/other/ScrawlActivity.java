@@ -27,15 +27,17 @@ import android.widget.PopupWindow;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.scrawl.ScrawlView;
 import com.ztesoft.level1.util.BitmapOperateUtil;
 import com.ztesoft.ui.base.BaseActivity;
-import com.ztesoft.level1.scrawl.ScrawlView;
 import com.ztesoft.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+
+import okhttp3.Call;
 
 /**
  * 文件名称 : ScrawlActivity
@@ -275,7 +277,7 @@ public class ScrawlActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 

@@ -12,6 +12,8 @@ import com.ztesoft.ui.main.MainActivity;
 
 import org.json.JSONObject;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : BaseFragment
  * <p>
@@ -76,7 +78,7 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData(Bundle arguments);
 
-    public abstract void updateUI(JSONObject jsonObj);
+    public abstract void updateUI(JSONObject jsonObj, Call call) throws Exception;
 
     public void setFragmentCallBack(FragmentCallBack fragmentCallBack) {
         this.mFragmentCallBack = fragmentCallBack;

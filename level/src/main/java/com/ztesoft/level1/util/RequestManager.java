@@ -174,27 +174,8 @@ public class RequestManager {
      */
     private void requestPostBySyn(String actionUrl, JSONObject params, Message msg) {
         try {
-            //处理参数
-            StringBuilder tempParams = new StringBuilder();
-            int pos = 0;
-
-            Iterator<String> iterator = params.keys();
-            while (iterator.hasNext()) {
-                String key = iterator.next();
-
-                if (pos > 0) {
-                    tempParams.append("&");
-                }
-
-                tempParams.append(String.format("%s=%s", key, URLEncoder.encode(params.optString
-                        (key), "utf-8")));
-                pos++;
-            }
-
-            //生成参数
-            String paramsStr = tempParams.toString();
             //创建一个请求实体对象 RequestBody
-            RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, paramsStr);
+            RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, params.toString());
             //创建一个请求
             final Request request = addHeaders().url(actionUrl).post(body).build();
             //创建一个Call
@@ -335,7 +316,7 @@ public class RequestManager {
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        successCallBack((T) string, callBack);
+                        successCallBack((T) string, callBack, call);
                     } else {
                         failedCallBack(1, "服务器错误", callBack);
                     }
@@ -361,24 +342,7 @@ public class RequestManager {
     private <T> Call requestPostByAsyn(String actionUrl, JSONObject params, final ReqCallBack<T>
             callBack) {
         try {
-            StringBuilder tempParams = new StringBuilder();
-            int pos = 0;
-
-            Iterator<String> iterator = params.keys();
-            while (iterator.hasNext()) {
-                String key = iterator.next();
-
-                if (pos > 0) {
-                    tempParams.append("&");
-                }
-
-                tempParams.append(String.format("%s=%s", key, URLEncoder.encode(params.optString
-                        (key), "utf-8")));
-                pos++;
-            }
-
-            String paramsStr = tempParams.toString();
-            RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, paramsStr);
+            RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, params.toString());
             final Request request = addHeaders().url(actionUrl).post(body).build();
             final Call call = mOkHttpClient.newCall(request);
             call.enqueue(new Callback() {
@@ -391,7 +355,7 @@ public class RequestManager {
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        successCallBack((T) string, callBack);
+                        successCallBack((T) string, callBack, call);
                     } else {
                         failedCallBack(1, "服务器错误", callBack);
                     }
@@ -438,7 +402,7 @@ public class RequestManager {
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        successCallBack((T) string, callBack);
+                        successCallBack((T) string, callBack, call);
                     } else {
                         failedCallBack(1, "服务器错误", callBack);
                     }
@@ -483,12 +447,13 @@ public class RequestManager {
      * @param callBack
      * @param <T>
      */
-    private <T> void successCallBack(final T result, final ReqCallBack<T> callBack) {
+    private <T> void successCallBack(final T result, final ReqCallBack<T> callBack, final Call
+            call) {
         okHttpHandler.post(new Runnable() {
             @Override
             public void run() {
                 if (callBack != null) {
-                    callBack.onReqSuccess(result);
+                    callBack.onReqSuccess(result, call);
                 }
             }
         });
@@ -517,7 +482,7 @@ public class RequestManager {
         /**
          * 响应成功
          */
-        void onReqSuccess(T result);
+        void onReqSuccess(T result, Call call);
 
         /**
          * 响应失败

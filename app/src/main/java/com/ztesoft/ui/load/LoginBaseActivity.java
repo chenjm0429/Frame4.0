@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : LoginBaseActivity
  * <p>
@@ -92,10 +94,6 @@ public class LoginBaseActivity extends BaseActivity {
 
             gf.setStaffId(userJSON.getString("staffId"));
             gf.setStaffName(userJSON.optString("staffName"));
-            gf.setProvCode(userJSON.optString("provCode"));
-            gf.setCityCode(userJSON.optString("cityCode"));
-            gf.setCountyCode(userJSON.optString("countyCode"));
-            gf.setVillageCode(userJSON.optString("villageCode"));
             gf.setRangeId(userJSON.optString("rangeId"));
             gf.setJobId(userJSON.optString("jobId"));
             gf.setJobName(userJSON.optString("jobName"));
@@ -165,7 +163,7 @@ public class LoginBaseActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 }

@@ -22,6 +22,8 @@ import com.ztesoft.ui.base.BaseActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : GuidanceActivity
  * <p>
@@ -105,7 +107,7 @@ public class GuidanceActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 }

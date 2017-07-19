@@ -39,6 +39,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : MainActivity
  * <p>
@@ -113,12 +115,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
         Fragment fragment = mMenuEntities.get(mLastSelectedIndex).getFragment();
 
         if (null != fragment) {
-            ((BaseFragment) fragment).updateUI(resultJsonObject);
+            ((BaseFragment) fragment).updateUI(resultJsonObject, call);
         }
     }
 

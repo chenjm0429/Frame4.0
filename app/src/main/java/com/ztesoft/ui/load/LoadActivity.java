@@ -27,6 +27,8 @@ import com.ztesoft.utils.VersionCheckUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : LoadActivity
  * <p>
@@ -229,7 +231,7 @@ public class LoadActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 }

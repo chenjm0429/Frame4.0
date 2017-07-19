@@ -9,13 +9,15 @@ import android.widget.LinearLayout;
 import com.ztesoft.R;
 import com.ztesoft.level1.ui.AutoScrollTextView;
 import com.ztesoft.level1.ui.ButtonGroupUI;
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.ui.base.BaseFragment;
 import com.ztesoft.ui.main.MainActivity;
-import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.Call;
 
 /**
  * 文件名称 : HomeFragment
@@ -89,17 +91,17 @@ public class HomeFragment extends BaseFragment {
         bgi.setOnSelectListener(new ButtonGroupUI.OnSelectListener() {
             @Override
             public void onSelected(int position, String currentCode, String currentName) {
-                PromptUtils.instance.displayToastString(mActivity, false, position + ", " + 
+                PromptUtils.instance.displayToastString(mActivity, false, position + ", " +
                         currentCode + ", " + currentName);
             }
         });
 
-        layout2.addView(bgi, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
+        layout2.addView(bgi, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams
+                .WRAP_CONTENT);
     }
 
     @Override
-    public void updateUI(JSONObject resultJsonObject) {
+    public void updateUI(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 

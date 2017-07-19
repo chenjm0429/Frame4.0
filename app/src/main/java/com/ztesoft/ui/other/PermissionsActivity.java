@@ -23,6 +23,8 @@ import com.ztesoft.utils.PermissionsChecker;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : PermissionsActivity
  * <p>
@@ -174,7 +176,7 @@ public class PermissionsActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 }

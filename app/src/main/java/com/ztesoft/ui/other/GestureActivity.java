@@ -9,17 +9,19 @@ import android.widget.TextView;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.gesture.GesturePatternView;
+import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
 import com.ztesoft.ui.load.LoginActivity;
 import com.ztesoft.ui.load.LoginBaseActivity;
 import com.ztesoft.ui.main.MainActivity;
-import com.ztesoft.level1.gesture.GesturePatternView;
-import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.Call;
 
 /**
  * 文件名称 : GestureActivity
@@ -239,7 +241,7 @@ public class GestureActivity extends LoginBaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 

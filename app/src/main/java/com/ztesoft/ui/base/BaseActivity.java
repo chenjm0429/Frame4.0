@@ -37,18 +37,18 @@ import com.ztesoft.fusion.GlobalField;
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.util.BitmapOperateUtil;
+import com.ztesoft.level1.util.PromptUtils;
+import com.ztesoft.level1.util.RequestManager;
 import com.ztesoft.level1.util.SDCardUtil;
-import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.ui.other.ScrawlActivity;
 import com.ztesoft.utils.ErrorLogUtil;
-import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * 文件名称 : BaseActivity
@@ -68,14 +68,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Dialog mLoadingDialog = null;
 
     /**
-     * 功能模块编码；功能模块子编码
+     * 功能模块编码
      */
-    protected String rptCode, subRptCode;
-
-    /**
-     * 省编码；地市编码；区县编码；支局编码
-     */
-    protected String provCode, cityCode, countyCode, villageCode;
+    protected String rptCode;
 
     /**
      * 工作编码；用户编码（工号）；标识权限
@@ -83,24 +78,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected String jobId, staffId, rangeId;
 
     /**
-     * 请求数据标记
+     * 时间
      */
-    protected String visitType = "";
-
-    /**
-     * 请求数据地址
-     */
-    protected String pathCode;
-
-    /**
-     * 日期格式，D代表日，M代表月；时间，如20150411或者201504；开始时间；结束时间
-     */
-    protected String dateType, statDate, startDate, endDate;
-
-    /**
-     * 指标编码；指标类型编码
-     */
-    protected String kpiId, kpiTypeId;
+    protected String  statDate;
 
     /**
      * 水印图片
@@ -113,11 +93,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public enum ANIM_TYPE {
         NONE, LEFT, RIGHT
     }
-
-    /**
-     * 请求数据的线程的集合
-     */
-    private List<Thread> mThreadArray = new ArrayList<Thread>();
 
     /**
      * 标题文本框
@@ -162,11 +137,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         rangeId = gf.getRangeId();
         staffId = gf.getStaffId();
         jobId = gf.getJobId();
-
-        provCode = gf.getProvCode();
-        cityCode = gf.getCityCode();
-        countyCode = gf.getCountyCode();
-        villageCode = gf.getVillageCode();
 
         Bundle bundle = getIntent().getExtras();
         getBundles(bundle);
@@ -231,7 +201,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-
     /**
      * 添加个性化请求参数
      *
@@ -246,7 +215,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param resultJsonObject 返回的数据
      * @throws Exception
      */
-    protected abstract void initAllLayout(JSONObject resultJsonObject) throws Exception;
+    protected abstract void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception;
 
     /**
      * 添加通用请求参数
@@ -256,38 +225,30 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     private void setCommonParam(JSONObject param) throws JSONException {
 
+        GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
+
         param.put("rptCode", rptCode);
 
-        param.put("provCode", provCode);
-        param.put("cityCode", cityCode);
-        param.put("countyCode", countyCode);
-        param.put("villageCode", villageCode);
-        param.put("dateType", dateType);
         param.put("statDate", statDate);
 
         param.put("rangeId", rangeId);
         param.put("staffId", staffId);
-        param.put("staffName", ((MainApplication) getApplication()).getGlobalField().getStaffName
-                ());
+        param.put("staffName", gf.getStaffName());
         param.put("jobId", jobId);
-
-        param.put("rptCode", rptCode);
-        param.put("subRptCode", subRptCode);
-
-        param.put("startDate", startDate);
-        param.put("endDate", endDate);
     }
 
     /**
      * 请求数据
      *
      * @param visitType       访问标志
-     * @param pathCode        访问路径
+     * @param path            路径
+     * @param requestType     请求方式
      * @param isShowTipDialog 是否显示提示框
      * @param showContent     提示框内容
+     * @return
      */
-    public void queryKpiData(String visitType, String pathCode, boolean isShowTipDialog, String
-            showContent) {
+    public Call queryData(String visitType, String path, int requestType, boolean
+            isShowTipDialog, String showContent) {
 
         if (isShowTipDialog) {
             if (!TextUtils.isEmpty(showContent)) {
@@ -307,64 +268,19 @@ public abstract class BaseActivity extends AppCompatActivity {
             PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string.clientjsonerror);
         }
 
-        ServiceThread thread = new ServiceThread(
-                getString(R.string.servicePath) + getString(R.string.serviceUrl) + pathCode,
-                requestParams, this);
-        thread.setEncryFlag(FusionCode.encryFlag);
-        thread.setEncryKey(FusionCode.encrykey);
-        thread.setServiceHandler(serviceHandler);
-        thread.start();
-        mThreadArray.add(thread);
+        String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + path;
+        RequestManager manage = RequestManager.getInstance(this);
+        Call call = manage.requestAsyn(url, requestType, requestParams, reqCallBack);
+
+        return call;
     }
 
-    /**
-     * 请求数据（主要是Fragment中使用）
-     *
-     * @param visitType       访问标志
-     * @param pathCode        访问路径
-     * @param isShowTipDialog 是否显示提示框
-     * @param showContent     提示框内容
-     * @param addParams       增加的参数
-     */
-    public void queryKpiData(String visitType, String pathCode, boolean isShowTipDialog, String
-            showContent, JSONObject addParams) {
-
-        if (isShowTipDialog) {
-            if (!TextUtils.isEmpty(showContent)) {
-                showLoadingDialog(showContent, 0);
-            } else {
-                showLoadingDialog(null, R.string.loading);
-            }
-        }
-
-        // 判断用户权限，并预录入相关信息
-        try {
-            addParams.put("visitType", visitType);
-            setCommonParam(addParams);
-        } catch (JSONException e) {
-            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string.clientjsonerror);
-        }
-
-        ServiceThread thread = new ServiceThread(
-                getString(R.string.servicePath) + getString(R.string.serviceUrl) + pathCode,
-                addParams, this);
-        thread.setEncryFlag(FusionCode.encryFlag);
-        thread.setEncryKey(FusionCode.encrykey);
-        thread.setServiceHandler(serviceHandler);
-        thread.start();
-        mThreadArray.add(thread);
-    }
-
-    private ServiceThread.ServiceHandler serviceHandler = new ServiceThread.ServiceHandler() {
+    protected RequestManager.ReqCallBack reqCallBack = new RequestManager.ReqCallBack() {
 
         @Override
-        public void success(ServiceThread st, JSONObject dataObj) {
-
+        public void onReqSuccess(Object result, Call tag) {
             try {
-                if (dataObj.has("title")) {
-                    mTitleTv.setText(dataObj.getString("title"));
-                }
-                initAllLayout(dataObj);
+                initAllLayout(new JSONObject((String) result), tag);
 
             } catch (JSONException e) {
                 ErrorLogUtil.getInstance().log(getApplicationContext(), e.getMessage());
@@ -379,22 +295,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         @Override
-        public void fail(final ServiceThread st, String errorCode, String errorMessage) {
+        public void onReqFailed(int errorCode, String errorMsg) {
             dismissLoadingDialog();
 
-            if ("1".equals(errorCode)) {
-                PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string
-                        .error_network);
-
-            } else {
-                PromptUtils.instance.displayToastString(BaseActivity.this, false, errorMessage);
-                ErrorLogUtil.getInstance().log(getApplicationContext(), errorMessage);
-            }
-        }
-
-        @Override
-        public void begin(ServiceThread st) {
-
+            PromptUtils.instance.displayToastString(BaseActivity.this, false, errorMsg);
         }
     };
 

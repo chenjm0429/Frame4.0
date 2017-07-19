@@ -36,6 +36,12 @@
         <item name="android:windowExitAnimation">@anim/pop_hidden_anim</item>
     </style>
 
+    <!-- 从下向上弹出对话框，从上向下收起对话框 -->
+    <style name="PopupWindowAnimationDownToUp">
+        <item name="android:windowEnterAnimation">@anim/pop_bottom_show_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_bottom_hidden_anim</item>
+    </style>
+
     <!-- 一般ListView的样式 -->
     <style name="normal_listview_style">
         <item name="android:layout_width">match_parent</item>

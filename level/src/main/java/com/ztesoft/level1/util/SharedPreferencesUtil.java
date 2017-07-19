@@ -65,9 +65,8 @@ public class SharedPreferencesUtil {
      * @return 存储的String
      */
     public String getString(String key, String defValue) {
-        String str = null;
+        String str = sharedpreferences.getString(key, defValue);
         try {
-            str = sharedpreferences.getString(key, defValue);
             if (!TextUtils.isEmpty(str)) {
                 str = AES256Help.decrypt(str, MAK);
             }

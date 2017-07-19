@@ -8,6 +8,8 @@ import com.ztesoft.ui.base.BaseFragment;
 
 import org.json.JSONObject;
 
+import okhttp3.Call;
+
 
 /**
  * 文件名称 : OtherFragment
@@ -38,6 +40,6 @@ public class OtherFragment extends BaseFragment {
     }
 
     @Override
-    public void updateUI(JSONObject resultJsonObject) {
+    public void updateUI(JSONObject resultJsonObject, Call call) {
     }
 }

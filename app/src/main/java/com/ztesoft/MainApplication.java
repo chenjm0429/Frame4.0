@@ -25,7 +25,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        mGlobalField = new GlobalField(this);
+        mGlobalField = new GlobalField(this, false);
 
 //		CrashHandler crashHandler = CrashHandler.getInstance();
 //		crashHandler.init(this);
@@ -38,7 +38,7 @@ public class MainApplication extends Application {
                 .defaultDisplayImageOptions(defaultOptions)
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
-                .diskCache(new UnlimitedDiskCache(StorageUtils.getOwnCacheDirectory(this, 
+                .diskCache(new UnlimitedDiskCache(StorageUtils.getOwnCacheDirectory(this,
                         FusionCode.IMAGES_LOCALPATH)))
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO)

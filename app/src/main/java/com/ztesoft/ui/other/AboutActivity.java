@@ -12,6 +12,8 @@ import com.ztesoft.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import okhttp3.Call;
+
 /**
  * 文件名称 : AboutActivity
  * <p>
@@ -49,7 +51,7 @@ public class AboutActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAllLayout(JSONObject resultJsonObject) throws Exception {
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
 }
