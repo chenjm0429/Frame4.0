@@ -5,18 +5,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -39,6 +45,8 @@ public class RequestManager {
 
     private static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; " +
             "charset=utf-8");  //mdiatype 这个需要和服务端保持一致
+
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
 
     private static volatile RequestManager mInstance;//单利引用
 
@@ -416,6 +424,136 @@ public class RequestManager {
     }
 
     /**
+     * 多文件上传
+     *
+     * @param actionUrl 接口地址
+     * @param files     文件集合
+     * @param fileKeys  文件key集合
+     * @param params    参数
+     * @param callBack  回调
+     * @param <T>
+     * @return
+     */
+    public <T> Call upLoadFile(String actionUrl, List<File> files, List<String> fileKeys,
+                               JSONObject params, final ReqCallBack<T> callBack) {
+        try {
+            MultipartBody.Builder builder = new MultipartBody.Builder();
+            //设置类型
+            builder.setType(MultipartBody.FORM);
+
+            Iterator<String> iterator = params.keys();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                builder.addFormDataPart(key, params.optString(key));
+            }
+
+            if (null != files && null != fileKeys && files.size() == fileKeys.size()) {
+                for (int i = 0; i < files.size(); i++) {
+                    if (files.get(i).exists())
+                        builder.addFormDataPart(fileKeys.get(i), files.get(i).getName(), RequestBody
+                                .create(MEDIA_TYPE_PNG, files.get(i)));
+                }
+            }
+
+            //创建RequestBody
+            RequestBody body = builder.build();
+            //创建Request
+            final Request request = addHeaders().url(actionUrl).post(body).build();
+            //单独设置参数 比如读取超时时间
+            final Call call = mOkHttpClient.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    failedCallBack(1, "上传失败", callBack);
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String string = response.body().string();
+                        successCallBack((T) string, callBack, call);
+                    } else {
+                        failedCallBack(1, "上传失败", callBack);
+                    }
+                }
+            });
+            return call;
+        } catch (Exception e) {
+            failedCallBack(2, "上传失败", callBack);
+            return null;
+        }
+    }
+
+    /**
+     * 下载文件
+     *
+     * @param fileName    文件名称，为空时取文件url上的文件名
+     * @param fileUrl     文件url
+     * @param destFileDir 存储目标目录
+     */
+    public <T> void downLoadFile(String fileName, String fileUrl, final String destFileDir, final
+    ReqProgressCallBack<T> callBack) {
+
+        if (TextUtils.isEmpty(fileName)) {
+            String[] path = fileUrl.split("/");
+            fileName = path[path.length - 1];
+        }
+
+        File f = new File(destFileDir);
+        if (!f.exists())
+            f.mkdirs();
+
+        final File file = new File(destFileDir, fileName);
+        if (file.exists()) {
+            successCallBack((T) file, callBack, null);
+            return;
+        }
+        final Request request = new Request.Builder().addHeader("Accept-Encoding", "identity")
+                .url(fileUrl).build();
+        final Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                failedCallBack(1, "下载失败", callBack);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                InputStream is = null;
+                byte[] buf = new byte[2048];
+                int len = 0;
+                FileOutputStream fos = null;
+                try {
+                    long total = response.body().contentLength();
+                    long current = 0;
+                    is = response.body().byteStream();
+                    fos = new FileOutputStream(file);
+                    while ((len = is.read(buf)) != -1) {
+                        current += len;
+                        fos.write(buf, 0, len);
+                        progressCallBack(total, current, callBack);
+                    }
+                    fos.flush();
+                    successCallBack((T) file, callBack, call);
+                } catch (IOException e) {
+                    failedCallBack(3, "下载失败", callBack);
+                } finally {
+                    try {
+                        if (is != null) {
+                            is.close();
+                        }
+                        if (fos != null) {
+                            fos.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    /**
      * 统一为请求添加头信息
      *
      * @return
@@ -491,6 +629,33 @@ public class RequestManager {
          * @param errorMsg
          */
         void onReqFailed(int errorCode, String errorMsg);
+    }
+
+    public interface ReqProgressCallBack<T> extends ReqCallBack<T> {
+        /**
+         * 响应进度更新
+         */
+        void onProgress(long total, long current);
+    }
+
+    /**
+     * 统一处理进度信息
+     *
+     * @param total    总计大小
+     * @param current  当前进度
+     * @param callBack
+     * @param <T>
+     */
+    private <T> void progressCallBack(final long total, final long current, final 
+    ReqProgressCallBack<T> callBack) {
+        okHttpHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (callBack != null) {
+                    callBack.onProgress(total, current);
+                }
+            }
+        });
     }
 
     public void setSynHandler(Handler synHandler) {

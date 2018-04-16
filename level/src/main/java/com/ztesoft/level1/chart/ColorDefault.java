@@ -1,6 +1,6 @@
 package com.ztesoft.level1.chart;
 
-import com.steema.teechart.drawing.Color;
+import android.graphics.Color;
 
 public class ColorDefault {
 

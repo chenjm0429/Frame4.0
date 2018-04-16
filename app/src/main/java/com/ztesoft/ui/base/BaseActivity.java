@@ -80,7 +80,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 时间
      */
-    protected String  statDate;
+    protected String statDate;
 
     /**
      * 水印图片
@@ -235,6 +235,35 @@ public abstract class BaseActivity extends AppCompatActivity {
         param.put("staffId", staffId);
         param.put("staffName", gf.getStaffName());
         param.put("jobId", jobId);
+    }
+
+    /**
+     * 请求数据，默认带加载框
+     *
+     * @param visitType   访问标志
+     * @param path        路径
+     * @param requestType 请求方式
+     * @return
+     */
+    public Call queryData(String visitType, String path, int requestType) {
+
+        showLoadingDialog(null, R.string.loading);
+
+        // 判断用户权限，并预录入相关信息
+        JSONObject requestParams = new JSONObject();
+        try {
+            requestParams.put("visitType", visitType);
+            setCommonParam(requestParams);
+            addParamObject(requestParams);
+        } catch (JSONException e) {
+            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string.clientjsonerror);
+        }
+
+        String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + path;
+        RequestManager manage = RequestManager.getInstance(this);
+        Call call = manage.requestAsyn(url, requestType, requestParams, reqCallBack);
+
+        return call;
     }
 
     /**
@@ -477,9 +506,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapOperateUtil.getBitmapFromActivity(target);
 
             String fileName = System.currentTimeMillis() + ".png";
-            if (!SDCardUtil.getInstance().isFileExist(FusionCode.MAIL_LOCALPATH))
-                SDCardUtil.getInstance().createSDDir(FusionCode.MAIL_LOCALPATH);
-            String returnFile = Level1Bean.SD_ROOTPATH + FusionCode.MAIL_LOCALPATH + fileName;
+            if (!SDCardUtil.getInstance().isFileExist(FusionCode.MAIL_LOCAL_PATH))
+                SDCardUtil.getInstance().createSDDir(FusionCode.MAIL_LOCAL_PATH);
+            String returnFile = Level1Bean.SD_ROOTPATH + FusionCode.MAIL_LOCAL_PATH + fileName;
 
             BitmapOperateUtil.saveBitmapFile(bitmap, new File(returnFile));
             if (returnFile.length() > 0) {

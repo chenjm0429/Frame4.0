@@ -116,7 +116,7 @@ public class TakeScreenPic {
         String fileName = System.currentTimeMillis() + ".png";
         String filePath;
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {// SD卡存在且可读写
-            filePath = Environment.getExternalStorageDirectory() + FusionCode.MAIL_LOCALPATH;
+            filePath = Environment.getExternalStorageDirectory() + FusionCode.MAIL_LOCAL_PATH;
         } else {
             return "";
         }

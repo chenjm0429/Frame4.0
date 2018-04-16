@@ -10,7 +10,6 @@ import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -580,7 +579,7 @@ public class SJMapViewLayout extends View {
         if (event.getPointerCount() > 1) {
             float x = event.getX(event.getPointerId(0)) - event.getX(event.getPointerId(1));
             float y = event.getY(event.getPointerId(0)) - event.getY(event.getPointerId(1));
-            return FloatMath.sqrt(x * x + y * y);
+            return (float) Math.sqrt(x * x + y * y);
         }
         return 0;
     }

@@ -1,18 +1,25 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-    }
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.ztesoft.govmrkt.dev"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("D:/work/Android/chenjm.keystore")
+            storePassword "chenjm"
+            keyAlias "key0"
+            keyPassword "chenjm"
+        }
     }
     
     buildTypes {
@@ -20,22 +27,29 @@ android {
             //zipAlign优化
             zipAlignEnabled true
             //移除无用的resource文件
-            shrinkResources true
+            shrinkResources false
             //混淆
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+
     compile project(':level')
-    compile 'com.android.support:appcompat-v7:25.3.0'
 }

@@ -7,14 +7,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ztesoft.R;
-import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.gesture.GesturePatternView;
 import com.ztesoft.level1.util.PromptUtils;
-import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
-import com.ztesoft.ui.load.LoginActivity;
 import com.ztesoft.ui.load.LoginBaseActivity;
 import com.ztesoft.ui.main.MainActivity;
 
@@ -117,7 +114,7 @@ public class GestureActivity extends LoginBaseActivity {
                 if (mode_type == MODE_TYPE.LOGIN) {
                     if (gpv.verifyPassword(mPassword)) {
                         if (null != bundle) {
-                            reqLogin();
+//                            reqLogin();
                         } else
                             PromptUtils.instance.displayToastString(GestureActivity.this, false,
                                     "登录获取的应用信息为空，请重新登录！");
@@ -244,101 +241,4 @@ public class GestureActivity extends LoginBaseActivity {
     protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
 
     }
-
-    /**
-     * 二次登录方法，具体参数根据各个现场调整
-     */
-    public void reqLogin() {
-
-        showLoadingDialog(null, R.string.logining);
-
-        JSONObject param = new JSONObject();
-        try {
-            param.put("visitType", "login");
-            param.put("loginType", "login_imsi");
-            param.put("staffId", spu.getString("staffId", ""));
-            param.put("tml_idf_cd", sim);
-            param.put("phone", spu.getString("phone", ""));
-
-            ServiceThread serviceThread = new ServiceThread(
-                    getString(R.string.servicePath) + getString(R.string.serviceUrl) + "Login",
-                    param, this);
-            serviceThread.setEncryFlag(FusionCode.encryFlag);
-            serviceThread.setEncryKey(FusionCode.encrykey);
-            serviceThread.setServiceHandler(loginFirstHandler);
-            serviceThread.start();
-
-        } catch (JSONException e) {
-            PromptUtils.instance.displayToastString(getApplicationContext(), false, e.getMessage());
-        }
-    }
-
-    private ServiceThread.ServiceHandler loginFirstHandler = new ServiceThread.ServiceHandler() {
-
-        @Override
-        public void success(ServiceThread st, JSONObject dataObj) {
-            dismissLoadingDialog();
-
-            if ("false".equals(dataObj.optString("loginFlag", "false"))) {
-
-                PromptUtils.instance.displayToastString(GestureActivity.this, false, dataObj
-                        .optString("loginReason"));
-
-                forward(GestureActivity.this, null, LoginActivity.class, true, BaseActivity
-                        .ANIM_TYPE.RIGHT);
-                spu.putString("staffId", "");
-                spu.putString("phone", "");
-
-            } else {
-                try {
-                    initAppInfo(dataObj, false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    PromptUtils.instance.displayToastId(getApplicationContext(), false, R.string
-                            .error_json);
-                }
-            }
-        }
-
-        @Override
-        public void fail(final ServiceThread st, String errorCode, String errorMessage) {
-            dismissLoadingDialog();
-
-            if ("1".equals(errorCode)) {
-                PromptUtils.instance.initTwoButtonDialog(getApplicationContext(), R.string.prompt,
-                        R.string.error_network, R.string.system_confirm, R.string.system_cancel,
-                        new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                ServiceThread newSt = new ServiceThread(st.getHttpUrl(), st
-                                        .getParam(),
-                                        GestureActivity.this);
-                                newSt.setEncryFlag(FusionCode.encryFlag);
-                                newSt.setEncryKey(FusionCode.encrykey);
-                                newSt.setServiceHandler(loginFirstHandler);
-                                newSt.start();
-                            }
-                        }, new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                GestureActivity.this.finish();
-                            }
-                        }).show();
-
-            } else {
-                PromptUtils.instance.displayToastString(GestureActivity.this, false, errorMessage);
-
-                forward(GestureActivity.this, null, LoginActivity.class, true, BaseActivity
-                        .ANIM_TYPE.RIGHT);
-                spu.putString("staffId", "");
-                spu.putString("phone", "");
-            }
-        }
-
-        @Override
-        public void begin(ServiceThread st) {
-        }
-    };
 }

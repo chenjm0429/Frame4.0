@@ -244,10 +244,6 @@ public class Fenxiang {
                 break;
             case Fenxiang_WECHAT:
             case Fenxiang_WECHATMOMENTS:
-                com.ztesoft.level1.share.WECHATUtil wechatUtil = new com.ztesoft.level1.share
-                        .WECHATUtil(act, wechat_app_id);
-                wechatUtil.sendImage(imagePath, type);
-                break;
             default:
                 break;
         }

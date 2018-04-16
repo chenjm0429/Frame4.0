@@ -166,7 +166,7 @@ public class ScrawlActivity extends BaseActivity {
                     Bitmap bitmap = mainView.getBitmap();
 
                     String fileName = System.currentTimeMillis() + ".png";
-                    String returnFile = Level1Bean.SD_ROOTPATH + FusionCode.MAIL_LOCALPATH +
+                    String returnFile = Level1Bean.SD_ROOTPATH + FusionCode.MAIL_LOCAL_PATH +
                             fileName;
 
                     BitmapOperateUtil.saveBitmapFile(bitmap, new File(returnFile));

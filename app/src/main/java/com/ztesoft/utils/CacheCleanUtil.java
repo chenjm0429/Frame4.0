@@ -29,10 +29,10 @@ public class CacheCleanUtil {
      */
     public static String getCacheSize(Context context) {
 
-        File file = new File(Level1Bean.SD_ROOTPATH + FusionCode.FILE_LOCALPATH);
+        File file = new File(Level1Bean.SD_ROOTPATH + FusionCode.FILE_LOCAL_PATH);
         long size = DataCleanUtil.getFileSize(file);
 
-        File errorFile = new File(Level1Bean.SD_ROOTPATH + FusionCode.ERROR_LOCALPATH);
+        File errorFile = new File(Level1Bean.SD_ROOTPATH + FusionCode.ERROR_LOCAL_PATH);
         long errorSize = DataCleanUtil.getFileSize(errorFile);
 
         return Formatter.formatFileSize(context, size + errorSize);
@@ -44,12 +44,12 @@ public class CacheCleanUtil {
     public static void cleanCache(Context context) {
 
         // 下载的图片、文件等
-        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.IMAGES_LOCALPATH);
-        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.AUTOUPDATE_LOCALPATH);
-        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.MAIL_LOCALPATH);
-        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.FILE_LOCALPATH);
+        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.IMAGES_LOCAL_PATH);
+        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.AUTO_UPDATE_LOCAL_PATH);
+        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.MAIL_LOCAL_PATH);
+        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.FILE_LOCAL_PATH);
 
-        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.ERROR_LOCALPATH);
+        DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode.ERROR_LOCAL_PATH);
 
         DataCleanUtil.cleanSharedPreference(context);
 

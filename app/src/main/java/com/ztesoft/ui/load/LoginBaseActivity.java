@@ -1,9 +1,6 @@
 package com.ztesoft.ui.load;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -38,10 +35,6 @@ import okhttp3.Call;
  */
 public class LoginBaseActivity extends BaseActivity {
 
-    protected String sim = "";
-    protected String phone = "";
-    protected String imei = "";
-
     protected String userName;
     protected String userPwd;
 
@@ -51,24 +44,7 @@ public class LoginBaseActivity extends BaseActivity {
 
     @Override
     protected void initView(FrameLayout containerLayout) {
-//        containerLayout.setForeground(new ColorDrawable());
-
         mTitleLayout.setVisibility(View.GONE);
-
-        // 获取sim卡信息
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        sim = tm.getSubscriberId();// 获取imsi
-        imei = tm.getDeviceId();
-        phone = tm.getLine1Number();
-
-        if (TextUtils.isEmpty(sim))
-            sim = "";
-
-        if (TextUtils.isEmpty(imei))
-            imei = "";
-
-        if (TextUtils.isEmpty(phone))
-            phone = "";
 
         spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
     }
@@ -82,55 +58,19 @@ public class LoginBaseActivity extends BaseActivity {
      */
     protected void initAppInfo(JSONObject jsonObj, boolean isFirstLogin) throws Exception {
 
-        String flag = jsonObj.getString("flag");
-        JSONArray funcArray;
-        if (flag != null && "true".equals(flag)) {
-
-            JSONObject userJSON = jsonObj.getJSONObject("userInfo");
-            JSONArray areaArray = jsonObj.getJSONArray("areaArray");
-            funcArray = jsonObj.getJSONArray("funcArray");
-
-            GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
-
-            gf.setStaffId(userJSON.getString("staffId"));
-            gf.setStaffName(userJSON.optString("staffName"));
-            gf.setRangeId(userJSON.optString("rangeId"));
-            gf.setJobId(userJSON.optString("jobId"));
-            gf.setJobName(userJSON.optString("jobName"));
-
-            spu.putString("staffId", userJSON.optString("staffId"));
-            spu.putString("sim", sim);
-            spu.putString("lastGetMenuInfo", (new Date()).getTime() + "");
-
-        } else {
-            dismissLoadingDialog();
-            return;
-        }
+       setAppInfo(jsonObj);
 
         dismissLoadingDialog();
 
         //此处控制显示的主菜单数，不同的现场主要调整此处
         ArrayList<MenuEntity> menuEntities = new ArrayList<MenuEntity>();
-        for (int i = 0; i < funcArray.length(); i++) {
-            JSONObject menuObj = funcArray.getJSONObject(i);
 
-            String rptCode = menuObj.getString("rptCode");
-            String rptName = menuObj.getString("rptName");
-            String picCode = menuObj.getString("picCode");
-
-            String selectPicCode = picCode + "_select";
-
-            int defaultId = R.drawable.class.getDeclaredField(picCode).getInt(null);
-            int selectId = R.drawable.class.getDeclaredField(selectPicCode).getInt(null);
-
-            MenuEntity entity = new MenuEntity();
-            entity.setMenuId(rptCode);
-            entity.setMenuName(rptName);
-            entity.setMenuIcon(defaultId);
-            entity.setMenuIconSelected(selectId);
-
-            menuEntities.add(entity);
-        }
+        MenuEntity entity1 = new MenuEntity();
+        entity1.setMenuId("1");
+        entity1.setMenuName("首页");
+        entity1.setMenuIcon(R.drawable.app_menu_home);
+        entity1.setMenuIconSelected(R.drawable.app_menu_home_selected);
+        menuEntities.add(entity1);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("menu", menuEntities);
@@ -150,6 +90,33 @@ public class LoginBaseActivity extends BaseActivity {
         } else { //二次登录
             forward(this, bundle, MainActivity.class, true, ANIM_TYPE.LEFT);
         }
+    }
+
+    /**
+     * 设置app的相关信息
+     */
+    protected void setAppInfo(JSONObject dataObj) {
+
+        String flag = dataObj.optString("flag");
+        JSONArray funcArray;
+        if (flag != null && "true".equals(flag)) {
+
+            JSONObject userJSON = dataObj.optJSONObject("userInfo");
+            JSONArray areaArray = dataObj.optJSONArray("areaArray");
+            funcArray = dataObj.optJSONArray("funcArray");
+
+            GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
+
+            gf.setStaffId(userJSON.optString("staffId"));
+            gf.setStaffName(userJSON.optString("staffName"));
+            gf.setRangeId(userJSON.optString("rangeId"));
+            gf.setJobId(userJSON.optString("jobId"));
+            gf.setJobName(userJSON.optString("jobName"));
+
+            spu.putString("staffId", userJSON.optString("staffId"));
+            spu.putString("lastGetMenuInfo", (new Date()).getTime() + "");
+
+        } 
     }
 
     @Override

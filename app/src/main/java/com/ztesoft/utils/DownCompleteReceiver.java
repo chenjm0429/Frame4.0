@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Environment;
 
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
@@ -94,8 +93,8 @@ public class DownCompleteReceiver extends BroadcastReceiver {
      * 下载完成，打开程序
      */
     private void openApk() {
-        File file = new File(Environment.getExternalStorageDirectory() + FusionCode
-                .AUTOUPDATE_LOCALPATH + FusionCode.AUTOUPDATE_FILENAME);
+        File file = new File(Level1Bean.SD_ROOTPATH + FusionCode.AUTO_UPDATE_LOCAL_PATH + 
+                FusionCode.AUTO_UPDATE_FILENAME);
 
         Intent it = new Intent();
         it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

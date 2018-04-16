@@ -98,6 +98,14 @@
             android:theme="@style/AppTheme.FullScreen">
         </activity>
 
+        <receiver android:name="com.ztesoft.utils.DownCompleteReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="59b41f1e29dcc086e57a5ad006ff3929"/>

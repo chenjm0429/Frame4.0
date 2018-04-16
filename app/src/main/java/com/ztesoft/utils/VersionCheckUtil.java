@@ -3,8 +3,6 @@ package com.ztesoft.utils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,12 +13,14 @@ import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.PromptUtils;
+import com.ztesoft.level1.util.RequestManager;
 import com.ztesoft.level1.util.SDCardUtil;
-import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.ui.load.LoginBaseActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.Call;
 
 /**
  * 文件名称 : VersionCheckUtil
@@ -56,59 +56,29 @@ public class VersionCheckUtil {
         versionName = Utils.getVersionName(context);
 
         JSONObject param = new JSONObject();
-        try {
-            param.put("visitType", "getUpdateInfo");
-        } catch (JSONException e) {
-            PromptUtils.instance.displayToastId(context, false, R.string.error_json);
-        }
-        ServiceThread st = new ServiceThread(
-                context.getString(R.string.servicePath) + context.getString(R.string.serviceUrl)
-                        + "Login", param,
-                context);
-        st.setServiceHandler(serviceHandler);
-        st.start();
 
+        String url = context.getString(R.string.servicePath) + context.getString(R.string
+                .serviceUrl) + "versionInfo";
+        RequestManager manage = RequestManager.getInstance(context);
+        manage.requestAsyn(url, RequestManager.TYPE_GET, param, reqCallBack);
     }
 
-    private ServiceThread.ServiceHandler serviceHandler = new ServiceThread.ServiceHandler() {
+    private RequestManager.ReqCallBack reqCallBack = new RequestManager.ReqCallBack() {
 
         @Override
-        public void success(ServiceThread st, JSONObject dataObj) {
-            updateResult(dataObj);
-        }
+        public void onReqSuccess(Object result, Call tag) {
 
-        @Override
-        public void fail(final ServiceThread st, String errorCode, String errorMessage) {
-            if ("1".equals(errorCode)) {
+            try {
+                updateResult(new JSONObject((String) result));
 
-                PromptUtils.instance.initTwoButtonDialog(context, R.string.prompt, R.string
-								.error_network,
-                        R.string.system_confirm, R.string.system_cancel, new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                ServiceThread newSt = new ServiceThread(st.getHttpUrl(), st
-										.getParam(), context);
-                                newSt.setServiceHandler(serviceHandler);
-                                newSt.start();
-                            }
-                        }, new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                activity.finish();
-                            }
-                        }).show();
-
-            } else {
-                PromptUtils.instance.displayToastString(context, false, errorMessage);
+            } catch (JSONException e) {
                 onUpdateAppListener.onError();
             }
         }
 
         @Override
-        public void begin(ServiceThread st) {
-
+        public void onReqFailed(int errorCode, String errorMsg) {
+            onUpdateAppListener.onError();
         }
     };
 
@@ -186,12 +156,12 @@ public class VersionCheckUtil {
 
                     // 先清楚下载文件夹下的文件
                     DataCleanUtil.cleanCustomCache(Level1Bean.SD_ROOTPATH + FusionCode
-							.AUTOUPDATE_LOCALPATH);
+                            .AUTO_UPDATE_LOCAL_PATH);
 
                     DownloadEntity downloadEntity = new DownloadEntity();
                     downloadEntity.setTitle(context.getString(R.string.app_name) + "升级");
-                    downloadEntity.setFileName(FusionCode.AUTOUPDATE_FILENAME);
-                    downloadEntity.setPathName(FusionCode.AUTOUPDATE_LOCALPATH);
+                    downloadEntity.setFileName(FusionCode.AUTO_UPDATE_FILENAME);
+                    downloadEntity.setPathName(FusionCode.AUTO_UPDATE_LOCAL_PATH);
                     downloadEntity.setUri(strURL);
                     downloadEntity.setDescription(updateInfo);
                     downloadEntity.setVisiblityHidden(true);
@@ -235,13 +205,13 @@ public class VersionCheckUtil {
         updateDialog.setCanceledOnTouchOutside(false);
         updateDialog.setCancelable(false);
 
-        updateDialog.setOnDismissListener(new OnDismissListener() {
-
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                ((Activity) context).finish();
-            }
-        });
+//        updateDialog.setOnDismissListener(new OnDismissListener() {
+//
+//            @Override
+//            public void onDismiss(DialogInterface dialog) {
+//                ((Activity) context).finish();
+//            }
+//        });
     }
 
     public void setOnUpdateAppListener(OnUpdateAppListrener onUpdateAppListener) {
@@ -283,7 +253,7 @@ public class VersionCheckUtil {
         void onError();
     }
 
-    protected  class DownloadEntity {
+    protected class DownloadEntity {
 
         // 下载地址
         private String uri;

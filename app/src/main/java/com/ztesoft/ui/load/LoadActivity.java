@@ -2,7 +2,6 @@ package com.ztesoft.ui.load;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,9 +10,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.bumptech.glide.Glide;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
@@ -142,8 +139,9 @@ public class LoadActivity extends BaseActivity {
         mWelcomeView = new ImageView(this);
         mWelcomeView.setScaleType(ImageView.ScaleType.FIT_XY);
 
-        String url = "drawable://" + R.drawable.load_welcome_bg;
-        changeLoadBg(url);
+        Glide.with(this)
+                .load(R.drawable.load_welcome_bg)
+                .into(mWelcomeView);
 
         frameLayout.addView(mWelcomeView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
@@ -203,22 +201,9 @@ public class LoadActivity extends BaseActivity {
      * 切换load背景
      */
     private void changeLoadBg(String url) {
-
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)// 设置下载的图片是否缓存在内存中
-                .cacheOnDisk(true)// 设置下载的图片是否缓存在SD卡中
-                // .considerExifParams(true) //是否考虑JPEG图像EXIF参数（旋转，翻转）
-                .imageScaleType(ImageScaleType.NONE)// 设置图片以如何的编码方式显示
-                .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型//
-                // .delayBeforeLoading(int delayInMillis)//int
-                // delayInMillis为你设置的下载前的延迟时间
-                // 设置图片加入缓存前，对bitmap进行设置
-                // .preProcessor(BitmapProcessor preProcessor)
-                .resetViewBeforeLoading(true)// 设置图片在下载前是否重置，复位
-                // .displayer(new RoundedBitmapDisplayer(45))// 是否设置为圆角，弧度为多少
-//                .displayer(new FadeInBitmapDisplayer(100))// 是否图片加载好后渐入的动画时间
-                .build();// 构建完成
-        ImageLoader.getInstance().displayImage(url, mWelcomeView, options);
+        Glide.with(this)
+                .load(url)
+                .into(mWelcomeView);
     }
 
     @Override

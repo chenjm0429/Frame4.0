@@ -52,8 +52,8 @@ public class NotificationUtil {
 
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent
                 .FLAG_UPDATE_CURRENT);
-        notification.setLatestEventInfo(context.getApplicationContext(), title, desc, 
-                contentIntent);
+//        notification.setLatestEventInfo(context.getApplicationContext(), title, desc, 
+//                contentIntent);
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 //		notification.number=number;//通栏图标上显示数字(必须大于0)，4.0版本无效果
 //		notification.defaults |= Notification.DEFAULT_SOUND;

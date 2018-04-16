@@ -51,7 +51,8 @@ import okhttp3.Call;
  * 创建时间 : 2017/3/23 15:08
  * <p>
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, BaseFragment
+        .FragmentCallBack {
 
     //侧边栏
     private DrawerLayout mDrawerLayout;
@@ -135,6 +136,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } else if (v.equals(mExitText)) {
             createDialog().show();
         }
+    }
+
+    @Override
+    public void setTitleText(String title) {
+        mTitleText.setText(title);
     }
 
     /**

@@ -10,16 +10,15 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ztesoft.R;
-import com.ztesoft.fusion.FusionCode;
-import com.ztesoft.level1.util.ServiceThread;
 import com.ztesoft.ui.main.MainActivity;
 import com.ztesoft.ui.main.entity.MenuEntity;
-import com.ztesoft.level1.util.PromptUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import okhttp3.Call;
 
 /**
  * 文件名称 : LoginActivity
@@ -68,7 +67,7 @@ public class LoginActivity extends LoginBaseActivity implements OnClickListener 
 
             userName = spu.getString("userName", "");
             userPwd = spu.getString("userPwd", "");
-            login();
+//            login();
         }
     }
 
@@ -84,7 +83,7 @@ public class LoginActivity extends LoginBaseActivity implements OnClickListener 
 //                        "用户名为空，请重新输入");
 //                return;
 //            }
-//            login();
+//            queryData("", "login", TYPE_POST_JSON);
 
             //此处控制显示的主菜单数，不同的现场主要调整此处
             ArrayList<MenuEntity> menuEntities = new ArrayList<MenuEntity>();
@@ -112,95 +111,15 @@ public class LoginActivity extends LoginBaseActivity implements OnClickListener 
         }
     }
 
-    /**
-     * 登录
-     */
-    public void login() {
-
-        showLoadingDialog(null, R.string.logining);
-
-        JSONObject param = new JSONObject();
-        try {
-            param.put("visitType", "login");
-            param.put("loginType", "bang_imsi");
-            param.put("staffId", staffId);
-            param.put("staffPwd", userPwd); // 短信验证码 getEncryptedValue(userPwd)
-            param.put("tml_idf_cd", sim);
-            param.put("phone", phone);
-
-            ServiceThread serviceThread = new ServiceThread(
-                    getString(R.string.servicePath) + getString(R.string.serviceUrl) + "Login",
-                    param, this);
-            serviceThread.setEncryFlag(FusionCode.encryFlag);
-            serviceThread.setEncryKey(FusionCode.encrykey);
-            serviceThread.setServiceHandler(loginFirstHandler);
-            serviceThread.start();
-
-        } catch (JSONException e) {
-            PromptUtils.instance.displayToastString(getApplicationContext(), false, e.getMessage());
-        }
+    @Override
+    protected void addParamObject(JSONObject param) throws JSONException {
+        super.addParamObject(param);
     }
 
-    private ServiceThread.ServiceHandler loginFirstHandler = new ServiceThread.ServiceHandler() {
+    @Override
+    protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
+        super.initAllLayout(resultJsonObject, call);
 
-        @Override
-        public void success(ServiceThread st, JSONObject dataObj) {
-            dismissLoadingDialog();
-
-            if ("false".equals(dataObj.optString("loginFlag", "false"))) {
-
-                PromptUtils.instance.displayToastString(LoginActivity.this, false, dataObj
-                        .optString("loginReason"));
-
-
-            } else {
-                try {
-                    initAppInfo(dataObj, true);
-                    spu.putString("staffId", staffId);
-                    spu.putString("phone", phone);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    PromptUtils.instance.displayToastId(getApplicationContext(), false, R.string
-                            .error_json);
-                }
-            }
-        }
-
-        @Override
-        public void fail(final ServiceThread st, String errorCode, String errorMessage) {
-            dismissLoadingDialog();
-
-            if ("1".equals(errorCode)) {
-                PromptUtils.instance.initTwoButtonDialog(getApplicationContext(), R.string.prompt,
-                        R.string.error_network, R.string.system_confirm, R.string.system_cancel,
-                        new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                ServiceThread newSt = new ServiceThread(st.getHttpUrl(), st
-                                        .getParam(),
-                                        LoginActivity.this);
-                                newSt.setEncryFlag(FusionCode.encryFlag);
-                                newSt.setEncryKey(FusionCode.encrykey);
-                                newSt.setServiceHandler(loginFirstHandler);
-                                newSt.start();
-                            }
-                        }, new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                LoginActivity.this.finish();
-                            }
-                        }).show();
-
-            } else {
-                PromptUtils.instance.displayToastString(LoginActivity.this, false, errorMessage);
-            }
-        }
-
-        @Override
-        public void begin(ServiceThread st) {
-
-        }
-    };
+        initAppInfo(resultJsonObject, false);
+    }
 }

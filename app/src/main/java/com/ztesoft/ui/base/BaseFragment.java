@@ -52,6 +52,10 @@ public abstract class BaseFragment extends Fragment {
 
         initData(getArguments());
 
+        mActivity = (MainActivity) getActivity();
+
+        mFragmentCallBack = (FragmentCallBack) getActivity();
+
         return mRootView;
     }
 
@@ -59,9 +63,6 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context != null) {
-            mActivity = (MainActivity) getActivity();
-        }
     }
 
     /**
@@ -88,7 +89,6 @@ public abstract class BaseFragment extends Fragment {
      * MainActivity实现该接口
      */
     public interface FragmentCallBack {
-
         /**
          * 设置标题
          *

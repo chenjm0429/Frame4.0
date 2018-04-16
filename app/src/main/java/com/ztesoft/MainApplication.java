@@ -1,15 +1,9 @@
 package com.ztesoft;
 
 import android.app.Application;
+import android.os.Build;
+import android.os.StrictMode;
 
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.fusion.GlobalField;
 import com.ztesoft.level1.util.SDCardUtil;
@@ -30,25 +24,15 @@ public class MainApplication extends Application {
 //		CrashHandler crashHandler = CrashHandler.getInstance();
 //		crashHandler.init(this);
 
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .build();
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .defaultDisplayImageOptions(defaultOptions)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .denyCacheImageMultipleSizesInMemory()
-                .diskCache(new UnlimitedDiskCache(StorageUtils.getOwnCacheDirectory(this,
-                        FusionCode.IMAGES_LOCALPATH)))
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .memoryCache(new WeakMemoryCache())
-                .build();
-        ImageLoader.getInstance().init(config);
-
         //如果app根目录不存在，则创建app根目录
-        if (!SDCardUtil.getInstance().isFileExist(FusionCode.FILE_LOCALPATH)) {
-            SDCardUtil.getInstance().createSDDir(FusionCode.FILE_LOCALPATH);
+        if (!SDCardUtil.getInstance().isFileExist(FusionCode.FILE_LOCAL_PATH)) {
+            SDCardUtil.getInstance().createSDDir(FusionCode.FILE_LOCAL_PATH);
+        }
+
+        //解决7.0相机报错的问题
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
         }
     }
 
