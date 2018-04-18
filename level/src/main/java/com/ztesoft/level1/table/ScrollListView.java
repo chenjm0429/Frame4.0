@@ -337,7 +337,7 @@ public class ScrollListView extends LinearLayout {
                     } else if (fixColumnIndex == tempNum) {
                         break;
                     } else {
-                        Toast.makeText(ctx, R.string.error_tableMuliHead, Toast.LENGTH_SHORT)
+                        Toast.makeText(ctx, R.string.error_tableMultiHead, Toast.LENGTH_SHORT)
                                 .show();
                         this.addView(new LinearLayout(ctx), LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT);

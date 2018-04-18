@@ -26,9 +26,6 @@ import okhttp3.Call;
  */
 public class AboutActivity extends BaseActivity {
 
-    private TextView versionInfoTv;
-
-
     @Override
     public void getBundles(Bundle bundle) {
 
@@ -36,13 +33,14 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void initView(FrameLayout containerLayout) {
-        mTitleTv.setText("关于" + getResources().getString(R.string.app_name));
+
+        mTitleTv.setText(new StringBuilder("关于").append(getString(R.string.app_name)));
 
         View view = View.inflate(this, R.layout.activity_about, null);
         containerLayout.addView(view);
 
-        versionInfoTv = (TextView) findViewById(R.id.versionInfo);
-        versionInfoTv.setText("v" + Utils.getVersionName(this));
+        TextView versionInfoTv = findViewById(R.id.versionInfo);
+        versionInfoTv.setText(new StringBuilder("v").append(Utils.getVersionName(this)));
     }
 
     @Override

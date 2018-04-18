@@ -237,7 +237,7 @@ public class CheckBoxView extends LinearLayout {
                 if (selectMap.size() >= maxSelNum && "N".equals((String) v.getTag())) {// 已选数量大于允许值
                     // 并且
                     // 继续选中时提示
-                    Toast.makeText(context, getContext().getString(R.string.error_string_atmost,
+                    Toast.makeText(context, getContext().getString(R.string.error_string_most, 
                             maxSelNum), Toast.LENGTH_SHORT).show();
                     return;
                 }

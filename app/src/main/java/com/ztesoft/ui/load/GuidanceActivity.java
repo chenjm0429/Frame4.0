@@ -33,8 +33,7 @@ import okhttp3.Call;
  */
 public class GuidanceActivity extends BaseActivity {
 
-    private int[] imageIds = {R.drawable.load_welcome_1, R.drawable.load_welcome_2, R.drawable
-            .load_welcome_3, R.drawable.load_welcome_4};
+    private int[] imageIds = {R.drawable.load_welcome_1};
 
     @Override
     protected void getBundles(Bundle bundle) {

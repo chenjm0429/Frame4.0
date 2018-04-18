@@ -150,14 +150,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 增加水印
 //        containerLayout.setForeground(getWatermark());
 
-        mTitleTv = (TextView) this.findViewById(R.id.title);
-        mTitleLayout = (RelativeLayout) this.findViewById(R.id.titleLayout);
+        mTitleTv = findViewById(R.id.title);
+        mTitleLayout = findViewById(R.id.titleLayout);
 
-        mLeftButton = (ImageView) this.findViewById(R.id.left_image);
+        mLeftButton = findViewById(R.id.left_image);
         mLeftButton.setOnClickListener(mOnClickListener);
-        mRightButton = (ImageView) this.findViewById(R.id.right_image);
+        mRightButton = findViewById(R.id.right_image);
         mRightButton.setOnClickListener(mOnClickListener);
-        mSpecialButton = (ImageView) this.findViewById(R.id.special_image);
+        mSpecialButton = findViewById(R.id.special_image);
 
         initView(containerLayout);
         getSystemState(savedInstanceState);
@@ -256,7 +256,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             setCommonParam(requestParams);
             addParamObject(requestParams);
         } catch (JSONException e) {
-            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string.clientjsonerror);
+            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string
+                    .error_client_json);
         }
 
         String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + path;
@@ -294,7 +295,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             setCommonParam(requestParams);
             addParamObject(requestParams);
         } catch (JSONException e) {
-            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string.clientjsonerror);
+            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string
+                    .error_client_json);
         }
 
         String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + path;
@@ -317,7 +319,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             } catch (Exception e) {
                 ErrorLogUtil.getInstance().log(getApplicationContext(), e.getMessage());
                 PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string
-                        .error_noknow);
+                        .error_unknown);
             } finally {
                 dismissLoadingDialog();
             }

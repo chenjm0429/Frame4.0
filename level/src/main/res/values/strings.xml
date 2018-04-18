@@ -1,31 +1,31 @@
 <resources>
 
-    <string name="app_name">AndroidLevel1</string>
     <string name="title">level1</string>
 
     <string name="error_network">网络连接失败</string>
-    <string name="error_serivce">服务端没有响应（可能未启动或者网络不通）</string>
+    <string name="error_service">服务端没有响应（可能未启动或者网络不通）</string>
     <string name="error_json">服务端返回JSON格式错误</string>
-    <string name="error_noknow">未知错误</string>
+    <string name="error_unknown">未知错误</string>
     <string name="error_safe">信息被篡改"</string>
+    <string name="error_client_json">请求参数错误</string>
 
     <string name="error_phoneNull">手机号码不得为空</string>
     <string name="error_pwdNull">验证码不正确</string>
     <string name="error_phoneNum">您输入的号码无效,请确认号码输入无误.</string>
-    <string name="error_imsi_notfound">未检测到SIM卡</string>
+    <string name="error_sim_not_found">未检测到SIM卡</string>
     <string name="error_user_notDeliver">OA未传递user的值</string>
-    <string name="error_modle_setting">登陆模式设置错误，请重新设置。</string>
-    <string name="error_indate">已过期，请联系管理人员</string>
+    <string name="error_module_setting">登陆模式设置错误，请重新设置。</string>
+    <string name="error_overdue">已过期，请联系管理人员</string>
     <string name="error_version">版本信息获取失败</string>
     <string name="error_security">加解密错误</string>
     <string name="error_SD_notFound">SD不存在或不可用</string>
     <string name="error_save_file">文件保存失败</string>
 
     <string name="error_userNull">用户名或密码不得为空</string>
-    <string name="error_newpwdNull">新密码不得为空</string>
+    <string name="error_new_pwdNull">新密码不得为空</string>
     <string name="error_mismatching">两次密码输入不一致，请确认</string>
-    <string name="error_string_atmost">最多只能选择%1$d个</string>
-    <string name="error_tableMuliHead">锁定列和多表头冲突，请锁定一级表头分割的列</string>
+    <string name="error_string_most">最多只能选择%1$d个</string>
+    <string name="error_tableMultiHead">锁定列和多表头冲突，请锁定一级表头分割的列</string>
 
     <string name="quit">是否退出应用？</string>
     <string name="prompt">提示</string>
@@ -36,14 +36,14 @@
     <string name="login_user">请输入用户名</string>
     <string name="login_pwd">请输入密码</string>
     <string name="login_login">登录</string>
-    <string name="login_newpwd">新密码</string>
-    <string name="login_newpwd_second">重新输入新密码</string>
+    <string name="login_newPwd">新密码</string>
+    <string name="login_newPwd_second">重新输入新密码</string>
     <string name="login_save_pwd">是否保存密码</string>
     <string name="login_modify_pwd">修改密码</string>
     <string name="login_reset_pwd">重置密码</string>
 
-    <string name="login_phonenum">请输入手机号码</string>
-    <string name="login_phonepwd">请输入验证码</string>
+    <string name="login_phoneNum">请输入手机号码</string>
+    <string name="login_phonePwd">请输入验证码</string>
     <string name="login_phone">获取验证码</string>
 
     <string name="csvExport">是否发送导出的CSV文件？</string>
@@ -67,10 +67,10 @@
     <string name="system_setting_net">设置网络</string>
     <string name="audit_update">正在审核，请稍候</string>
 
-    <string name="system_text_selectdate">日期选择</string>
-    <string name="system_text_selectarea">地市选择</string>
-    <string name="system_text_selectkpi">指标选择</string>
-    <string name="system_text_selectcondition">条件选择</string>
+    <string name="system_text_select_date">日期选择</string>
+    <string name="system_text_select_area">地市选择</string>
+    <string name="system_text_select_kpi">指标选择</string>
+    <string name="system_text_select_condition">条件选择</string>
 
     <string name="download_done">下载完成</string>
     <string name="download_false">下载失败</string>
@@ -80,13 +80,13 @@
     <string name="send_mail">请选择邮件发送软件</string>
     <string name="mail_subject">手机经分系统截屏邮件</string>
     <string name="mail_content">附件为最新截屏，请查收！</string>
-    <string name="mail_csvtitle">手机经分系统导出报表邮件</string>
-    <string name="mail_csvcontent">附件为报表csv文件，请查收！</string>
+    <string name="mail_csv_title">手机经分系统导出报表邮件</string>
+    <string name="mail_csv_content">附件为报表csv文件，请查收！</string>
     <string name="mail_send_true">文件已投送至发件箱</string>
     <string name="mail_send_failed">邮件发送失败</string>
 
-    <string name="oper_success">操作成功</string>
-    <string name="oper_failuer">操作失败</string>
+    <string name="operate_success">操作成功</string>
+    <string name="operate_failure">操作失败</string>
 
     <string name="kjcz">快捷操作</string>
     <string name="rqxz">日期选择</string>
@@ -113,7 +113,7 @@
     <string name="p2refresh_pull_to_refresh">下拉刷新</string>
     <string name="p2refresh_doing_head_refresh">正在刷新&#8230;</string>
     <string name="p2refresh_doing_end_refresh">加载中&#8230;</string>
-    <string name="p2refresh_refresh_lasttime">最近更新&#160;&#058;&#160;</string>
+    <string name="p2refresh_refresh_last_time">最近更新&#160;&#058;&#160;</string>
 
     <!-- 下拉刷新和上拉加载更多的文本 -->
     <string name="pull_to_refresh_header_hint_normal">下拉可以刷新</string>
@@ -124,23 +124,23 @@
     <string name="pull_to_refresh_footer_hint_ready">松开载入更多</string>
     <string name="pull_to_refresh_no_more_data">已经到底啦</string>
 
-    <string name="calendar_initdate_error">日历组件初始日期配置错误。</string>
+    <string name="calendar_init_date_error">日历组件初始日期配置错误。</string>
 
     <string name="comment_status">您正在进行评论</string>
-    <string name="comment_tobody">您正在和%1$s私聊</string>
+    <string name="comment_to_body">您正在和%1$s私聊</string>
     <string name="comment_wait_audit">待审核评论列表</string>
     <string name="comment_nowait_audit">暂时没有需审核的评论</string>
     <string name="comment_success">发布评论成功！</string>
     <string name="comment_to_audit">发布评论成功，待管理员审核！</string>
     <string name="comment_status_audited">已审核</string>
-    <string name="comment_nomore">无更多记录</string>
-    <string name="comment_tolong">评论内容过长</string>
+    <string name="comment_no_more">无更多记录</string>
+    <string name="comment_to_long">评论内容过长</string>
     <string name="comment_news_list">新消息列表</string>
     <string name="comment_answer">您正在回复%1$s</string>
     <string name="comment_publish">发布</string>
     <string name="comment_desc">评论内容:</string>
     <string name="comment_hint">请输入你想发表的评论内容...</string>
-    <string name="comment_reciver">接 收 人:</string>
+    <string name="comment_receiver">接 收 人:</string>
     <string name="comment_yh_hint">用户名搜索</string>
     <string name="comment_forbidden">本模块不允许评论！</string>
 

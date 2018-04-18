@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mButton = (Button) getView().findViewById(R.id.button);
+        mButton = getView().findViewById(R.id.button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,8 +61,8 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        layout1 = (LinearLayout) getView().findViewById(R.id.layout_tt);
-        layout2 = (LinearLayout) getView().findViewById(R.id.layout_zz);
+        layout1 = getView().findViewById(R.id.layout_tt);
+        layout2 = getView().findViewById(R.id.layout_zz);
 
         AutoScrollTextView ast = new AutoScrollTextView(mActivity, new AutoScrollTextView
                 .OnScrollChangeListener() {

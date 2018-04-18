@@ -81,16 +81,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         setContentView(R.layout.activity_main);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         initSideBarView();
 
-        mTitleText = (TextView) findViewById(R.id.title);
-        mLeftImage = (ImageView) findViewById(R.id.left_image);
+        mTitleText = findViewById(R.id.title);
+        mLeftImage = findViewById(R.id.left_image);
         mLeftImage.setOnClickListener(this);
-        mRightImage = (ImageView) findViewById(R.id.right_image);
+        mRightImage = findViewById(R.id.right_image);
         mRightImage.setOnClickListener(this);
 
-        mMenuLayout = (LinearLayout) findViewById(R.id.menu_layout);
+        mMenuLayout = findViewById(R.id.menu_layout);
 
         if (null != mMenuEntities && mMenuEntities.size() > 0) {
             initMenu();
@@ -101,12 +101,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * 绘制侧边栏视图
      */
     private void initSideBarView() {
-        NavigationView nv = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView nv = findViewById(R.id.nav_view);
         View view = nv.getHeaderView(0);
 
-        mAboutLayout = (RelativeLayout) view.findViewById(R.id.about_layout);
+        mAboutLayout = view.findViewById(R.id.about_layout);
         mAboutLayout.setOnClickListener(this);
-        mExitText = (TextView) view.findViewById(R.id.exit);
+        mExitText = view.findViewById(R.id.exit);
         mExitText.setOnClickListener(this);
     }
 
@@ -193,9 +193,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         for (int i = 0, size = (mMenuLayout.getChildCount() + 1) / 2; i < size; i++) {
             MenuItemView menuItemLayout = (MenuItemView) mMenuLayout.getChildAt(i * 2);
 
-            menuItemLayout.unSelecteMenu();
+            menuItemLayout.unSelectMenu();
             if (i == index) {
-                menuItemLayout.selecteMenu();
+                menuItemLayout.selectMenu();
             }
         }
 
@@ -272,11 +272,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         lp.width = Utils.getDeviceWidth(this) * 4 / 5; // 宽度
         dialogWindow.setAttributes(lp);
 
-        TextView tipText = (TextView) dialog.findViewById(R.id.tip_text);
+        TextView tipText = dialog.findViewById(R.id.tip_text);
         tipText.setText("确认退出？");
 
-        Button cancelBtn = (Button) dialog.findViewById(R.id.cancel);
-        Button confirmBtn = (Button) dialog.findViewById(R.id.confirm);
+        Button cancelBtn = dialog.findViewById(R.id.cancel);
+        Button confirmBtn = dialog.findViewById(R.id.confirm);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

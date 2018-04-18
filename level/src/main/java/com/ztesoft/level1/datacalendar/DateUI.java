@@ -142,12 +142,12 @@ public class DateUI extends View implements View.OnTouchListener {
         } else if (null != selectedStartDate && null != selectedEndDate) {
             // 防止currentDate和selectedStartDate都设置了初始值,而且初始值不一样
             if (selectedStartDate.after(selectedEndDate)) {
-                Toast.makeText(context, context.getString(R.string.calendar_initdate_error),
+                Toast.makeText(context, context.getString(R.string.calendar_init_date_error),
                         Toast.LENGTH_LONG).show();
             }
             curDate = selectedStartDate;
         } else {
-            Toast.makeText(context, context.getString(R.string.calendar_initdate_error), Toast
+            Toast.makeText(context, context.getString(R.string.calendar_init_date_error), Toast
                     .LENGTH_LONG).show();
             selectedStartDate = selectedEndDate = today = curDate;
         }

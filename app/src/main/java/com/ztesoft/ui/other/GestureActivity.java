@@ -77,8 +77,8 @@ public class GestureActivity extends LoginBaseActivity {
 //		containerLayout.setForeground(getWatermark());
         View.inflate(this, R.layout.activity_gesture, containerLayout);
 
-        mTipText = (TextView) findViewById(R.id.tip);
-        mForgetText = (TextView) findViewById(R.id.forget);
+        mTipText = findViewById(R.id.tip);
+        mForgetText = findViewById(R.id.forget);
 
         if (mode_type == MODE_TYPE.LOGIN) {
             mTipText.setText(R.string.sign_login);
@@ -106,7 +106,7 @@ public class GestureActivity extends LoginBaseActivity {
 
         spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
 
-        gpv = (GesturePatternView) this.findViewById(R.id.mLocusPassWordView);
+        gpv = findViewById(R.id.mLocusPassWordView);
         gpv.setOnCompleteListener(new GesturePatternView.OnCompleteListener() {
             @Override
             public void onComplete(String mPassword) {

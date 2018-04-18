@@ -149,7 +149,7 @@ public class TakeScreenPic {
         try {
             bitmap = paintBitmap(b, context);
         } catch (IOException e) {
-            PromptUtils.instance.displayToastId(context, false, R.string.error_serivce);
+            PromptUtils.instance.displayToastId(context, false, R.string.error_service);
             return null;
         }
 

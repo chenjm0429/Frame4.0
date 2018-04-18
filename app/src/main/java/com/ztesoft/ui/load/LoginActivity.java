@@ -46,13 +46,13 @@ public class LoginActivity extends LoginBaseActivity implements OnClickListener 
         View view = View.inflate(this, R.layout.activity_login, null);
         containerLayout.addView(view);
 
-        mUserEdit = (EditText) view.findViewById(R.id.user_edit);
-        mPwdEdit = (EditText) view.findViewById(R.id.pwd_edit);
-        mLoginButton = (Button) view.findViewById(R.id.login_btn);
+        mUserEdit = view.findViewById(R.id.user_edit);
+        mPwdEdit = view.findViewById(R.id.pwd_edit);
+        mLoginButton = view.findViewById(R.id.login_btn);
         mLoginButton.setOnClickListener(this);
 
-        mCheckBox = (CheckBox) findViewById(R.id.check_box);
-        mForgetText = (TextView) findViewById(R.id.forget_text);
+        mCheckBox = findViewById(R.id.check_box);
+        mForgetText = findViewById(R.id.forget_text);
         mForgetText.setOnClickListener(this);
     }
 

@@ -111,7 +111,7 @@ public class ErrorLogUtil {
             String time = formatter.format(new Date());
             String fileName = "log-" + time + "-" + timestamp + ".log";
 
-            String path = Level1Bean.SD_ROOTPATH + FusionCode.ERROR_LOCALPATH;
+            String path = Level1Bean.SD_ROOTPATH + FusionCode.ERROR_LOCAL_PATH;
             File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdirs();

@@ -127,12 +127,12 @@ public class ScrawlActivity extends BaseActivity {
 
     private void initParams() {
 
-        colorBtn = (ImageView) findViewById(R.id.iv_btn_color);
-        weightBtn = (ImageView) findViewById(R.id.iv_btn_weight);
-        revocationBtn = (ImageView) findViewById(R.id.iv_btn_revocation);
-        clearBtn = (ImageView) findViewById(R.id.iv_btn_clear);
+        colorBtn = findViewById(R.id.iv_btn_color);
+        weightBtn = findViewById(R.id.iv_btn_weight);
+        revocationBtn = findViewById(R.id.iv_btn_revocation);
+        clearBtn = findViewById(R.id.iv_btn_clear);
 
-        bodyLayout = (LinearLayout) findViewById(R.id.body);
+        bodyLayout = findViewById(R.id.body);
 
         colorBtn.setOnClickListener(mOnClickListener);
         weightBtn.setOnClickListener(mOnClickListener);
@@ -201,7 +201,6 @@ public class ScrawlActivity extends BaseActivity {
                     }
 
                     back();
-
                     break;
 
                 default:
@@ -214,9 +213,10 @@ public class ScrawlActivity extends BaseActivity {
 
         LinearLayout container = new LinearLayout(this);
         container.setOrientation(LinearLayout.HORIZONTAL);
-        
+
 //        View view = View.inflate(this, R.layout.dialog_scrawl_paint, null);
-        popWindow = new PopupWindow(container, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        popWindow = new PopupWindow(container, LayoutParams.MATCH_PARENT, LayoutParams
+                .WRAP_CONTENT);
 
 //        LinearLayout container = (LinearLayout) view.findViewById(R.id.container);
         LayoutParams lp = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
@@ -227,7 +227,7 @@ public class ScrawlActivity extends BaseActivity {
 
                 View item = View.inflate(ScrawlActivity.this, R.layout.view_scrawl_paint_item,
                         null);
-                ImageView image = (ImageView) item.findViewById(R.id.image);
+                ImageView image = item.findViewById(R.id.image);
                 image.setImageResource(ScrawlView.PAINT_COLORS_DRAWABLES[i]);
 
                 container.addView(item, lp);
@@ -250,7 +250,7 @@ public class ScrawlActivity extends BaseActivity {
 
                 View item = View.inflate(ScrawlActivity.this, R.layout.view_scrawl_paint_item,
                         null);
-                ImageView image = (ImageView) item.findViewById(R.id.image);
+                ImageView image = item.findViewById(R.id.image);
                 image.setImageResource(ScrawlView.PAINT_SIZES_DRAWABLES[i]);
 
                 container.addView(item, lp);
@@ -311,8 +311,8 @@ public class ScrawlActivity extends BaseActivity {
         lp.width = Utils.getDeviceWidth(this) * 9 / 10; // 宽度
         dialogWindow.setAttributes(lp);
 
-        Button cancelBtn = (Button) dialog.findViewById(R.id.cancel);
-        Button confirmBtn = (Button) dialog.findViewById(R.id.confirm);
+        Button cancelBtn = dialog.findViewById(R.id.cancel);
+        Button confirmBtn = dialog.findViewById(R.id.confirm);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

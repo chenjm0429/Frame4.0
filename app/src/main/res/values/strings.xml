@@ -3,7 +3,7 @@
 
     <!-- loading和欢迎页面 -->
     <string name="check_version">正在检测版本信息</string>
-    <string name="logining">正在登录</string>
+    <string name="logging">正在登录</string>
     <string name="constructing">当前系统内存紧张，正在重启应用</string>
 
     <!-- normal -->
@@ -15,16 +15,12 @@
     <string name="login_sms_wait">%1$s秒后重新获取</string>
 
     <!-- 内网测试服务器地址 -->
-    <!-- <string name="servicePath">http://192.168.11.222:8081/</string> -->
+     <string name="servicePath">http://192.168.11.222:8081/</string> 
     <!-- 外网对应的内网地址 -->
     <!-- <string name="servicePath">http://192.168.11.222:8082/</string> -->
 
-
-    <!-- 外网测试服务器地址 -->
-    <string name="servicePath">http://218.94.89.53:6061/</string>
-    <string name="serviceUrl">webservice/bdx/ianglem/</string>
-    <string name="clientjsonerror">请求参数错误</string>
-    <string name="quit">是否退出应用？</string>
+    <string name="serviceUrl">webservice/</string>
+    
     <string name="upError">升级失败！请从设置中打开应用列表，从全部下面找到下载管理程序并启用，重新尝试！</string>
 
     <!-- calendar -->

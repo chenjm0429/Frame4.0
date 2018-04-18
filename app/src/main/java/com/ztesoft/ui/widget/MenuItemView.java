@@ -72,8 +72,8 @@ public class MenuItemView extends RelativeLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context
                 .LAYOUT_INFLATER_SERVICE);
         mMenuLayout = (RelativeLayout) inflater.inflate(R.layout.layout_menu_item, null);
-        mMenuNameTv = (TextView) mMenuLayout.findViewById(R.id.menu_name);
-        mMenuIv = (ImageView) mMenuLayout.findViewById(R.id.menu_icon);
+        mMenuNameTv = mMenuLayout.findViewById(R.id.menu_name);
+        mMenuIv = mMenuLayout.findViewById(R.id.menu_icon);
 
         if (null != mMenuEntity) {
             mMenuIv.setBackgroundResource(mMenuEntity.getMenuIcon());
@@ -101,7 +101,7 @@ public class MenuItemView extends RelativeLayout {
     /**
      * 选中菜单
      */
-    public void selecteMenu() {
+    public void selectMenu() {
         if (null != mMenuIv) {
             mMenuIv.setBackgroundResource(mMenuEntity.getMenuIconSelected());
             mMenuNameTv.setTextColor(Color.parseColor("#1E95FF"));
@@ -111,7 +111,7 @@ public class MenuItemView extends RelativeLayout {
     /**
      * 取消选中菜单
      */
-    public void unSelecteMenu() {
+    public void unSelectMenu() {
         if (null != mMenuIv) {
             mMenuIv.setBackgroundResource(mMenuEntity.getMenuIcon());
             mMenuNameTv.setTextColor(Color.parseColor("#8D8D8D"));

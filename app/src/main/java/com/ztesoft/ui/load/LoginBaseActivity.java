@@ -14,7 +14,6 @@ import com.ztesoft.ui.main.MainActivity;
 import com.ztesoft.ui.main.entity.MenuEntity;
 import com.ztesoft.ui.other.GestureActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -98,12 +97,9 @@ public class LoginBaseActivity extends BaseActivity {
     protected void setAppInfo(JSONObject dataObj) {
 
         String flag = dataObj.optString("flag");
-        JSONArray funcArray;
         if (flag != null && "true".equals(flag)) {
 
             JSONObject userJSON = dataObj.optJSONObject("userInfo");
-            JSONArray areaArray = dataObj.optJSONArray("areaArray");
-            funcArray = dataObj.optJSONArray("funcArray");
 
             GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
 
@@ -115,7 +111,6 @@ public class LoginBaseActivity extends BaseActivity {
 
             spu.putString("staffId", userJSON.optString("staffId"));
             spu.putString("lastGetMenuInfo", (new Date()).getTime() + "");
-
         } 
     }
 
