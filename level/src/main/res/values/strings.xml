@@ -20,6 +20,7 @@
     <string name="error_security">加解密错误</string>
     <string name="error_SD_notFound">SD不存在或不可用</string>
     <string name="error_save_file">文件保存失败</string>
+    <string name="error_page_load">页面加载失败</string>
 
     <string name="error_userNull">用户名或密码不得为空</string>
     <string name="error_new_pwdNull">新密码不得为空</string>

@@ -1,7 +1,6 @@
 package com.ztesoft.ui.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -11,7 +10,6 @@ import com.ztesoft.level1.ui.AutoScrollTextView;
 import com.ztesoft.level1.ui.ButtonGroupUI;
 import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.ui.base.BaseFragment;
-import com.ztesoft.ui.main.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,18 +44,19 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initView(Bundle savedInstanceState) {
+
+        if (null == getView()) {
+            PromptUtils.instance.displayToastId(mActivity, false, R.string.error_page_load);
+            return;
+        }
 
         mButton = getView().findViewById(R.id.button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFragmentCallBack.setTitleText("改变看看啊");
 
-                if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).menuSelected(1);
-                }
+                mActivity.menuSelected(1);
             }
         });
 
@@ -98,6 +97,17 @@ public class HomeFragment extends BaseFragment {
 
         layout2.addView(bgi, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams
                 .WRAP_CONTENT);
+    }
+
+    @Override
+    public void addParamObject(JSONObject param) throws JSONException {
+
+    }
+
+    @Override
+    protected void changeTitleBarStatus() {
+        if (null != mActivity)
+            mActivity.mTitleText.setText("改变看看啊");
     }
 
     @Override

@@ -319,7 +319,7 @@ public class SJMapViewLayout extends View {
                     }
                 }
             }
-            canvas.save(Canvas.ALL_SAVE_FLAG);
+            canvas.save();
             canvas.restore();//存储
         }
     }

@@ -50,8 +50,8 @@ public class TakeScreenPic {
 
         GlobalField gf = ((MainApplication) ((Activity) context).getApplication()).getGlobalField();
 
-        String mstrTitle = "用户ID:" + gf.getStaffId();
-        String mstrTitle1 = "用户名:" + gf.getStaffName();
+        String mstrTitle = "用户ID:" + gf.getUserId();
+        String mstrTitle1 = "用户名:" + "";
         int height = bmp.getHeight();
         int width = bmp.getWidth();
 
@@ -92,7 +92,7 @@ public class TakeScreenPic {
 
         iconBg.recycle();
 
-        canvasTemp.save(Canvas.ALL_SAVE_FLAG);// 保存
+        canvasTemp.save();// 保存
         canvasTemp.restore();// 存储
         return bb;
     }

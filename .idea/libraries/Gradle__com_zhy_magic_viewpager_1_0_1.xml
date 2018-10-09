@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.zhy:magic-viewpager-1.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/magic-viewpager-1.0.1.aar/ccd1433408f49d15e50b0fb855a7a823/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/magic-viewpager-1.0.1.aar/ccd1433408f49d15e50b0fb855a7a823/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/magic-viewpager/1.0.1/9ab704cd5fa03e15181c428ada09859229845e88/magic-viewpager-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

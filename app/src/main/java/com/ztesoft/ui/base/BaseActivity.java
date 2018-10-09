@@ -40,6 +40,7 @@ import com.ztesoft.level1.util.BitmapOperateUtil;
 import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.RequestManager;
 import com.ztesoft.level1.util.SDCardUtil;
+import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.other.ScrawlActivity;
 import com.ztesoft.utils.ErrorLogUtil;
 
@@ -73,9 +74,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected String rptCode;
 
     /**
-     * 工作编码；用户编码（工号）；标识权限
+     * 用户id
      */
-    protected String jobId, staffId, rangeId;
+    protected String userId;
 
     /**
      * 时间
@@ -116,6 +117,9 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected ImageView mSpecialButton;
 
+    protected SharedPreferencesUtil spu;
+    protected GlobalField gf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,18 +129,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         MainApplication application = (MainApplication) this.getApplication();
         application.getActivityManager().pushActivity(this);
 
+        spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
+        gf = ((MainApplication) getApplication()).getGlobalField();
+
         initData();
 
         initFrameView(savedInstanceState);
     }
 
     private void initData() {
-
-        GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
-
-        rangeId = gf.getRangeId();
-        staffId = gf.getStaffId();
-        jobId = gf.getJobId();
+        userId = gf.getUserId();
 
         Bundle bundle = getIntent().getExtras();
         getBundles(bundle);
@@ -225,59 +227,35 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     private void setCommonParam(JSONObject param) throws JSONException {
 
-        GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
-
         param.put("rptCode", rptCode);
-
         param.put("statDate", statDate);
-
-        param.put("rangeId", rangeId);
-        param.put("staffId", staffId);
-        param.put("staffName", gf.getStaffName());
-        param.put("jobId", jobId);
+        param.put("userId", userId);
     }
 
     /**
      * 请求数据，默认带加载框
      *
      * @param visitType   访问标志
-     * @param path        路径
+     * @param pathCode    路径
      * @param requestType 请求方式
      * @return
      */
-    public Call queryData(String visitType, String path, int requestType) {
+    public Call queryData(String visitType, String pathCode, int requestType) {
 
-        showLoadingDialog(null, R.string.loading);
-
-        // 判断用户权限，并预录入相关信息
-        JSONObject requestParams = new JSONObject();
-        try {
-            requestParams.put("visitType", visitType);
-            setCommonParam(requestParams);
-            addParamObject(requestParams);
-        } catch (JSONException e) {
-            PromptUtils.instance.displayToastId(BaseActivity.this, false, R.string
-                    .error_client_json);
-        }
-
-        String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + path;
-        RequestManager manage = RequestManager.getInstance(this);
-        Call call = manage.requestAsyn(url, requestType, requestParams, reqCallBack);
-
-        return call;
+        return queryData(visitType, pathCode, requestType, true, getString(R.string.loading));
     }
 
     /**
      * 请求数据
      *
      * @param visitType       访问标志
-     * @param path            路径
+     * @param pathCode        路径
      * @param requestType     请求方式
      * @param isShowTipDialog 是否显示提示框
      * @param showContent     提示框内容
      * @return
      */
-    public Call queryData(String visitType, String path, int requestType, boolean
+    public Call queryData(String visitType, String pathCode, int requestType, boolean
             isShowTipDialog, String showContent) {
 
         if (isShowTipDialog) {
@@ -291,7 +269,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 判断用户权限，并预录入相关信息
         JSONObject requestParams = new JSONObject();
         try {
-            requestParams.put("visitType", visitType);
+            if (!TextUtils.isEmpty(visitType))
+                requestParams.put("visitType", visitType);
             setCommonParam(requestParams);
             addParamObject(requestParams);
         } catch (JSONException e) {
@@ -299,8 +278,17 @@ public abstract class BaseActivity extends AppCompatActivity {
                     .error_client_json);
         }
 
-        String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + path;
+        String url = getString(R.string.servicePath) + getString(R.string.serviceUrl) + pathCode;
         RequestManager manage = RequestManager.getInstance(this);
+
+        JSONObject headObj = new JSONObject();
+        try {
+            headObj.put("token", "");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        manage.setOtherHeaderObject(headObj);
+
         Call call = manage.requestAsyn(url, requestType, requestParams, reqCallBack);
 
         return call;
@@ -472,9 +460,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             p.setAntiAlias(true);
             p.setTextSize(Level1Util.getSpSize(20));
             p.setAlpha(50);
-            String staff_id = ((MainApplication) getApplication()).getGlobalField().getStaffId();
-            String staff_name = ((MainApplication) getApplication()).getGlobalField()
-                    .getStaffName();
+            String staff_id = gf.getUserId();
+            String staff_name = "";
             String s = staff_id + ":" + staff_name;
             int w = (int) p.measureText(s);
             FontMetrics fm = p.getFontMetrics();

@@ -230,7 +230,7 @@ public class BitmapOperateUtil {
             }
         }
         // save all clip
-        cv.save(Canvas.ALL_SAVE_FLAG);// 保存
+        cv.save();// 保存
         // store
         cv.restore();// 存储
         return newbmp;

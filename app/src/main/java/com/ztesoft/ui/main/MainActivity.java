@@ -51,13 +51,12 @@ import okhttp3.Call;
  * 创建时间 : 2017/3/23 15:08
  * <p>
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener, BaseFragment
-        .FragmentCallBack {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     //侧边栏
     private DrawerLayout mDrawerLayout;
 
-    private TextView mTitleText;
+    public TextView mTitleText;
     private ImageView mLeftImage, mRightImage;
 
     private RelativeLayout mAboutLayout;  //关于app
@@ -136,11 +135,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         } else if (v.equals(mExitText)) {
             createDialog().show();
         }
-    }
-
-    @Override
-    public void setTitleText(String title) {
-        mTitleText.setText(title);
     }
 
     /**
@@ -226,13 +220,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         transaction.show(fragment);
 
         transaction.commitAllowingStateLoss();
-
-        fragment.setFragmentCallBack(new BaseFragment.FragmentCallBack() {
-            @Override
-            public void setTitleText(String title) {
-                mTitleText.setText(title);
-            }
-        });
     }
 
     /**

@@ -3,16 +3,9 @@
 
     <!-- loading和欢迎页面 -->
     <string name="check_version">正在检测版本信息</string>
-    <string name="logging">正在登录</string>
-    <string name="constructing">当前系统内存紧张，正在重启应用</string>
 
     <!-- normal -->
     <string name="loading">正在加载数据，请稍候</string>
-    <string name="wait_moment">功能正在开发中，请等待</string>
-
-    <!-- 短信验证功能 -->
-    <string name="login_sms_get">获取短信验证码</string>
-    <string name="login_sms_wait">%1$s秒后重新获取</string>
 
     <!-- 内网测试服务器地址 -->
      <string name="servicePath">http://192.168.11.222:8081/</string> 
@@ -23,26 +16,9 @@
     
     <string name="upError">升级失败！请从设置中打开应用列表，从全部下面找到下载管理程序并启用，重新尝试！</string>
 
-    <!-- calendar -->
-    <string name="day_name_format">E</string>
-    <string name="invalid_date">选择日期必须在 %1$s和%2$s之间。</string>
-    <string name="month_name_format">yyyy年MM月</string>
-    <string name="date_name">时间选择</string>
-
     <!-- 侧边栏 -->
-    <string name="module_name">模块功能</string>
-    <string name="daily_name">经分快报</string>
-    <string name="setting">设置</string>
-    <string name="message">消息提醒</string>
-    <string name="empty_cache">清空缓存</string>
-    <string name="lock_code">设置手势码</string>
-    <string name="other">其它</string>
-    <string name="feed_back">意见反馈</string>
-    <string name="welcome_page">欢迎页</string>
     <string name="check_update">检查版本</string>
     <string name="about_app">关于我们</string>
-    <string name="visit_order">访问排名</string>
-    <string name="my_download">我的下载</string>
     <string name="exit_login">退出当前账号</string>
 
     <!-- 手势码 -->

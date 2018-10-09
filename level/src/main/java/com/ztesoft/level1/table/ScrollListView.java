@@ -1469,7 +1469,7 @@ public class ScrollListView extends LinearLayout {
         Bitmap rightHead = BitmapOperateUtil.getBitmapFromView(rightTableHead);
         cv.drawBitmap(rightHead, rightStartX, 0, null);
         cv.drawBitmap(rightTab, rightStartX, rightHead.getHeight(), null);
-        cv.save(Canvas.ALL_SAVE_FLAG);// 保存
+        cv.save();// 保存
         cv.restore();// 存储
         if (foreground != null) {
             bitmap = BitmapOperateUtil.toConformBitmap(bitmap, foreground);

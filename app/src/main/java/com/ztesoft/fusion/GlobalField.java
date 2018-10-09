@@ -26,12 +26,7 @@ public class GlobalField {
     private SharedPreferencesUtil shareUtil;
 
     // 用户信息
-    private String staffId;
-    private String staffName;
-
-    private String rangeId;
-    private String jobId;
-    private String jobName;
+    private String userId;
 
     public GlobalField(Context context, boolean isSaveFile) {
         this.isSaveFile = isSaveFile;
@@ -40,73 +35,17 @@ public class GlobalField {
             shareUtil = new SharedPreferencesUtil(context, Level1Bean.SHARE_PREFERENCES_NAME);
     }
 
-    public String getStaffId() {
-        if (TextUtils.isEmpty(staffId) && isSaveFile) {
-            staffId = shareUtil.getString("staffId", "");
+    public String getUserId() {
+        if (TextUtils.isEmpty(userId) && isSaveFile) {
+            userId = shareUtil.getString("userId", "");
         }
-        return staffId;
+        return userId;
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
+    public void setUserId(String userId) {
+        this.userId = userId;
         if (isSaveFile) {
-            shareUtil.putString("staffId", staffId);
-        }
-    }
-
-    public String getStaffName() {
-        if (TextUtils.isEmpty(staffName) && isSaveFile) {
-            staffName = shareUtil.getString("staffName", "");
-        }
-        return staffName;
-    }
-
-    public void setStaffName(String staffName) {
-        this.staffName = staffName;
-        if (isSaveFile) {
-            shareUtil.putString("staffName", staffName);
-        }
-    }
-
-    public String getRangeId() {
-        if (TextUtils.isEmpty(rangeId) && isSaveFile) {
-            rangeId = shareUtil.getString("rangeId", "");
-        }
-        return rangeId;
-    }
-
-    public void setRangeId(String rangeId) {
-        this.rangeId = rangeId;
-        if (isSaveFile) {
-            shareUtil.putString("rangeId", rangeId);
-        }
-    }
-
-    public String getJobId() {
-        if (TextUtils.isEmpty(jobId) && isSaveFile) {
-            jobId = shareUtil.getString("jobId", "");
-        }
-        return jobId;
-    }
-
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-        if (isSaveFile) {
-            shareUtil.putString("jobId", jobId);
-        }
-    }
-
-    public String getJobName() {
-        if (TextUtils.isEmpty(jobName) && isSaveFile) {
-            jobName = shareUtil.getString("jobName", "");
-        }
-        return jobName;
-    }
-
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-        if (isSaveFile) {
-            shareUtil.putString("jobName", jobName);
+            shareUtil.putString("userId", userId);
         }
     }
 }

@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@null"
             android:src="@drawable/app_action_button"/>
 
         <ImageView
@@ -27,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@null"
             android:src="@drawable/app_action_button"
             android:visibility="invisible"/>
-
     </RelativeLayout>
 
     <FrameLayout

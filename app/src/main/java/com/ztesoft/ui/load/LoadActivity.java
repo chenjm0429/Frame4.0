@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
-import com.ztesoft.level1.Level1Bean;
-import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
 import com.ztesoft.ui.other.GestureActivity;
 import com.ztesoft.ui.other.PermissionsActivity;
@@ -51,8 +49,6 @@ public class LoadActivity extends BaseActivity {
 
     private PermissionsChecker mPermissionsChecker; // 权限检测器
 
-    private SharedPreferencesUtil spu;
-
     @Override
     protected void initView(FrameLayout containerLayout) {
         containerLayout.setForeground(new ColorDrawable());
@@ -65,8 +61,6 @@ public class LoadActivity extends BaseActivity {
         showWelcomeView();
 
         mPermissionsChecker = new PermissionsChecker(this);
-
-        spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
     }
 
     @Override
@@ -116,13 +110,12 @@ public class LoadActivity extends BaseActivity {
      * 启动登录程序，如果一次登录，走LoginPnActivity流程，如果二次登录，直接走手势码流程
      */
     private void startLogin() {
-        staffId = spu.getString("staffId", "");
         String phone = spu.getString("phone", "");
         boolean isSetGesture = spu.getBoolean("isSetGesture", false);
 
         Class<?> c;
         Bundle bundle = new Bundle();
-        if (!TextUtils.isEmpty(staffId) && !TextUtils.isEmpty(phone) && isSetGesture) {
+        if (!TextUtils.isEmpty(phone) && isSetGesture) {
             c = GestureActivity.class;
             bundle.putInt("mode_type", GestureActivity.MODE_TYPE.LOGIN.ordinal());
         } else {

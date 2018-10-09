@@ -1,15 +1,19 @@
 package com.ztesoft.ui.base;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ztesoft.MainApplication;
+import com.ztesoft.fusion.GlobalField;
+import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.main.MainActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.Call;
@@ -33,7 +37,8 @@ public abstract class BaseFragment extends Fragment {
 
     protected View mRootView;
 
-    protected FragmentCallBack mFragmentCallBack;
+    protected GlobalField gf;
+    protected SharedPreferencesUtil spu;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,19 +55,23 @@ public abstract class BaseFragment extends Fragment {
             mRootView = super.onCreateView(inflater, container, savedInstanceState);
         }
 
-        initData(getArguments());
-
         mActivity = (MainActivity) getActivity();
 
-        mFragmentCallBack = (FragmentCallBack) getActivity();
+        gf = ((MainApplication) mActivity.getApplication()).getGlobalField();
+        spu = new SharedPreferencesUtil(mActivity, Level1Bean.SHARE_PREFERENCES_NAME);
 
         return mRootView;
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        initData(getArguments());
+
+        changeTitleBarStatus();
+
+        initView(savedInstanceState);
     }
 
     /**
@@ -79,10 +88,24 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData(Bundle arguments);
 
+    protected abstract void initView(Bundle savedInstanceState);
+
+    public abstract void addParamObject(JSONObject param) throws JSONException;
+
     public abstract void updateUI(JSONObject jsonObj, Call call) throws Exception;
 
-    public void setFragmentCallBack(FragmentCallBack fragmentCallBack) {
-        this.mFragmentCallBack = fragmentCallBack;
+    /**
+     * 改变标题栏状态
+     */
+    protected abstract void changeTitleBarStatus();
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (!hidden) {
+            changeTitleBarStatus();
+        }
     }
 
     /**
@@ -90,10 +113,8 @@ public abstract class BaseFragment extends Fragment {
      */
     public interface FragmentCallBack {
         /**
-         * 设置标题
-         *
-         * @param title 标题名称
+         * 回调函数
          */
-        void setTitleText(String title);
+        void onCallBack();
     }
 }

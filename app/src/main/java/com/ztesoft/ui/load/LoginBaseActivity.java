@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.ztesoft.MainApplication;
 import com.ztesoft.R;
-import com.ztesoft.fusion.GlobalField;
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
@@ -97,17 +95,11 @@ public class LoginBaseActivity extends BaseActivity {
     protected void setAppInfo(JSONObject dataObj) {
 
         String flag = dataObj.optString("flag");
-        if (flag != null && "true".equals(flag)) {
+        if ("true".equals(flag)) {
 
             JSONObject userJSON = dataObj.optJSONObject("userInfo");
 
-            GlobalField gf = ((MainApplication) getApplication()).getGlobalField();
-
-            gf.setStaffId(userJSON.optString("staffId"));
-            gf.setStaffName(userJSON.optString("staffName"));
-            gf.setRangeId(userJSON.optString("rangeId"));
-            gf.setJobId(userJSON.optString("jobId"));
-            gf.setJobName(userJSON.optString("jobName"));
+            gf.setUserId(userJSON.optString("userId"));
 
             spu.putString("staffId", userJSON.optString("staffId"));
             spu.putString("lastGetMenuInfo", (new Date()).getTime() + "");

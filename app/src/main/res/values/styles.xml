@@ -66,4 +66,26 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">10dp</item>
     </style>
+
+    <!-- dialog风格，从下向上弹出，从上向下收起 -->
+    <style name="other_dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/PopupWindowAnimationDownToUp</item>
+    </style>
+
+    <!--照片选择器样式-->
+    <style name="picture_select_style" parent="@style/Matisse.Zhihu">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
 </resources>

@@ -1,11 +1,11 @@
 package com.ztesoft.ui.other;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.ztesoft.R;
 import com.ztesoft.ui.base.BaseFragment;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.Call;
@@ -34,8 +34,17 @@ public class OtherFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initView(Bundle savedInstanceState) {
+        
+    }
+
+    @Override
+    public void addParamObject(JSONObject param) throws JSONException {
+
+    }
+
+    @Override
+    protected void changeTitleBarStatus() {
 
     }
 
