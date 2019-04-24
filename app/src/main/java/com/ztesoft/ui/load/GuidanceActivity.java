@@ -43,7 +43,7 @@ public class GuidanceActivity extends BaseActivity {
     @Override
     protected void initView(FrameLayout containerLayout) {
 
-        mTitleLayout.setVisibility(View.GONE);
+        mHeadLayout.setVisibility(View.GONE);
 
         HScrollFrame mGuidanceView = new HScrollFrame(this);
         containerLayout.addView(mGuidanceView);
@@ -51,12 +51,11 @@ public class GuidanceActivity extends BaseActivity {
         for (int i = 0; i < imageIds.length; i++) {
 
             ImageView iv = new ImageView(this);
-            iv.setScaleType(ImageView.ScaleType.FIT_XY);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             mGuidanceView.addView(iv, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
             Glide.with(this)
                     .load(imageIds[i])
-                    .asBitmap()
                     .into(iv);
 
             if (i == imageIds.length - 1) {

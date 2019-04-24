@@ -61,19 +61,13 @@
 
 #保持自定义控件类不被混淆
 -keepclasseswithmembers class * {
-    public <init>(android.content.Context);
     public <init>(android.content.Context, android.util.AttributeSet);
     public <init>(android.content.Context, android.util.AttributeSet, int);
-    public void set*(...);
 }
 
 #保持自定义控件类不被混淆
 -keepclassmembers class * extends android.app.Activity {
     public void *(android.view.View);
-    public void uninvoke_*(int);
-    public void uninvoke_*(java.lang.String);
-    public void uninvoke_*();
-    public void uninvoke_*(java.lang.Integer,java.lang.Integer);
 }
 
 #保持 Parcelable 不被混淆
@@ -82,7 +76,7 @@
 }
 
 #保持 Serializable 不被混淆
--keepnames class * implements java.io.Serializable
+-keepnames class * implements java.io.Serializable {*;}
 
 #保持 Serializable 不被混淆并且enum 类也不被混淆
 -keepclassmembers class * implements java.io.Serializable {
@@ -115,19 +109,35 @@
 #避免混淆泛型 如果混淆报错建议关掉
 -keepattributes Signature
 
-#第三方jar
--keep class com.baidu.mapapi.** {*;}
+-keepclassmembers class * {   
+   public <init> (org.json.JSONObject);
+}
 
--dontwarn com.baidu.**
--keep class com.baidu.** { *;}
--dontwarn demo.Pinyin4jAppletDemo
--keep class demo.Pinyin4jAppletDemo { *;}
--dontwarn javax.swing.**
--keep class javax.swing.** { *;}
--dontwarn java.awt.**
--keep class java.awt.** { *;}
+#第三方jar
 -dontwarn org.apache.commons.**
 -keep class org.apache.commons.** { *;}
--keep class vi.com.gdi.bgl.android.**{*;}
 
--keep class cn.sharesdk.** { *;}
+#Gson
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.** { *; }
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+-keep class com.google.gson.** { *;}
+#这句非常重要，主要是滤掉 com.demo.demo.bean包下的所有.class文件不进行混淆编译,com.demo.demo是你的包名
+#-keep class com.demo.demo.bean.** {*;}
+
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+#okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {   
+  **[] $VALUES; 
+  public *;
+}

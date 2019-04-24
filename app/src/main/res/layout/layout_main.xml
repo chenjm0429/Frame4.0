@@ -5,33 +5,8 @@
               android:background="@color/body_bg"
               android:orientation="vertical">
 
-    <RelativeLayout
-        style="@style/app_title_layout_style">
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/app_title_textview_style"
-            android:text="首页"/>
-
-        <ImageView
-            android:id="@+id/left_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@null"
-            android:src="@drawable/app_action_button"/>
-
-        <ImageView
-            android:id="@+id/right_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@null"
-            android:src="@drawable/app_action_button"
-            android:visibility="invisible"/>
-    </RelativeLayout>
+    <include
+        layout="@layout/layout_toolbar_head"/>
 
     <FrameLayout
         android:id="@+id/container_layout"

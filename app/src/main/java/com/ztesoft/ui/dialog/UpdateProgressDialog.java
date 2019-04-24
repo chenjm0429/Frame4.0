@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ztesoft.R;
-import com.ztesoft.utils.Utils;
+import com.ztesoft.level1.Level1Util;
 
 /**
  * 文件名称 : UpdateProgressDialog
@@ -36,7 +36,7 @@ public class UpdateProgressDialog extends Dialog {
 
         Window dialogWindow = this.getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = Utils.getDeviceWidth(context) * 4 / 5; // 宽度
+        lp.width = Level1Util.getDeviceWidth(context) * 4 / 5; // 宽度
         dialogWindow.setAttributes(lp);
 
         this.setCanceledOnTouchOutside(false);

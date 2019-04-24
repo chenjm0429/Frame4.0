@@ -111,6 +111,24 @@ public class Level1Util {
     }
 
     /**
+     * 获取通知栏高度
+     *
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context) {
+
+        int statusBarHeight = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", 
+                "android");
+        if (resourceId > 0) {
+            statusBarHeight = context.getResources().getDimensionPixelSize(resourceId);
+        }
+
+        return statusBarHeight;
+    }
+
+    /**
      * 仅限图形控件绘制文字时使用
      *
      * @param size
@@ -242,5 +260,18 @@ public class Level1Util {
         txt.setPadding(pad, pad / 2, pad, pad / 2);
         GradientDrawable gd = MAIN_RADIO_NOBORD(context, color);
         txt.setBackgroundDrawable(gd);
+    }
+
+    /**
+     * 判断设备类型是否为手机
+     *
+     * @return 返回true则为手机，false为pad
+     */
+    public static boolean getDeviceType(Context context) {
+        boolean tag = false;
+        if (getDeviceWidth(context) < getDeviceHeight(context)) {
+            tag = true;
+        }
+        return tag;
     }
 }

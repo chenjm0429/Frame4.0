@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.RequestManager;
 import com.ztesoft.level1.util.SDCardUtil;
@@ -199,7 +200,7 @@ public class VersionCheckUtil {
 
         Window window = updateDialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
-        lp.width = Utils.getDeviceWidth(context) * 9 / 10;
+        lp.width = Level1Util.getDeviceWidth(context) * 9 / 10;
         window.setAttributes(lp);
 
         updateDialog.setCanceledOnTouchOutside(false);

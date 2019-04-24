@@ -14,21 +14,25 @@ import android.graphics.Paint.FontMetrics;
 import android.graphics.Shader.TileMode;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager.BadTokenException;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ztesoft.MainApplication;
 import com.ztesoft.R;
@@ -100,22 +104,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected TextView mTitleTv;
     /**
-     * 标题内容
-     */
-    protected String title;
-    /**
      * 标题布局
      */
-    protected RelativeLayout mTitleLayout;
+    protected RelativeLayout mHeadLayout;
 
-    /**
-     * 左侧按钮；右侧按钮
-     */
-    protected ImageView mLeftButton, mRightButton;
-    /**
-     * 右侧的第二个按钮，默认隐藏
-     */
-    protected ImageView mSpecialButton;
+    protected Toolbar mToolbar;
 
     protected SharedPreferencesUtil spu;
     protected GlobalField gf;
@@ -145,40 +138,65 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void initFrameView(Bundle savedInstanceState) {
-
         setContentView(R.layout.activity_base);
 
-        FrameLayout containerLayout = (FrameLayout) this.findViewById(R.id.container);
+        /**
+         * android4.3以上的沉浸式 ，4.3以下没效果，所以不要头部填充状态栏高度
+         */
+        int sysVersion = Build.VERSION.SDK_INT;
+        if (sysVersion > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            LinearLayout headTopLayout = findViewById(R.id.head_top_layout);
+            RelativeLayout.LayoutParams para = new RelativeLayout.LayoutParams(Level1Util
+                    .getDeviceWidth(this), Level1Util.getStatusBarHeight(this));
+            //设置修改后的布局。
+            headTopLayout.setLayoutParams(para);
+        }
+
+        FrameLayout containerLayout = findViewById(R.id.container);
         // 增加水印
-//        containerLayout.setForeground(getWatermark());
+        containerLayout.setForeground(getWatermark());
 
-        mTitleTv = findViewById(R.id.title);
-        mTitleLayout = findViewById(R.id.titleLayout);
+        mTitleTv = findViewById(R.id.head_title_text);
+        mHeadLayout = findViewById(R.id.head_layout);
 
-        mLeftButton = findViewById(R.id.left_image);
-        mLeftButton.setOnClickListener(mOnClickListener);
-        mRightButton = findViewById(R.id.right_image);
-        mRightButton.setOnClickListener(mOnClickListener);
-        mSpecialButton = findViewById(R.id.special_image);
+        mToolbar = findViewById(R.id.toolbar);
+
+        mToolbar.setNavigationIcon(R.drawable.app_back_button);
+        mToolbar.setNavigationOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
+            }
+        });
+
+        mToolbar.inflateMenu(R.menu.menu_main);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                String msg = "";
+                switch (menuItem.getItemId()) {
+                    case R.id.action_edit:
+                        msg += "Click edit";
+                        break;
+                    case R.id.action_share:
+                        msg += "Click share";
+                        break;
+                    case R.id.action_settings:
+                        msg += "Click setting";
+                        break;
+                }
+
+                if (!msg.equals("")) {
+                    Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        });
 
         initView(containerLayout);
         getSystemState(savedInstanceState);
     }
-
-    private OnClickListener mOnClickListener = new OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            if (v.equals(mLeftButton)) {
-                back();
-
-            } else if (v.equals(mRightButton)) {
-                Message msg = takeScreenHandler.obtainMessage();
-                msg.what = 1;
-                takeScreenHandler.sendMessage(msg);
-            }
-        }
-    };
 
     /**
      * 获取Intent数据
@@ -447,6 +465,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
+     * 设置状态栏文字颜色
+     *
+     * @param isDark 是否为深色
+     */
+    public void setStatusBarFontColor(boolean isDark) {
+        if (isDark) {
+            getWindow().getDecorView().setSystemUiVisibility(View
+                    .SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//黑色
+        } else {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//白色
+        }
+    }
+
+    /**
      * 获取水印图片
      *
      * @return BitmapDrawable
@@ -460,9 +492,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             p.setAntiAlias(true);
             p.setTextSize(Level1Util.getSpSize(20));
             p.setAlpha(50);
-            String staff_id = gf.getUserId();
-            String staff_name = "";
-            String s = staff_id + ":" + staff_name;
+            String s = "chenjianming";
             int w = (int) p.measureText(s);
             FontMetrics fm = p.getFontMetrics();
             int h = (int) Math.ceil(fm.descent - fm.ascent);

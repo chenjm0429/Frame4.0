@@ -33,11 +33,9 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void initView(FrameLayout containerLayout) {
-
         mTitleTv.setText(new StringBuilder("关于").append(getString(R.string.app_name)));
 
-        View view = View.inflate(this, R.layout.activity_about, null);
-        containerLayout.addView(view);
+        View.inflate(this, R.layout.activity_about, containerLayout);
 
         TextView versionInfoTv = findViewById(R.id.versionInfo);
         versionInfoTv.setText(new StringBuilder("v").append(Utils.getVersionName(this)));

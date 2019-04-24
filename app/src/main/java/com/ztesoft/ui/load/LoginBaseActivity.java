@@ -41,7 +41,7 @@ public class LoginBaseActivity extends BaseActivity {
 
     @Override
     protected void initView(FrameLayout containerLayout) {
-        mTitleLayout.setVisibility(View.GONE);
+        mHeadLayout.setVisibility(View.GONE);
 
         spu = new SharedPreferencesUtil(this, Level1Bean.SHARE_PREFERENCES_NAME);
     }
@@ -55,7 +55,7 @@ public class LoginBaseActivity extends BaseActivity {
      */
     protected void initAppInfo(JSONObject jsonObj, boolean isFirstLogin) throws Exception {
 
-       setAppInfo(jsonObj);
+        setAppInfo(jsonObj);
 
         dismissLoadingDialog();
 
@@ -69,13 +69,20 @@ public class LoginBaseActivity extends BaseActivity {
         entity1.setMenuIconSelected(R.drawable.app_menu_home_selected);
         menuEntities.add(entity1);
 
+        MenuEntity entity2 = new MenuEntity();
+        entity2.setMenuId("2");
+        entity2.setMenuName("其它");
+        entity2.setMenuIcon(R.drawable.app_menu_home);
+        entity2.setMenuIconSelected(R.drawable.app_menu_home_selected);
+        menuEntities.add(entity2);
+
         Bundle bundle = new Bundle();
-        bundle.putSerializable("menu", menuEntities);
+        bundle.putParcelableArrayList("menu", menuEntities);
 
         if (isFirstLogin) {  //首次登录
             boolean isSetGesture = spu.getBoolean("isSetGesture", false);
 
-            int mode_type = 0;
+            int mode_type;
             if (isSetGesture) {
                 mode_type = GestureActivity.MODE_TYPE.LOGIN.ordinal();
             } else {
@@ -103,7 +110,7 @@ public class LoginBaseActivity extends BaseActivity {
 
             spu.putString("staffId", userJSON.optString("staffId"));
             spu.putString("lastGetMenuInfo", (new Date()).getTime() + "");
-        } 
+        }
     }
 
     @Override

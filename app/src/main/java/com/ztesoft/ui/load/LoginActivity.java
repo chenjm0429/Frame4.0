@@ -1,6 +1,5 @@
 package com.ztesoft.ui.load;
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -10,13 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ztesoft.R;
-import com.ztesoft.ui.main.MainActivity;
-import com.ztesoft.ui.main.entity.MenuEntity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import okhttp3.Call;
 
@@ -85,26 +80,11 @@ public class LoginActivity extends LoginBaseActivity implements OnClickListener 
 //            }
 //            queryData("", "login", TYPE_POST_JSON);
 
-            //此处控制显示的主菜单数，不同的现场主要调整此处
-            ArrayList<MenuEntity> menuEntities = new ArrayList<MenuEntity>();
-
-            MenuEntity entity1 = new MenuEntity();
-            entity1.setMenuId("1");
-            entity1.setMenuName("首页");
-            entity1.setMenuIcon(R.drawable.app_menu_home);
-            entity1.setMenuIconSelected(R.drawable.app_menu_home_selected);
-            menuEntities.add(entity1);
-
-            MenuEntity entity2 = new MenuEntity();
-            entity2.setMenuId("2");
-            entity2.setMenuName("其它");
-            entity2.setMenuIcon(R.drawable.app_menu_home);
-            entity2.setMenuIconSelected(R.drawable.app_menu_home_selected);
-            menuEntities.add(entity2);
-
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("menu", menuEntities);
-            forward(this, bundle, MainActivity.class, true, ANIM_TYPE.LEFT);
+            try {
+                initAppInfo(new JSONObject(), false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } else if (v.equals(mForgetText)) {
 

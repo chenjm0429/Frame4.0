@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/head_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/head_top_layout"
+        android:layout_alignBottom="@id/toolbar"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:id="@+id/head_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:id="@+id/head_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/head_top_layout"
+        android:layout_centerInParent="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/font_white_color"
+        android:textSize="20sp"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/head_title_text"
+        android:layout_alignBottom="@id/head_title_text"
+        android:gravity="center_horizontal"
+        android:theme="@style/AppTheme.ToolbarTheme"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title=" "/>
+</RelativeLayout>

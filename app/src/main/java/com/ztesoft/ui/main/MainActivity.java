@@ -1,14 +1,17 @@
 package com.ztesoft.ui.main;
 
 import android.app.Dialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 import com.ztesoft.MainApplication;
 import com.ztesoft.R;
 import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.level1.util.SharedPreferencesUtil;
 import com.ztesoft.ui.base.BaseActivity;
@@ -32,7 +36,6 @@ import com.ztesoft.ui.main.entity.MenuEntity;
 import com.ztesoft.ui.other.AboutActivity;
 import com.ztesoft.ui.widget.MenuItemView;
 import com.ztesoft.utils.MainPageUtil;
-import com.ztesoft.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,7 +60,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private DrawerLayout mDrawerLayout;
 
     public TextView mTitleText;
-    private ImageView mLeftImage, mRightImage;
+
+    /**
+     * 标题布局
+     */
+    public RelativeLayout mHeadLayout;
+    protected Toolbar mToolbar;
 
     private RelativeLayout mAboutLayout;  //关于app
     private TextView mExitText;  //退出登录
@@ -72,28 +80,68 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void getBundles(Bundle bundle) {
         if (null != bundle)
-            mMenuEntities = (ArrayList<MenuEntity>) bundle.getSerializable("menu");
+            mMenuEntities = bundle.getParcelableArrayList("menu");
     }
 
     @Override
     protected void initView(FrameLayout containerLayout) {
-
         setContentView(R.layout.activity_main);
+
+        /**
+         * android4.3以上的沉浸式 ，4.3以下没效果，所以不要头部填充状态栏高度
+         */
+        int sysVersion = Build.VERSION.SDK_INT;
+        if (sysVersion > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            LinearLayout headTopLayout = findViewById(R.id.head_top_layout);
+            RelativeLayout.LayoutParams para = new RelativeLayout.LayoutParams(Level1Util
+                    .getDeviceWidth(this), Level1Util.getStatusBarHeight(this));
+            //设置修改后的布局。
+            headTopLayout.setLayoutParams(para);
+        }
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         initSideBarView();
 
-        mTitleText = findViewById(R.id.title);
-        mLeftImage = findViewById(R.id.left_image);
-        mLeftImage.setOnClickListener(this);
-        mRightImage = findViewById(R.id.right_image);
-        mRightImage.setOnClickListener(this);
+        mTitleText = findViewById(R.id.head_title_text);
+        mHeadLayout = findViewById(R.id.head_layout);
+
+        mToolbar = findViewById(R.id.toolbar);
 
         mMenuLayout = findViewById(R.id.menu_layout);
 
         if (null != mMenuEntities && mMenuEntities.size() > 0) {
             initMenu();
         }
+
+        mToolbar.setNavigationIcon(R.drawable.app_action_button);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        
+        mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View view, float v) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View view) {
+                setStatusBarFontColor(true);
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View view) {
+                setStatusBarFontColor(false);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int i) {
+                
+            }
+        });
     }
 
     /**
@@ -111,25 +159,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void addParamObject(JSONObject param) throws JSONException {
+        BaseFragment fragment = mMenuEntities.get(mLastSelectedIndex).getFragment();
 
+        if (null != fragment) {
+            fragment.addParamObject(param);
+        }
     }
 
     @Override
     protected void initAllLayout(JSONObject resultJsonObject, Call call) throws Exception {
-
-        Fragment fragment = mMenuEntities.get(mLastSelectedIndex).getFragment();
+        BaseFragment fragment = mMenuEntities.get(mLastSelectedIndex).getFragment();
 
         if (null != fragment) {
-            ((BaseFragment) fragment).updateUI(resultJsonObject, call);
+            fragment.updateUI(resultJsonObject, call);
         }
     }
 
     @Override
     public void onClick(View v) {
-        if (v.equals(mLeftImage)) {  //左侧按钮
-            mDrawerLayout.openDrawer(GravityCompat.START);
-
-        } else if (v.equals(mAboutLayout)) {
+        if (v.equals(mAboutLayout)) {
             forward(MainActivity.this, null, AboutActivity.class, false, ANIM_TYPE.LEFT);
 
         } else if (v.equals(mExitText)) {
@@ -196,10 +244,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         MenuEntity entity = mMenuEntities.get(index);
         mTitleText.setText(entity.getMenuName());  //设置默认标题
 
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         // 开启Fragment事务  
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
 
         BaseFragment fragment = entity.getFragment();
 
@@ -256,7 +303,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Window dialogWindow = dialog.getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = Utils.getDeviceWidth(this) * 4 / 5; // 宽度
+        lp.width = Level1Util.getDeviceWidth(this) * 4 / 5; // 宽度
         dialogWindow.setAttributes(lp);
 
         TextView tipText = dialog.findViewById(R.id.tip_text);

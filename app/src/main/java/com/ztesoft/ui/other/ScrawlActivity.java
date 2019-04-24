@@ -27,10 +27,10 @@ import android.widget.PopupWindow;
 import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
+import com.ztesoft.level1.Level1Util;
 import com.ztesoft.level1.scrawl.ScrawlView;
 import com.ztesoft.level1.util.BitmapOperateUtil;
 import com.ztesoft.ui.base.BaseActivity;
-import com.ztesoft.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,7 +79,7 @@ public class ScrawlActivity extends BaseActivity {
     @Override
     protected void initView(FrameLayout containerLayout) {
 
-        mTitleLayout.setVisibility(View.GONE);
+        mHeadLayout.setVisibility(View.GONE);
 
         View.inflate(this, R.layout.activity_scrawl, containerLayout);
 
@@ -96,8 +96,8 @@ public class ScrawlActivity extends BaseActivity {
         findViewById(R.id.right_text).setOnClickListener(mOnClickListener);
 
         if (mBitmap == null) {
-            mBitmap = Bitmap.createBitmap(Utils.getDeviceWidth(this) - 20, Utils.getDeviceHeight
-                    (this) - 50, Config.ARGB_8888);
+            mBitmap = Bitmap.createBitmap(Level1Util.getDeviceWidth(this) - 20, Level1Util
+                    .getDeviceHeight(this) - 50, Config.ARGB_8888);
         }
 
         Matrix matrix = new Matrix();
@@ -308,7 +308,7 @@ public class ScrawlActivity extends BaseActivity {
 
         Window dialogWindow = dialog.getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = Utils.getDeviceWidth(this) * 9 / 10; // 宽度
+        lp.width = Level1Util.getDeviceWidth(this) * 9 / 10; // 宽度
         dialogWindow.setAttributes(lp);
 
         Button cancelBtn = dialog.findViewById(R.id.cancel);

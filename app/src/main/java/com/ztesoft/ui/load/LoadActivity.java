@@ -53,7 +53,7 @@ public class LoadActivity extends BaseActivity {
     protected void initView(FrameLayout containerLayout) {
         containerLayout.setForeground(new ColorDrawable());
 
-        mTitleLayout.setVisibility(View.GONE);
+        mHeadLayout.setVisibility(View.GONE);
 
         frameLayout = new FrameLayout(this);
         containerLayout.addView(frameLayout);

@@ -72,8 +72,6 @@ public class GestureActivity extends LoginBaseActivity {
     protected void initView(FrameLayout containerLayout) {
         super.initView(containerLayout);
 
-        mRightButton.setVisibility(View.GONE);
-
 //		containerLayout.setForeground(getWatermark());
         View.inflate(this, R.layout.activity_gesture, containerLayout);
 
@@ -82,7 +80,7 @@ public class GestureActivity extends LoginBaseActivity {
 
         if (mode_type == MODE_TYPE.LOGIN) {
             mTipText.setText(R.string.sign_login);
-            findViewById(R.id.titleLayout).setVisibility(View.GONE);
+            mHeadLayout.setVisibility(View.GONE);
 
         } else if (mode_type == MODE_TYPE.CHANGE) {
             mTitleTv.setText("修改手势码");
@@ -92,7 +90,7 @@ public class GestureActivity extends LoginBaseActivity {
         } else if (mode_type == MODE_TYPE.FIRST) {
             mTitleTv.setText("设置手势码");
             mTipText.setText(R.string.sign_set);
-            findViewById(R.id.titleLayout).setVisibility(View.GONE);
+            mHeadLayout.setVisibility(View.GONE);
             mForgetText.setVisibility(View.GONE);
 
         } else if (mode_type == MODE_TYPE.DELETE) {

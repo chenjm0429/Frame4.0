@@ -3,18 +3,13 @@ package com.ztesoft.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.ztesoft.R;
-import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.util.PromptUtils;
-import com.ztesoft.level1.util.SharedPreferencesUtil;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -49,84 +44,6 @@ public class Utils {
     public static final int VIDEO = 3;
 
     /**
-     * 获取屏幕的密度
-     */
-    public static float getDeviceDensity(Context context) {
-        DisplayMetrics dm = new DisplayMetrics();
-
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context
-                .WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(dm);
-
-        return dm.density;
-    }
-
-    /**
-     * 获取屏幕高度
-     */
-    public static int getDeviceHeight(Context context) {
-
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context
-                .WINDOW_SERVICE);
-
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
-
-        return dm.heightPixels;
-    }
-
-    /**
-     * 获取屏幕的宽
-     */
-    public static int getDeviceWidth(Context context) {
-
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context
-                .WINDOW_SERVICE);
-
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
-
-        return dm.widthPixels;
-    }
-
-    /**
-     * 获取通知栏高度
-     *
-     * @param context
-     * @return
-     */
-    public static int getStatusBarHeight(Context context) {
-
-        int statusBarHeight = 0;
-        boolean isFullScreen = new SharedPreferencesUtil(context, Level1Bean
-                .SHARE_PREFERENCES_NAME).getBoolean("isFullScreen", false);
-        if (!isFullScreen) { // 没有全屏
-            try {
-                Class<?> c = Class.forName("com.android.internal.R$dimen");
-                Object obj = c.newInstance();
-                Field field = c.getField("status_bar_height");
-                int x = Integer.parseInt(field.get(obj).toString());
-                statusBarHeight = context.getResources().getDimensionPixelSize(x);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return statusBarHeight;
-    }
-
-    /**
-     * 获取标题栏高度
-     *
-     * @return
-     */
-    public static int getTitleBarHeight(Context context) {
-        int titleBarHeight = context.getResources().getDimensionPixelSize(R.dimen.app_title_height);
-
-        return titleBarHeight;
-    }
-
-    /**
      * 获取版本名称
      */
     public static String getVersionName(Context context) {
@@ -156,21 +73,6 @@ public class Utils {
         }
 
         return versionCode;
-    }
-
-    /**
-     * 判断设备类型是否为手机
-     *
-     * @return 返回true则为手机，false为pad
-     */
-    public static boolean getDeviceType(Context context) {
-        boolean tag = true;
-        if (getDeviceWidth(context) < getDeviceHeight(context)) {
-            tag = true;
-        } else {
-            tag = false;
-        }
-        return tag;
     }
 
     /**

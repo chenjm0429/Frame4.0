@@ -1,8 +1,9 @@
 package com.ztesoft.ui.main.entity;
 
-import com.ztesoft.ui.base.BaseFragment;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.io.Serializable;
+import com.ztesoft.ui.base.BaseFragment;
 
 /**
  * 文件名称 : MenuEntity
@@ -14,8 +15,7 @@ import java.io.Serializable;
  * 创建时间 : 2017/3/23 15:57
  * <p>
  */
-public class MenuEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class MenuEntity implements Parcelable {
 
     // 菜单id
     private String menuId;
@@ -73,5 +73,37 @@ public class MenuEntity implements Serializable {
 
     public void setFragment(BaseFragment fragment) {
         this.fragment = fragment;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(menuId);
+        dest.writeString(menuName);
+        dest.writeInt(menuIcon);
+        dest.writeInt(menuIconSelected);
+    }
+
+    public static final Parcelable.Creator<MenuEntity> CREATOR = new Creator<MenuEntity>() {
+        @Override
+        public MenuEntity createFromParcel(Parcel source) {
+            return new MenuEntity(source);
+        }
+
+        @Override
+        public MenuEntity[] newArray(int size) {
+            return new MenuEntity[size];
+        }
+    };
+
+    private MenuEntity(Parcel in) {
+        menuId = in.readString();
+        menuName = in.readString();
+        menuIcon = in.readInt();
+        menuIconSelected = in.readInt();
     }
 }

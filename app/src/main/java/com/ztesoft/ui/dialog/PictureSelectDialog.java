@@ -22,7 +22,6 @@ import com.ztesoft.R;
 import com.ztesoft.fusion.FusionCode;
 import com.ztesoft.level1.Level1Bean;
 import com.ztesoft.level1.Level1Util;
-import com.ztesoft.utils.Utils;
 
 import java.io.File;
 
@@ -84,7 +83,7 @@ public class PictureSelectDialog extends Dialog implements View.OnClickListener 
         dialogWindow.setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
 
-        lp.width = Utils.getDeviceWidth(context) - 40; // 宽度
+        lp.width = Level1Util.getDeviceWidth(context) - 40; // 宽度
         lp.alpha = 1.0f; // 透明度
 
         dialogWindow.setAttributes(lp);

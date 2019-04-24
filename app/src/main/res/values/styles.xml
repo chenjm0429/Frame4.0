@@ -5,11 +5,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorControlNormal</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!-- 图片全屏-->
+    <style name="AppTheme.ImgFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--全透明效果-->
     </style>
 
     <style name="AppTheme.FullScreen">
@@ -20,7 +26,33 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <!-- Toolbar菜单文字样式  -->
+    <style name="AppTheme.ToolbarTheme" parent="AppTheme.AppBarOverlay">
+        <item name="actionMenuTextColor">@color/font_white_color</item> <!--颜色-->
+        <item name="android:textSize">16sp</item> <!--字体大小-->
+    </style>
+
+    <!--Toolbar菜单样式-->
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- 菜单每栏设置 -->
+        <item name="actionOverflowMenuStyle">@style/AppTheme.PopupOverlay.StackOverflow</item>
+        <!-- 菜单分割线设置 -->
+        <item name="android:dropDownListViewStyle">@style/AppTheme.DivideLine.MenuLine</item>
+        <!-- 菜单item字体颜色 -->
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay.StackOverflow" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">5dip</item>
+        <item name="android:popupBackground">?attr/colorPrimary</item>
+        <item name="android:dropDownHorizontalOffset">0dip</item>
+    </style>
+
+    <style name="AppTheme.DivideLine.MenuLine" parent="Base.Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">#DEDEDE</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
 
     <!-- 头部布局风格 -->
     <style name="app_title_layout_style">

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.ztesoft">
 
     <!-- Normal Permissions -->
@@ -15,6 +16,7 @@
 
     <!-- Dangerous Permissions -->
     <permission-group android:name="android.permission-group.LOCATION"/>
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
@@ -26,15 +28,20 @@
 
     <permission-group android:name="android.permission-group.PHONE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    
+
+    <!-- 9.0后增加后台启动服务权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name="com.ztesoft.MainApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
 
         <!-- 启动页 -->
         <activity
@@ -60,35 +67,35 @@
             android:name="com.ztesoft.ui.load.LoginActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen">
+            android:theme="@style/AppTheme.ImgFullScreen"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <!-- 主页面 -->
         <activity
             android:name="com.ztesoft.ui.main.MainActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:launchMode="singleTask">
         </activity>
 
         <!-- 关于app -->
         <activity
             android:name="com.ztesoft.ui.other.AboutActivity"
             android:launchMode="standard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
         </activity>
         <!-- 手势码 -->
         <activity
             android:name="com.ztesoft.ui.other.GestureActivity"
             android:launchMode="standard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
         </activity>
         <!-- 涂鸦 -->
         <activity
             android:name="com.ztesoft.ui.other.ScrawlActivity"
             android:launchMode="standard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
         </activity>
         <!-- 权限获取 -->
         <activity
@@ -109,7 +116,5 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="59b41f1e29dcc086e57a5ad006ff3929"/>
-
     </application>
-
 </manifest>

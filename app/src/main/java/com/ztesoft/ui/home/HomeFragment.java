@@ -10,6 +10,7 @@ import com.ztesoft.level1.ui.AutoScrollTextView;
 import com.ztesoft.level1.ui.ButtonGroupUI;
 import com.ztesoft.level1.util.PromptUtils;
 import com.ztesoft.ui.base.BaseFragment;
+import com.ztesoft.ui.main.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +57,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                mActivity.menuSelected(1);
+                ((MainActivity) mActivity).menuSelected(1);
             }
         });
 
@@ -106,8 +107,12 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void changeTitleBarStatus() {
-        if (null != mActivity)
-            mActivity.mTitleText.setText("改变看看啊");
+        if (null != mActivity) {
+            ((MainActivity) mActivity).mTitleText.setText("改变看看啊");
+            ((MainActivity) mActivity).mHeadLayout.setVisibility(View.VISIBLE);
+
+            setStatusBarFontColor(false);
+        }
     }
 
     @Override

@@ -61,7 +61,7 @@ public class PermissionsActivity extends BaseActivity {
     @Override
     protected void initView(FrameLayout containerLayout) {
 
-        mTitleLayout.setVisibility(View.GONE);
+        mHeadLayout.setVisibility(View.GONE);
         containerLayout.setBackgroundResource(R.drawable.login_bg);
         containerLayout.setForeground(new ColorDrawable());
 
